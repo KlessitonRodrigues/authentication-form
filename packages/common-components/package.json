@@ -1,0 +1,25 @@
+{
+  "name": "@packages/common-components",
+  "version": "1.0.0",
+  "main": "./index.tsx",
+  "types": "./index.tsx",
+  "license": "MIT",
+  "exports": {
+    ".": "./index.tsx",
+    "./*": "./*"
+  },
+  "dependencies": {
+    "react": "^19.2.3",
+    "react-hook-form": "^7.71.1",
+    "zod": "^4.3.5"
+  },
+  "devDependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "motion": "^12.27.0",
+    "react": "^19.2.3",
+    "react-icons": "^5.5.0",
+    "react-select": "^5.10.2",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss": "^4.1.18"
+  }
+}
