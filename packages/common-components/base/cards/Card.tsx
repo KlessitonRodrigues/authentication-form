@@ -1,28 +1,16 @@
+import { HTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
-type ICard = React.HTMLAttributes<HTMLDivElement> & {
-  selected?: boolean;
-};
+interface CardProps extends HTMLAttributes<HTMLDivElement> {}
 
-export const Card = ({ className, ...props }: ICard) => {
-  return (
-    <div
-      {...props}
-      className={twMerge(
-        `card w-full flex flex-col items-start gap-2 p-8 rounded-md 
-         text-text1 bg-white shadow-sm hover:shadow-md transition-shadow
-          ${className}`,
-      )}
-    />
-  );
-};
+export const Card = (props: CardProps) => {
+  const { className, children, ...cardProps } = props;
+  const classNames = ["card shadow-lg rounded-md p-4"];
+  classNames.push(className || "");
 
-export const SelectableCard = ({ className, ...props }: ICard) => {
   return (
-    <Card
-      {...props}
-      className={twMerge(`border rounded-lg p-4 max-w-sm h-fit cursor-pointer hover:bg-bg2 
-          ${props.selected ? "border-blue-500" : ""} ${className}`)}
-    />
+    <div className={twMerge(...classNames)} {...cardProps}>
+      {children}
+    </div>
   );
 };

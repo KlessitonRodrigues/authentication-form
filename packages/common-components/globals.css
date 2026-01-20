@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: light --default;
+}
+
+@source "../";
+
+:root {
+  /* Colors */
+  --color-main: #228ef3;
+  --color-main-bg: #1e40af;
+  --color-main-text: #f9fafb;
+  --color-bg1: #ffffff;
+  --color-bg2: #f9fafb;
+  --color-bg3: #f3f4f6;
+  --color-bg4: #e5e7eb;
+  --color-fg1: #1f2937;
+  --color-fg2: #374151;
+  --color-fg3: #4b5563;
+  --color-fg4: #6b7280;
+  --color-default-yellow: #ca8a04;
+  --color-default-red: #b91c1c;
+  --color-default-green: #16a34a;
+  --color-default-gray: #9ca3af;
+  --color-default-blue: #3b82f6;
+  --color-default-white: #f9fafb;
+  --color-default-black: #1f2937;
+  --color-opacity-black: #0006;
+
+  /* Daisy theme */
+  --size-field: 0.22rem;
+  --color-base-100: var(--color-bg1);
+  --color-base-200: var(--color-bg2);
+  --color-base-300: var(--color-bg4);
+  --color-base-content: var(--color-fg1);
+  --color-primary: var(--color-main);
+  --color-primary-content: var(--color-main-text);
+  --color-secondary: var(--color-default-blue);
+  --color-secondary-content: var(--color-default-white);
+  --color-accent: var(--color-bg1);
+  --color-accent-content: var(--color-fg1);
+  --color-neutral: var(--color-fg1);
+  --color-neutral-content: var(--color-bg1);
+  --color-info: var(--color-default-blue);
+  --color-info-content: var(--color-default-white);
+  --color-success: var(--color-default-green);
+  --color-success-content: var(--color-default-white);
+  --color-warning: var(--color-default-yellow);
+  --color-warning-content: var(--color-default-white);
+  --color-error: var(--color-default-red);
+  --color-error-content: var(--color-default-white);
+
+  /* Font Families */
+  --font-sans: Rubik, sans-serif;
+  --font-serif: Merriweather, serif;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+
+  /* Font Sizes */
+  --text-xs: 14px;
+  --text-sm: 15px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 28px;
+  --text-4xl: 32px;
+
+  /* Box Shadows */
+  --shadow-sm: 0 2px 3px 0 #0001;
+  --shadow-md: 0 2px 4px 0 #0002;
+  --shadow-lg: 0 2px 5px 0 #0003;
+  --shadow-xl: 0 2px 6px 0 #0004;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-main-bg: rgb(37 99 235);
+    --color-main-text: rgb(255 255 255);
+    --color-bg1: rgb(31 41 55);
+    --color-bg2: rgb(55 65 81);
+    --color-bg3: rgb(75 85 99);
+    --color-bg4: rgb(107 114 128);
+    --color-fg1: rgb(249 250 251);
+    --color-fg2: rgb(243 244 246);
+    --color-fg3: rgb(229 231 235);
+    --color-fg4: rgb(209 213 219);
+  }
+}
+
+body {
+  background-color: var(--color-bg1);
+  color: var(--color-fg1);
+  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.text-default-yellow {
+  color: var(--color-default-yellow);
+}
+.text-default-red {
+  color: var(--color-default-red);
+}
+.text-default-green {
+  color: var(--color-default-green);
+}
+.text-default-gray {
+  color: var(--color-default-gray);
+}
+.text-default-blue {
+  color: var(--color-default-blue);
+}
+.text-default-white {
+  color: var(--color-default-white);
+}
+.text-default-black {
+  color: var(--color-default-black);
+}
+
+.bg-default-yellow {
+  background-color: var(--color-default-yellow);
+}
+.bg-default-red {
+  background-color: var(--color-default-red);
+}
+.bg-default-green {
+  background-color: var(--color-default-green);
+}
+.bg-default-gray {
+  background-color: var(--color-default-gray);
+}
+.bg-default-blue {
+  background-color: var(--color-default-blue);
+}
+.bg-default-white {
+  background-color: var(--color-default-white);
+}
+.bg-default-black {
+  background-color: var(--color-default-black);
+}
+
+.border-default-yellow {
+  border-color: var(--color-default-yellow);
+}
+.border-default-red {
+  border-color: var(--color-default-red);
+}
+.border-default-green {
+  border-color: var(--color-default-green);
+}
+.border-default-gray {
+  border-color: var(--color-default-gray);
+}
+.border-default-blue {
+  border-color: var(--color-default-blue);
+}
+.border-default-white {
+  border-color: var(--color-default-white);
+}
+.border-default-black {
+  border-color: var(--color-default-black);
+}
+
+.shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+.shadow-md {
+  box-shadow: var(--shadow-md);
+}
+.shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+.shadow-xl {
+  box-shadow: var(--shadow-xl);
+}
