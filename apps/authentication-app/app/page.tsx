@@ -1,9 +1,10 @@
-import { AuthenticationForm, Column } from "@packages/common-components";
+import { AuthenticationForm } from "@/lib/forms/Authentication";
+import { Page } from "@packages/common-components";
 
 export default function Home() {
   return (
-    <Column className="p-4">
+    <Page>
       <AuthenticationForm />
-    </Column>
+    </Page>
   );
 }

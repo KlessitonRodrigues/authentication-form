@@ -7,6 +7,7 @@ interface TabListProps extends HTMLAttributes<HTMLDivElement> {
     label: string;
     icon: React.ReactNode;
     content: React.ReactNode;
+    disabled?: boolean;
   }[];
 }
 
@@ -18,6 +19,7 @@ export const TabList = (props: TabListProps) => {
     return items.map((item, index) => {
       const classNames = ["tab", "text-sm", "gap-2"];
       if (tabIndex === index) classNames.push("tab-active");
+      if (item.disabled) classNames.push("tab-disabled");
 
       return (
         <a

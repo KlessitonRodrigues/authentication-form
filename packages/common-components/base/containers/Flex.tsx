@@ -8,7 +8,7 @@ type IFlex = React.HTMLAttributes<HTMLDivElement> & {
 };
 
 export const Row = (props: IFlex) => {
-  const { className, flexY, flexX, gap } = props;
+  const { className, flexY, flexX, gap, ...RowProps } = props;
   const flexStyle = ["flex flex-row w-full"];
   flexStyle.push(`justify-${flexX || "start"}`);
   flexStyle.push(`items-${flexY || "center"}`);
@@ -17,18 +17,18 @@ export const Row = (props: IFlex) => {
   else flexStyle.push("flex-row");
   if (className) flexStyle.push(className);
 
-  return <div {...props} className={twMerge(flexStyle.join(" "))} />;
+  return <div {...RowProps} className={twMerge(flexStyle.join(" "))} />;
 };
 
 export const Column = (props: IFlex) => {
-  const { className, flexY, flexX, gap } = props;
+  const { className, flexY, flexX, gap, ...ColumnProps } = props;
   const flexStyle = ["w-full h-full flex flex-col"];
   flexStyle.push(`justify-${flexY || "start"}`);
   flexStyle.push(`items-${flexX || "center"}`);
   flexStyle.push(`gap-${gap ?? 2}`);
   if (className) flexStyle.push(className);
 
-  return <div {...props} className={twMerge(flexStyle.join(" "))} />;
+  return <div {...ColumnProps} className={twMerge(flexStyle.join(" "))} />;
 };
 
 /* tailwind include

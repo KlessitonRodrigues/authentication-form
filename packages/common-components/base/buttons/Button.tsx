@@ -18,11 +18,11 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = (props: ButtonProps) => {
-  const { className, ...btnProps } = props;
+  const { className, ghost, link, ...btnProps } = props;
 
-  const btnClasses = ["btn rounded-sm px-4"];
-  if (props.ghost) btnClasses.push("btn-ghost");
-  if (props.link) btnClasses.push("btn-link");
+  const btnClasses = ["btn shadow-sm rounded-sm px-4"];
+  if (ghost) btnClasses.push("btn-ghost");
+  if (link) btnClasses.push("btn-link");
   btnClasses.push(`btn-${props.color || "primary"}`);
   btnClasses.push(`btn-${props.size || "md"}`);
   btnClasses.push(className || "");

@@ -1,17 +1,22 @@
-interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  inputSize?: "sm" | "md" | "lg";
+import { HTMLAttributes } from "react";
+
+interface InputFieldProps extends HTMLAttributes<HTMLDivElement> {
+  size?: "sm" | "md" | "lg";
+  type?: "text" | "email" | "password" | "number";
+  placeholder?: string;
   label?: string;
   className?: string;
   error?: string;
   before?: React.ReactNode;
   after?: React.ReactNode;
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
 }
 
 export const InputField = (props: InputFieldProps) => {
-  const { className, inputSize = "lg", ...inputFieldProps } = props;
-  const classNames = ["input rounded-sm shadow-sm outline-none w-full"];
+  const { className } = props;
+  const classNames = ["input rounded-md shadow-sm outline-none w-full"];
   if (props.error) classNames.push("input-error");
-  classNames.push(`input-${props.inputSize || "md"}`);
+  classNames.push(`input-${props.size || "md"}`);
   classNames.push(className || "");
 
   return (
@@ -19,7 +24,12 @@ export const InputField = (props: InputFieldProps) => {
       <legend className="fieldset-legend">{props.label}</legend>
       <label className={classNames.join(" ")}>
         {props.before}
-        <input type="text" {...inputFieldProps} />
+        <input
+          className="text-base"
+          type={props.type || "text"}
+          placeholder={props.placeholder}
+          {...props.inputProps}
+        />
         {props.after}
       </label>
       <p className="label text-default-red">{props.error}</p>

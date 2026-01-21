@@ -31,17 +31,17 @@
   /* Daisy theme */
   --size-field: 0.22rem;
   --color-base-100: var(--color-bg1);
-  --color-base-200: var(--color-bg2);
+  --color-base-200: var(--color-bg3);
   --color-base-300: var(--color-bg4);
   --color-base-content: var(--color-fg1);
   --color-primary: var(--color-main);
   --color-primary-content: var(--color-main-text);
   --color-secondary: var(--color-default-blue);
   --color-secondary-content: var(--color-default-white);
-  --color-accent: var(--color-bg1);
-  --color-accent-content: var(--color-fg1);
-  --color-neutral: var(--color-fg1);
-  --color-neutral-content: var(--color-bg1);
+  --color-accent: var(--color-fg1);
+  --color-accent-content: var(--color-bg1);
+  --color-neutral: var(--color-bg1);
+  --color-neutral-content: var(--color-fg1);
   --color-info: var(--color-default-blue);
   --color-info-content: var(--color-default-white);
   --color-success: var(--color-default-green);
@@ -81,28 +81,40 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --color-main-bg: rgb(37 99 235);
-    --color-main-text: rgb(255 255 255);
-    --color-bg1: rgb(31 41 55);
-    --color-bg2: rgb(55 65 81);
-    --color-bg3: rgb(75 85 99);
-    --color-bg4: rgb(107 114 128);
-    --color-fg1: rgb(249 250 251);
-    --color-fg2: rgb(243 244 246);
-    --color-fg3: rgb(229 231 235);
-    --color-fg4: rgb(209 213 219);
+    --color-main-bg: #2563eb;
+    --color-main-text: #ffffff;
+    --color-bg1: #000000;
+    --color-bg2: #374151;
+    --color-bg3: #4b5563;
+    --color-bg4: #6b7280;
+    --color-fg1: #f9fafb;
+    --color-fg2: #f3f4f6;
+    --color-fg3: #e5e7eb;
+    --color-fg4: #d1d5db;
   }
 }
 
 body {
-  background-color: var(--color-bg1);
-  color: var(--color-fg1);
+  background-color: var(--color-bg4);
+  color: var(--color-fg4);
   font-family: Arial, Helvetica, sans-serif;
   font-family: var(--font-sans);
   height: 100vh;
   overflow-y: auto;
 }
 
+.text-fg1 {
+  color: var(--color-fg1);
+}
+.text-fg2 {
+  color: var(--color-fg2);
+}
+.text-fg3 {
+  color: var(--color-fg3);
+}
+.text-fg4 {
+  color: var(--color-fg4);
+}
 .text-default-yellow {
   color: var(--color-default-yellow);
 }
@@ -125,6 +137,18 @@ body {
   color: var(--color-default-black);
 }
 
+.bg-bg1 {
+  background-color: var(--color-bg1);
+}
+.bg-bg2 {
+  background-color: var(--color-bg2);
+}
+.bg-bg3 {
+  background-color: var(--color-bg3);
+}
+.bg-bg4 {
+  background-color: var(--color-bg4);
+}
 .bg-default-yellow {
   background-color: var(--color-default-yellow);
 }
