@@ -7,6 +7,7 @@ interface InputFieldProps extends HTMLAttributes<HTMLDivElement> {
   label?: string;
   className?: string;
   error?: string;
+  disabled?: boolean;
   before?: React.ReactNode;
   after?: React.ReactNode;
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
@@ -28,6 +29,7 @@ export const InputField = (props: InputFieldProps) => {
           className="text-base"
           type={props.type || "text"}
           placeholder={props.placeholder}
+          disabled={props.disabled}
           {...props.inputProps}
         />
         {props.after}
