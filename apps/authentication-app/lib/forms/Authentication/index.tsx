@@ -2,6 +2,7 @@ import { Card, Icons, TabList } from "@packages/common-components";
 import { SignInForm } from "./SignIn";
 import { SignUpForm } from "./SignUp";
 import { ResetPassForm } from "./ResetPass";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const TabItems = [
   {
@@ -27,10 +28,14 @@ const TabItems = [
   },
 ];
 
+const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "";
+
 export const AuthenticationForm = () => {
   return (
-    <Card className="w-xl">
-      <TabList items={TabItems} />
-    </Card>
+    <GoogleOAuthProvider clientId={clientId}>
+      <Card className="w-xl">
+        <TabList items={TabItems} />
+      </Card>
+    </GoogleOAuthProvider>
   );
 };

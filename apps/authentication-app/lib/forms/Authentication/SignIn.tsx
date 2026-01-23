@@ -10,9 +10,12 @@ import {
 
 import { useForm } from "react-hook-form";
 import { AuthForm, formValidation } from "./validation";
+import useAuthentication from "@/lib/hooks/useAuthentication";
 
 export const SignInForm = () => {
+  const { handleGoogleLogin } = useAuthentication();
   const { formState, register, handleSubmit } = useForm(formValidation);
+
   const onSubmit = (data: AuthForm) => {
     console.log("Sign In Data:", data);
   };
@@ -38,20 +41,19 @@ export const SignInForm = () => {
         error={formState.errors.password?.message}
       />
       <Row flexX="center">
-        <Button color="primary">
+        <Button color="primary" type="submit">
           <Icons icon="signIn" />
           Sign In
         </Button>
-        <Button color="neutral">
+        <Button color="neutral" type="button" onClick={handleGoogleLogin}>
           <Icons icon="google" />
           Google
         </Button>
-        <Button color="neutral">
+        <Button color="neutral" type="button">
           <Icons icon="github" />
           GitHub
         </Button>
       </Row>
-      <Row flexX="center"></Row>
     </Form>
   );
 };

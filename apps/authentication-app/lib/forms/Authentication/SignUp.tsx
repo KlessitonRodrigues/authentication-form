@@ -1,3 +1,4 @@
+"use client";
 import {
   Button,
   Form,
@@ -5,16 +6,25 @@ import {
   InputField,
   Row,
 } from "@packages/common-components";
+import { AuthForm, formValidation } from "./validation";
+import { useForm } from "react-hook-form";
 
 export const SignUpForm = () => {
+  const { formState, register, handleSubmit } = useForm(formValidation);
+  const onSubmit = (data: AuthForm) => {
+    console.log("Sign In Data:", data);
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <InputField
         size="lg"
         type="email"
         label="Email"
         placeholder="Enter your e-mail"
         before={<Icons icon="email" />}
+        error={formState.errors.email?.message}
+        inputProps={register("email")}
       />
       <InputField
         size="lg"
@@ -22,6 +32,8 @@ export const SignUpForm = () => {
         label="Username"
         placeholder="Choose a username"
         before={<Icons icon="user" />}
+        error={formState.errors.userName?.message}
+        inputProps={register("userName")}
       />
       <InputField
         size="lg"
@@ -29,6 +41,8 @@ export const SignUpForm = () => {
         label="Password"
         placeholder="Enter your password"
         before={<Icons icon="lock" />}
+        error={formState.errors.password?.message}
+        inputProps={register("password")}
       />
       <InputField
         size="lg"
@@ -36,15 +50,13 @@ export const SignUpForm = () => {
         label="Confirm Password"
         placeholder="Re-enter your password"
         before={<Icons icon="lock" />}
+        error={formState.errors.confirmPassword?.message}
+        inputProps={register("confirmPassword")}
       />
       <Row flexX="center">
         <Button color="primary">
           <Icons icon="userPlus" />
           Create Account
-        </Button>
-        <Button ghost>
-          <Icons icon="signIn" />
-          Sign In
         </Button>
       </Row>
     </Form>
