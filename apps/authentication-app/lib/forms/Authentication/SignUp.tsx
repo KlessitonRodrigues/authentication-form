@@ -6,8 +6,10 @@ import {
   InputField,
   Row,
 } from "@packages/common-components";
-import { AuthForm, formValidation } from "./validation";
+import { AuthForm, getAuthValidation } from "./validation";
 import { useForm } from "react-hook-form";
+
+const formValidation = getAuthValidation("signUp");
 
 export const SignUpForm = () => {
   const { formState, register, handleSubmit } = useForm(formValidation);

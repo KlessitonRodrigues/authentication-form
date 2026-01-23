@@ -15,12 +15,13 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: "xs" | "sm" | "md" | "lg";
   ghost?: boolean;
   link?: boolean;
+  loading?: boolean;
 }
 
 export const Button = (props: ButtonProps) => {
-  const { className, ghost, link, ...btnProps } = props;
+  const { className, ghost, link, loading, ...btnProps } = props;
 
-  const btnClasses = ["btn shadow-sm rounded-sm px-4"];
+  const btnClasses = ["btn shadow-sm rounded-sm"];
   if (ghost) btnClasses.push("btn-ghost");
   if (link) btnClasses.push("btn-link");
   btnClasses.push(`btn-${props.color || "primary"}`);
@@ -29,6 +30,7 @@ export const Button = (props: ButtonProps) => {
 
   return (
     <button className={twMerge(...btnClasses)} {...btnProps}>
+      {loading && <span className="loading loading-spinner loading-xs" />}
       {props.label || props.children}
     </button>
   );

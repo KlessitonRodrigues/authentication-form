@@ -9,15 +9,18 @@ import {
 } from "@packages/common-components";
 
 import { useForm } from "react-hook-form";
-import { AuthForm, formValidation } from "./validation";
+import { AuthForm, getAuthValidation } from "./validation";
 import useAuthentication from "@/lib/hooks/useAuthentication";
 
+const formValidation = getAuthValidation("signIn");
+
 export const SignInForm = () => {
-  const { handleGoogleLogin } = useAuthentication();
+  const { loginQuery, googleLoginQuery, googleLoginHandle } =
+    useAuthentication();
   const { formState, register, handleSubmit } = useForm(formValidation);
 
   const onSubmit = (data: AuthForm) => {
-    console.log("Sign In Data:", data);
+    loginQuery.mutate({ email: data.email, password: data.password });
   };
 
   return (
@@ -41,11 +44,16 @@ export const SignInForm = () => {
         error={formState.errors.password?.message}
       />
       <Row flexX="center">
-        <Button color="primary" type="submit">
+        <Button color="primary" type="submit" loading={loginQuery.isPending}>
           <Icons icon="signIn" />
           Sign In
         </Button>
-        <Button color="neutral" type="button" onClick={handleGoogleLogin}>
+        <Button
+          color="neutral"
+          type="button"
+          onClick={googleLoginHandle}
+          loading={googleLoginQuery.isLoading}
+        >
           <Icons icon="google" />
           Google
         </Button>
