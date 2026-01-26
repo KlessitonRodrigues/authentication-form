@@ -13,9 +13,7 @@ const formValidation = getAuthValidation("signUp");
 
 export const SignUpForm = () => {
   const { formState, register, handleSubmit } = useForm(formValidation);
-  const onSubmit = (data: AuthForm) => {
-    console.log("Sign In Data:", data);
-  };
+  const onSubmit = (data: AuthForm) => console.log("Sign In Data:", data);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

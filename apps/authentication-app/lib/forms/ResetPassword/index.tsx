@@ -6,7 +6,7 @@ import { ChangePasswordForm } from "./ChangePassword";
 const TabItems = [
   {
     label: "Verify Code",
-    icon: <Icons icon="checkMark" />,
+    icon: <Icons icon="code" />,
     content: <VerifyCodeForm />,
   },
   {
