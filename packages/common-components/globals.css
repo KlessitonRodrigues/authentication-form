@@ -8,8 +8,8 @@
 
 :root {
   /* Colors */
-  --color-main: #2196f3;
-  --color-main-bg: #1e40af;
+  --color-main: #546e7a;
+  --color-main-bg: #263238;
   --color-main-text: #f9fafb;
   --color-bg1: #ffffff;
   --color-bg2: #f9fafb;
@@ -202,4 +202,46 @@ body {
 }
 .shadow-xl {
   box-shadow: var(--shadow-xl);
+}
+
+/* Animations */
+
+.slide-left {
+  animation: slide-left 0.4s ease-out forwards;
+}
+
+.slide-up {
+  animation: slide-up 0.4s ease-out forwards;
+}
+
+.slide-up-delay-500 {
+  opacity: 0;
+  animation: slide-up 0.4s ease-out 0.5s forwards;
+}
+
+.slide-up-delay-1000 {
+  opacity: 0;
+  animation: slide-up 0.4s ease-out 1s forwards;
+}
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(60px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(60px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

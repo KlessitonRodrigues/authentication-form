@@ -34,13 +34,13 @@ export const LoginCardSection = (props: LoginSectionProps) => {
             style={sectionImg}
           />
           <div className="relative z-10 space-y-8">
-            <Text tag="h1" fs="5xl" bold>
+            <Text tag="h1" fs="5xl" bold className="slide-up">
               {data.title}
             </Text>
-            <Text tag="p" fs="xl">
+            <Text tag="p" fs="xl" className="slide-up-delay-500">
               {data.description}
             </Text>
-            <Text tag="p" fs="xl">
+            <Text tag="p" fs="xl" className="slide-up-delay-1000">
               {data.description2}
             </Text>
           </div>

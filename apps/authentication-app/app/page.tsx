@@ -19,7 +19,7 @@ export default function Home() {
       }}
       bgGradient={{
         from: materialColors.blue["100"],
-        to: materialColors.amber["200"],
+        to: materialColors.amber["100"],
       }}
     />
   );
