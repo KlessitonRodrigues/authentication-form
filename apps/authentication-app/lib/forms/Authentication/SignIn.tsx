@@ -5,6 +5,7 @@ import {
   Icons,
   InputField,
   Row,
+  Text,
 } from "@packages/common-components";
 
 import { useForm } from "react-hook-form";
@@ -42,11 +43,13 @@ export const SignInForm = () => {
         before={<Icons icon="lock" />}
         error={formState.errors.password?.message}
       />
-      <Row flexX="center">
-        <Button color="primary" type="submit" loading={loginQuery.isPending}>
-          <Icons icon="signIn" />
-          Sign In
-        </Button>
+
+      <Button type="submit" loading={loginQuery.isPending}>
+        <Icons icon="signIn" />
+        Sign In
+      </Button>
+
+      <Row flexX="center" gap={4}>
         <Button
           color="neutral"
           type="button"
@@ -61,6 +64,9 @@ export const SignInForm = () => {
           GitHub
         </Button>
       </Row>
+      <Text fs="sm" className="text-center">
+        By signing in, you agree to our Terms of Service and Privacy Policy.
+      </Text>
     </Form>
   );
 };

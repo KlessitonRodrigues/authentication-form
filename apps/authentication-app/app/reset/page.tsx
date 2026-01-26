@@ -1,4 +1,4 @@
-import { AuthenticationForm } from "@/lib/forms/Authentication";
+import { ResetPasswordForm } from "@/lib/forms/ResetPassword";
 import { materialColors, LoginCardSection } from "@packages/common-components";
 
 export default function Home() {
@@ -15,11 +15,11 @@ export default function Home() {
         bgBrightness: 0.7,
       }}
       login={{
-        formComponent: <AuthenticationForm />,
+        formComponent: <ResetPasswordForm />,
       }}
       bgGradient={{
         from: materialColors.blue["100"],
-        to: materialColors.amber["200"],
+        to: materialColors.amber["100"],
       }}
     />
   );

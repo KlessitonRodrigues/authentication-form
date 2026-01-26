@@ -8,7 +8,7 @@
 
 :root {
   /* Colors */
-  --color-main: #228ef3;
+  --color-main: #2196f3;
   --color-main-bg: #1e40af;
   --color-main-text: #f9fafb;
   --color-bg1: #ffffff;
@@ -23,13 +23,13 @@
   --color-default-red: #b91c1c;
   --color-default-green: #16a34a;
   --color-default-gray: #9ca3af;
-  --color-default-blue: #3b82f6;
+  --color-default-blue: #2196f3;
   --color-default-white: #f9fafb;
   --color-default-black: #1f2937;
   --color-opacity-black: #0006;
 
   /* Daisy theme */
-  --size-field: 0.22rem;
+  --size-field: 0.23rem;
   --color-base-100: var(--color-bg1);
   --color-base-200: var(--color-bg3);
   --color-base-300: var(--color-bg4);
@@ -73,10 +73,10 @@
   --text-4xl: 32px;
 
   /* Box Shadows */
-  --shadow-sm: 0 2px 3px 0 #0001;
-  --shadow-md: 0 2px 4px 0 #0002;
-  --shadow-lg: 0 2px 5px 0 #0003;
-  --shadow-xl: 0 2px 6px 0 #0004;
+  --shadow-sm: 1px 1px 3px 0 #0001;
+  --shadow-md: 1px 1px 4px 0 #0002;
+  --shadow-lg: 1px 1px 5px 0 #0003;
+  --shadow-xl: 1px 1px 6px 0 #0004;
 }
 
 @media (prefers-color-scheme: light) {
@@ -97,8 +97,6 @@
 body {
   background-color: var(--color-bg4);
   color: var(--color-fg4);
-  font-family: Arial, Helvetica, sans-serif;
-  font-family: var(--font-sans);
   height: 100vh;
   overflow-y: auto;
 }

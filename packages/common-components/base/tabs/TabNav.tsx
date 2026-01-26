@@ -17,7 +17,7 @@ export const TabList = (props: TabListProps) => {
 
   const tabOptions = useMemo(() => {
     return items.map((item, index) => {
-      const classNames = ["tab", "text-sm", "gap-2"];
+      const classNames = ["tab tabs-lg text-sm gap-2"];
       if (tabIndex === index) classNames.push("tab-active");
       if (item.disabled) classNames.push("tab-disabled");
 
@@ -37,10 +37,8 @@ export const TabList = (props: TabListProps) => {
 
   return (
     <div className={twMerge("w-full", className)} {...tabListProps}>
-      <div role="tablist" className="w-full tabs tabs-lift">
-        <div role="tablist" className="tabs tabs-lift">
-          {tabOptions}
-        </div>
+      <div role="tablist" className="tabs tabs-lift">
+        {tabOptions}
       </div>
       <div className="mt-4">{items[tabIndex].content}</div>
     </div>

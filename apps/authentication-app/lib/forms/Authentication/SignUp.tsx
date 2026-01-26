@@ -1,11 +1,5 @@
 "use client";
-import {
-  Button,
-  Form,
-  Icons,
-  InputField,
-  Row,
-} from "@packages/common-components";
+import { Button, Form, Icons, InputField } from "@packages/common-components";
 import { AuthForm, getAuthValidation } from "./validation";
 import { useForm } from "react-hook-form";
 
@@ -53,12 +47,10 @@ export const SignUpForm = () => {
         error={formState.errors.confirmPassword?.message}
         inputProps={register("confirmPassword")}
       />
-      <Row flexX="center">
-        <Button color="primary">
-          <Icons icon="userPlus" />
-          Create Account
-        </Button>
-      </Row>
+      <Button color="primary">
+        <Icons icon="userPlus" />
+        Create Account
+      </Button>
     </Form>
   );
 };

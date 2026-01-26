@@ -1,11 +1,5 @@
 "use client";
-import {
-  Button,
-  Form,
-  Icons,
-  InputField,
-  Row,
-} from "@packages/common-components";
+import { Button, Form, Icons, InputField } from "@packages/common-components";
 import { AuthForm, getAuthValidation } from "./validation";
 import { useForm } from "react-hook-form";
 
@@ -26,12 +20,10 @@ export const ResetPassForm = () => {
         inputProps={register("email")}
         error={formState.errors.email?.message}
       />
-      <Row flexX="center">
-        <Button color="primary">
-          <Icons icon="emailbox" />
-          Reset Password
-        </Button>
-      </Row>
+      <Button color="primary">
+        <Icons icon="email" />
+        Send Change Password Link
+      </Button>
     </Form>
   );
 };

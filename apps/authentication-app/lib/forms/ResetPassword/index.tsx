@@ -13,13 +13,14 @@ const TabItems = [
     label: "Reset Password",
     icon: <Icons icon="lock" />,
     content: <ChangePasswordForm />,
+    disabled: true,
   },
 ];
 
 export const ResetPasswordForm = () => {
   return (
     <FormData>
-      <Card className="w-lg">
+      <Card className="w-md min-h-160">
         <TabList items={TabItems} />
       </Card>
     </FormData>
