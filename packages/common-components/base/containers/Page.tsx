@@ -8,7 +8,7 @@ export const Page = ({ className, ...props }: IPage) => {
     <div
       {...props}
       className={twMerge(
-        `flex flex-col items-center gap-4 max-w-7xl m-auto p-4 lg:p-12 ${className}`,
+        `flex flex-col items-center gap-2 max-w-7xl m-auto ${className}`,
       )}
     />
   );

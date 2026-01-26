@@ -9,6 +9,8 @@ export * from "./base/tabs/TabNav";
 export * from "./base/inputs/InputField";
 export * from "./base/icons/IconMap";
 export * from "./base/containers/Forms";
+export * from "./base/navigation/Navbar";
+export * from "./base/papers/Paper";
 
 // Commom
 export * from "./common/sections/LoginCard";
