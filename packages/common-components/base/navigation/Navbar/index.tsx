@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Icons } from "../../icons/IconMap";
 import If from "../../containers/If";
+import { Button } from "../../buttons/Button";
 
 interface NavBarProps {
   title?: string;
@@ -18,29 +19,31 @@ export const NavBar = (props: NavBarProps) => {
     <div className="w-full relative">
       <div className="navbar z-30 bg-base-100 shadow-sm">
         <div className="flex-none">
-          <button
-            className="btn btn-square btn-ghost"
+          <Button
+            ghost
+            variant="square"
             onClick={() => {
               setMenuOpen(!menuOpen);
               setUserMenuOpen(false);
             }}
           >
             <Icons icon="menu" size="22" />
-          </button>
+          </Button>
         </div>
         <div className="flex-1">
           <a className="btn btn-ghost text-xl">{title || "Dashboard"}</a>
         </div>
         <div className="flex-none">
-          <button
-            className="btn btn-square btn-ghost"
+          <Button
+            ghost
             onClick={() => {
               setUserMenuOpen(!userMenuOpen);
               setMenuOpen(false);
             }}
           >
             <Icons icon="user" size="22" />
-          </button>
+            Klessiton R.
+          </Button>
         </div>
       </div>
       <If condition={menuOpen}>

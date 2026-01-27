@@ -8,8 +8,8 @@
 
 :root {
   /* Colors */
-  --color-main: #546e7a;
-  --color-main-bg: #263238;
+  --color-main: #4caf50;
+  --color-main-bg: #2e7d32;
   --color-main-text: #f9fafb;
   --color-bg1: #ffffff;
   --color-bg2: #f9fafb;
@@ -230,7 +230,7 @@ body {
 
 @keyframes fade-down {
   0% {
-    transform: translateY(-80px);
+    transform: translateY(-60px);
     opacity: 0;
   }
   100% {
@@ -241,7 +241,7 @@ body {
 
 @keyframes slide-left {
   0% {
-    transform: translateX(80px);
+    transform: translateX(60px);
     opacity: 0;
   }
   100% {
@@ -252,7 +252,7 @@ body {
 
 @keyframes slide-up {
   0% {
-    transform: translateY(80px);
+    transform: translateY(60px);
     opacity: 0;
   }
   100% {

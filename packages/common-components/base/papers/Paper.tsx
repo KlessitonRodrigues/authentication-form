@@ -5,7 +5,7 @@ interface PaperProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const Paper = (props: PaperProps) => {
   const { className, children, ...paperProps } = props;
-  const classNames = ["paper bg-bg1 shadow-sm p-4"];
+  const classNames = ["paper bg-bg1 p-4 shadow-sm"];
   classNames.push(className || "");
 
   return (

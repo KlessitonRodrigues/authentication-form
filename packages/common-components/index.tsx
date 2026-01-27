@@ -11,6 +11,7 @@ export * from "./base/icons/IconMap";
 export * from "./base/containers/Forms";
 export * from "./base/navigation/Navbar";
 export * from "./base/papers/Paper";
+export * from "./base/menu/Menu";
 
 // Commom
 export * from "./common/sections/LoginCard";

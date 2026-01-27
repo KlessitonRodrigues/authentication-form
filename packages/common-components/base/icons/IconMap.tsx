@@ -3,6 +3,7 @@ import {
   PiCheckBold,
   PiEnvelopeSimpleBold,
   PiEyeBold,
+  PiGearBold,
   PiGithubLogoBold,
   PiGoogleLogoBold,
   PiListBold,
@@ -36,9 +37,10 @@ export const IconMap = {
   github: <PiGithubLogoBold size={"100%"} />,
   checkMark: <PiCheckBold size={"100%"} />,
   menu: <PiListBold size={"100%"} />,
+  settings: <PiGearBold size={"100%"} />,
 };
 
-interface IconProps extends HTMLAttributes<HTMLDivElement> {
+export interface IconProps extends HTMLAttributes<HTMLDivElement> {
   icon?: keyof typeof IconMap;
   size?: "16" | "22" | "28" | "34";
 }
