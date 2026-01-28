@@ -6,7 +6,7 @@ import './config/dotenv';
 import { env } from './config/dotenv';
 import { AuthTable } from './lib/dynamoDb/authTable';
 import { AuthAPIGateway } from './lib/gateway/authAPI';
-import { EmailAuthenticationLambda } from './lib/lambdas/emailAuth';
+import { SignInLambda } from './lib/lambdas/signIn/lambda';
 import { addCorsPreflight } from './utils/api/addCors';
 
 export class NodeTemplateStack extends cdk.Stack {
@@ -19,7 +19,7 @@ export class NodeTemplateStack extends cdk.Stack {
     const authTable = new AuthTable(this);
 
     // Lambdas
-    const emailAuthLambda = new EmailAuthenticationLambda(this, lambdaEnv);
+    const signInLambda = new SignInLambda(this, lambdaEnv);
 
     // API Gateway
     const authApi = new AuthAPIGateway(this);
@@ -29,10 +29,10 @@ export class NodeTemplateStack extends cdk.Stack {
     const authRoute = authApi.root.addResource('auth');
     // /auth/email
     const emailRoute = authRoute.addResource('email');
-    emailRoute.addMethod('GET', new gateway.LambdaIntegration(emailAuthLambda));
+    emailRoute.addMethod('GET', new gateway.LambdaIntegration(signInLambda));
 
     // Permissions
-    authTable.table.grantReadWriteData(emailAuthLambda);
+    authTable.table.grantReadWriteData(signInLambda);
 
     // CORS Preflight
     addCorsPreflight(emailRoute);

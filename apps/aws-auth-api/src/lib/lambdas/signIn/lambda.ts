@@ -4,22 +4,20 @@ import * as nodeLambda from 'aws-cdk-lib/aws-lambda-nodejs';
 
 import { Lambdas } from '../../../@types/lambdas';
 
-export class AuthenticationLambda extends nodeLambda.NodejsFunction {
-  constructor(scope: cdk.Stack, props: Lambdas.LambdasProps) {
+export class SignInLambda extends nodeLambda.NodejsFunction {
+  constructor(scope: cdk.Stack, lambdaEnv: Lambdas.LambdasProps) {
     const params: nodeLambda.NodejsFunctionProps = {
       runtime: lambda.Runtime.NODEJS_22_X,
       timeout: cdk.Duration.seconds(10),
       handler: 'handler',
+      functionName: 'SignInLambda',
       entry: __dirname + '/index.ts',
-      environment: {
-        TOKEN_KEY: props.TOKEN_KEY,
-      },
-      reservedConcurrentExecutions: 1,
+      environment: lambdaEnv,
       bundling: {
-        externalModules: ['aws-cdk-lib', 'constructs'],
+        environment: lambdaEnv,
       },
     };
 
-    super(scope, 'AuthenticationLambda', params);
+    super(scope, 'SignInLambda', params);
   }
 }
