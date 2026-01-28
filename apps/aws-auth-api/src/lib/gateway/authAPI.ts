@@ -1,12 +1,12 @@
 import * as cdk from 'aws-cdk-lib';
 import * as gateway from 'aws-cdk-lib/aws-apigateway';
 
-export class APIRootGateway extends gateway.RestApi {
+export class AuthAPIGateway extends gateway.RestApi {
   constructor(scope: cdk.Stack) {
     const params: gateway.RestApiProps = {
-      restApiName: 'Cors Proxy API Gateway',
+      restApiName: 'Auth API Gateway',
     };
 
-    super(scope, 'CorsProxyAPIRoot', params);
+    super(scope, 'AuthAPIGateway', params);
   }
 }

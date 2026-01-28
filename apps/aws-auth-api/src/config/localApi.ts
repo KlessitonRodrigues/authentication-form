@@ -2,9 +2,9 @@ import * as bodyparser from 'body-parser';
 import * as cors from 'cors';
 import * as express from 'express';
 
-import '../config/dotenv';
 import { handler as googleAuth } from '../lib/lambdas/authentication/googleAuth/index';
 import { createLambdaEvent } from '../utils/api/localApi';
+import './dotenv';
 
 const localRoutes = () => {
   const router = express.Router();

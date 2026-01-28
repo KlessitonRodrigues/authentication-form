@@ -15,8 +15,10 @@ export class AuthenticationLambda extends nodeLambda.NodejsFunction {
         MONGODB: props.MONGODB,
         TOKEN_KEY: props.TOKEN_KEY,
       },
-      logRetention: cdk.aws_logs.RetentionDays.THREE_DAYS,
       reservedConcurrentExecutions: 1,
+      bundling: {
+        externalModules: ['aws-cdk-lib', 'constructs'],
+      },
     };
 
     super(scope, 'AuthenticationLambda', params);
