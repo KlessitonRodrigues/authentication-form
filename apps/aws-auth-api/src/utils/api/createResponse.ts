@@ -1,6 +1,6 @@
-import { Lambdas } from '../../@types/lambdas';
+import { AWS } from '@packages/common-types';
 
-export const createResponse = (code: number, data: any): Lambdas.APIGatewayResponse => {
+export const createResponse = (code: number, data: any): AWS.APIGatewayResponse => {
   return {
     statusCode: code,
     body: JSON.stringify(data),

@@ -4,13 +4,14 @@ import * as express from 'express';
 
 // import { handler as googleAuth } from '../lib/lambdas/authentication/googleAuth/index';
 import { handler as signInFn } from '../lib/lambdas/signIn';
+import { handler as signUpFn } from '../lib/lambdas/signUp';
 import { createLambdaEvent } from '../utils/api/localApi';
 import './dotenv';
 
 const localRoutes = () => {
   const router = express.Router();
-  // router.get('/proxy', createLambdaEvent(corsProxy));
-  router.post('/auth/email', createLambdaEvent(signInFn));
+  router.post('/auth/signin', createLambdaEvent(signInFn));
+  router.post('/auth/signup', createLambdaEvent(signUpFn));
   // router.post('/auth/google', createLambdaEvent(googleAuth));
   return router;
 };

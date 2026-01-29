@@ -1,5 +1,6 @@
 import { PutCommand } from '@aws-sdk/lib-dynamodb';
 import { AWS, Auth } from '@packages/common-types';
+import * as crypto from 'crypto';
 
 import { docClient } from '../../../config/dynamoDb';
 import { createResponse } from '../../../utils/api/createResponse';
@@ -13,16 +14,16 @@ export const handler: AWS.APIGatewayHandler = async event => {
     }
 
     const params = {
-      TableName: process.env.AUTH_TABLE_NAME!,
+      TableName: 'Auth-Table',
       Item: {
         id: crypto.randomUUID(),
         email,
         user_name,
-        password, // Note: In a real application, never store plain text passwords. Always hash them before storing.
+        password: crypto.createHash('sha256').update(password).digest('hex'),
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       },
-      ConditionExpression: 'attribute_not_exists(email)', // Prevents overwriting existing users
+      ConditionExpression: 'attribute_not_exists(email)',
     };
 
     await docClient.send(new PutCommand(params));
