@@ -1,2 +1,2 @@
-import "./models/authentication";
-export type TEST = string;
+export * from "./models/authentication";
+export * from "./models/aws";

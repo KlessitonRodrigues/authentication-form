@@ -1,8 +1,7 @@
+import { AWS } from '@packages/common-types';
 import * as cdk from 'aws-cdk-lib';
 import * as gateway from 'aws-cdk-lib/aws-apigateway';
 
-import { Lambdas } from './@types/lambdas';
-import './config/dotenv';
 import { env } from './config/dotenv';
 import { AuthTable } from './lib/dynamoDb/authTable';
 import { AuthAPIGateway } from './lib/gateway/authAPI';
@@ -13,7 +12,7 @@ export class NodeTemplateStack extends cdk.Stack {
   constructor(scope: cdk.App, props?: cdk.StackProps) {
     super(scope, env.STACK_NAME, props);
 
-    const lambdaEnv: Lambdas.LambdasProps = env;
+    const lambdaEnv: AWS.LambdasProps = env;
 
     // DynamoDB
     const authTable = new AuthTable(this);

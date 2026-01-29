@@ -1,10 +1,10 @@
 import { QueryCommand } from '@aws-sdk/lib-dynamodb';
+import { AWS } from '@packages/common-types';
 
-import { Lambdas } from '../../../@types/lambdas';
 import { docClient } from '../../../config/dynamoDb';
 import { createResponse } from '../../../utils/api/createResponse';
 
-export const handler: Lambdas.APIHandler = async event => {
+export const handler: AWS.APIGatewayHandler = async event => {
   try {
     const jsonBody = JSON.parse(event.body);
     const { email, password } = jsonBody;
