@@ -1,6 +1,6 @@
 import { env } from './enviroment';
 
-export const resourceName = {
+export const resourceNames = {
   authTable: env.STACK_NAME + '-auth-table',
   authAPIGateway: env.STACK_NAME + '-auth-api-gateway',
   signUpLambda: env.STACK_NAME + '-sign-up-lambda',

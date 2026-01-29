@@ -1,7 +1,9 @@
 import { QueryCommand } from '@aws-sdk/lib-dynamodb';
 import { AWS } from '@packages/common-types';
+import * as bcrypt from 'bcrypt';
 
 import { docClient } from '../../../config/dynamoDb';
+import { resourceNames } from '../../../contants/resources';
 import { createResponse } from '../../../utils/api/createResponse';
 
 export const handler: AWS.APIGatewayHandler = async event => {
@@ -16,7 +18,7 @@ export const handler: AWS.APIGatewayHandler = async event => {
 
     // Query DynamoDB for user by email using the emailIndex
     const command = new QueryCommand({
-      TableName: 'Auth-Table',
+      TableName: resourceNames.authTable,
       IndexName: 'emailIndex',
       KeyConditionExpression: 'email = :email',
       ExpressionAttributeValues: {
@@ -26,15 +28,14 @@ export const handler: AWS.APIGatewayHandler = async event => {
 
     const result = await docClient.send(command);
 
-    // Check if user exists
     if (!result.Items || result.Items.length === 0) {
       return createResponse(401, { error: 'Invalid email or password' });
     }
 
     const user = result.Items[0] as any;
 
-    // Compare password (in production, use bcrypt to compare hashed passwords)
-    if (user.password !== password) {
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
       return createResponse(401, { error: 'Invalid email or password' });
     }
 

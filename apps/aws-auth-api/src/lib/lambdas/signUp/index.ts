@@ -1,9 +1,9 @@
 import { PutCommand } from '@aws-sdk/lib-dynamodb';
 import { AWS, Auth } from '@packages/common-types';
-import * as crypto from 'crypto';
+import * as bcrypt from 'bcrypt';
 
 import { docClient } from '../../../config/dynamoDb';
-import { env } from '../../../contants/enviroment';
+import { resourceNames } from '../../../contants/resources';
 import { createResponse } from '../../../utils/api/createResponse';
 
 export const handler: AWS.APIGatewayHandler = async event => {
@@ -15,15 +15,12 @@ export const handler: AWS.APIGatewayHandler = async event => {
     }
 
     const params = {
-      TableName: 'Auth-Table',
+      TableName: resourceNames.authTable,
       Item: {
         userId: crypto.randomUUID(),
         email,
         userName,
-        password: crypto
-          .createHmac('sha256', env.SECRET_KEY || '')
-          .update(password)
-          .digest('hex'),
+        password: await bcrypt.hash(password, 12),
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       },

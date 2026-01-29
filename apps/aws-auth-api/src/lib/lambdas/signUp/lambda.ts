@@ -3,7 +3,7 @@ import * as cdk from 'aws-cdk-lib';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as nodeLambda from 'aws-cdk-lib/aws-lambda-nodejs';
 
-import { resourceName } from '../../../contants/resources';
+import { resourceNames } from '../../../contants/resources';
 
 export class SignUpLambda extends nodeLambda.NodejsFunction {
   constructor(scope: cdk.Stack, lambdaEnv: AWS.LambdasProps) {
@@ -11,7 +11,7 @@ export class SignUpLambda extends nodeLambda.NodejsFunction {
       runtime: lambda.Runtime.NODEJS_22_X,
       timeout: cdk.Duration.seconds(10),
       handler: 'handler',
-      functionName: resourceName.signUpLambda,
+      functionName: resourceNames.signUpLambda,
       entry: __dirname + '/index.ts',
       environment: lambdaEnv,
       bundling: {
@@ -19,6 +19,6 @@ export class SignUpLambda extends nodeLambda.NodejsFunction {
       },
     };
 
-    super(scope, resourceName.signUpLambda, params);
+    super(scope, resourceNames.signUpLambda, params);
   }
 }

@@ -1,14 +1,14 @@
 import * as cdk from 'aws-cdk-lib';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 
-import { resourceName } from '../../contants/resources';
+import { resourceNames } from '../../contants/resources';
 
 export class AuthTable {
   public table: dynamodb.Table;
 
   constructor(scope: cdk.Stack) {
-    this.table = new dynamodb.Table(scope, 'AuthTable', {
-      tableName: resourceName.authTable,
+    this.table = new dynamodb.Table(scope, resourceNames.authTable, {
+      tableName: resourceNames.authTable,
       partitionKey: {
         name: 'userId',
         type: dynamodb.AttributeType.STRING,

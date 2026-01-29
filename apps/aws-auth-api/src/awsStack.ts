@@ -9,6 +9,7 @@ import { AuthAPIGateway } from './lib/gateway/authAPI';
 import { SignInLambda } from './lib/lambdas/signIn/lambda';
 import { addCorsPreflight } from './utils/api/addCors';
 import { env } from './contants/enviroment';
+import { SignUpLambda } from './lib/lambdas/signUp/lambda';
 
 export class NodeTemplateStack extends cdk.Stack {
   constructor(scope: cdk.App, props?: cdk.StackProps) {
@@ -24,6 +25,7 @@ export class NodeTemplateStack extends cdk.Stack {
 
     // Lambdas
     const signInLambda = new SignInLambda(this, lambdaEnv);
+    const signUpLambda = new SignUpLambda(this, lambdaEnv);
 
     // API Gateway
     const authApi = new AuthAPIGateway(this);
@@ -31,15 +33,20 @@ export class NodeTemplateStack extends cdk.Stack {
     // API Routes
     // /auth
     const authRoute = authApi.root.addResource('auth');
-    // /auth/email
-    const emailRoute = authRoute.addResource('email');
-    emailRoute.addMethod('GET', new gateway.LambdaIntegration(signInLambda));
+    // /auth/signin
+    const signinRoute = authRoute.addResource('signin');
+    signinRoute.addMethod('POST', new gateway.LambdaIntegration(signInLambda));
+    // /auth/signup
+    const signupRoute = authRoute.addResource('signup');
+    signupRoute.addMethod('POST', new gateway.LambdaIntegration(signUpLambda));
 
     // Permissions
     authTable.table.grantReadWriteData(signInLambda);
+    authTable.table.grantReadWriteData(signUpLambda);
 
     // CORS Preflight
-    addCorsPreflight(emailRoute);
+    addCorsPreflight(signinRoute);
+    addCorsPreflight(signupRoute);
   }
 }
 
