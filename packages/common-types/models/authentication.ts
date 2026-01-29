@@ -6,7 +6,7 @@ export namespace Auth {
 
   export interface SignUp {
     email?: string;
-    user_name?: string;
+    userName?: string;
     password?: string;
   }
 }

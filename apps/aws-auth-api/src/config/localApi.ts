@@ -1,12 +1,12 @@
+import './dotenv'; // sort-imports-ignore
+
 import * as bodyparser from 'body-parser';
 import * as cors from 'cors';
 import * as express from 'express';
 
-// import { handler as googleAuth } from '../lib/lambdas/authentication/googleAuth/index';
 import { handler as signInFn } from '../lib/lambdas/signIn';
 import { handler as signUpFn } from '../lib/lambdas/signUp';
 import { createLambdaEvent } from '../utils/api/localApi';
-import './dotenv';
 
 const localRoutes = () => {
   const router = express.Router();
