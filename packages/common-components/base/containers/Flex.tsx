@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 type IFlex = React.HTMLAttributes<HTMLDivElement> & {
   flexY?: "center" | "start" | "end" | "between" | "stretch";
   flexX?: "center" | "start" | "end" | "between" | "stretch";
-  resposive?: "sm" | "md" | "lg" | "xl" | "2xl";
+  responsive?: "sm" | "md" | "lg" | "xl" | "2xl";
   gap?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 };
 
@@ -13,7 +13,7 @@ export const Row = (props: IFlex) => {
   flexStyle.push(`justify-${flexX || "start"}`);
   flexStyle.push(`items-${flexY || "center"}`);
   flexStyle.push(`gap-${gap ?? 2}`);
-  if (props.resposive) flexStyle.push(`flex-col ${props.resposive}:flex-row`);
+  if (props.responsive) flexStyle.push(`flex-col ${props.responsive}:flex-row`);
   else flexStyle.push("flex-row");
   if (className) flexStyle.push(className);
 

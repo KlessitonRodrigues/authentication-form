@@ -15,6 +15,11 @@ export * from "./base/menu/Menu";
 
 // Commom
 export * from "./common/sections/LoginCard";
+export * from "./common/charts/BarChart";
+export * from "./common/charts/LineChart";
+export * from "./common/charts/PieChart";
+export * from "./common/charts/RadarChart";
+export * from "./common/charts/RadialChart";
 
 // Utils
 export * from "./utils/CSSColors";

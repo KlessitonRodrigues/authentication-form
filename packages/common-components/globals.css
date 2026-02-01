@@ -97,8 +97,6 @@
 body {
   background-color: var(--color-bg4);
   color: var(--color-fg4);
-  height: 100vh;
-  overflow-y: auto;
 }
 
 .text-fg1 {
