@@ -16,7 +16,7 @@ export const NavBar = (props: NavBarProps) => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   return (
-    <div className="w-full relative">
+    <div className="w-full sticky top-0 z-40">
       <div className="navbar z-30 bg-base-100 shadow-sm">
         <div className="flex-none">
           <Button

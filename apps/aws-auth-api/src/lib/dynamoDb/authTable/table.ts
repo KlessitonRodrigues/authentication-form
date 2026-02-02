@@ -1,7 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 
-import { resourceNames } from '../../contants/resources';
+import { resourceNames } from '../../../contants/resources';
 
 export class AuthTable {
   public table: dynamodb.Table;

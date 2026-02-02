@@ -11,7 +11,6 @@ import {
   RadarChartComponent,
   RadialChartComponent,
   Row,
-  Text,
 } from "@packages/common-components";
 
 const menuItems: MenuProps["items"] = [
@@ -24,32 +23,32 @@ const fakeData = [
   {
     name: "Page A",
     uv: 400,
+    pf: 240,
     pv: 240,
-    amt: 240,
   },
   {
     name: "Page B",
     uv: 300,
+    pf: 139,
     pv: 139,
-    amt: 221,
   },
   {
     name: "Page C",
     uv: 200,
-    pv: 480,
-    amt: 229,
+    pf: 480,
+    pv: 229,
   },
   {
     name: "Page D",
     uv: 278,
+    pf: 390,
     pv: 390,
-    amt: 200,
   },
   {
     name: "Page E",
     uv: 189,
-    pv: 480,
-    amt: 218,
+    pf: 480,
+    pv: 520,
   },
 ];
 
@@ -66,14 +65,14 @@ export default function Home() {
           <BarChartComponent
             data={fakeData}
             yField="name"
-            dataFields={["uv", "pv", "amt"]}
+            dataFields={["uv", "pf", "pv"]}
           />
         </Paper>
         <Paper>
           <BarChartComponent
             data={fakeData}
             xField="name"
-            dataFields={["uv", "pv", "amt"]}
+            dataFields={["uv", "pf", "pv"]}
           />
         </Paper>
       </Row>
@@ -82,7 +81,7 @@ export default function Home() {
           <LineChartComponent
             data={fakeData}
             xField="name"
-            dataFields={["uv", "pv", "amt"]}
+            dataFields={["uv", "pf", "pv"]}
           />
         </Paper>
         <Paper>
@@ -94,7 +93,7 @@ export default function Home() {
           <RadarChartComponent
             data={fakeData}
             nameField="name"
-            dataFields={["uv", "pv", "amt"]}
+            dataFields={["uv", "pf", "pv"]}
           />
         </Paper>
         <Paper>

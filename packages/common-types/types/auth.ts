@@ -1,10 +1,10 @@
 export namespace Auth {
-  export interface SignIn {
+  export interface SignInRequest {
     email?: string;
     password?: string;
   }
 
-  export interface SignUp {
+  export interface SignUpRequest {
     email?: string;
     userName?: string;
     password?: string;

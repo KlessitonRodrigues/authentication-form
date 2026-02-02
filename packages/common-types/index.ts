@@ -1,2 +1,6 @@
-export * from "./models/authentication";
-export * from "./models/aws";
+// Types
+export * from "./types/auth";
+export * from "./types/aws";
+
+// DTOs
+export * from "./dto/auth";

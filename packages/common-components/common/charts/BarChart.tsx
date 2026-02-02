@@ -12,7 +12,6 @@ import { materialColors } from "../../utils/CSSColors";
 import { Chart } from "../../base/containers/Chart";
 import { Text } from "../../base/text/Text";
 import { useMemo } from "react";
-import { twMerge } from "tailwind-merge";
 
 interface BarChartProps {
   className?: string;
@@ -23,13 +22,13 @@ interface BarChartProps {
 }
 
 const barColors = [
-  materialColors.green["200"],
-  materialColors.blue["200"],
-  materialColors.pink["200"],
-  materialColors.indigo["200"],
-  materialColors.purple["200"],
-  materialColors.brown["200"],
-  materialColors.teal["200"],
+  materialColors.green["300"],
+  materialColors.blue["300"],
+  materialColors.red["300"],
+  materialColors.indigo["300"],
+  materialColors.purple["300"],
+  materialColors.brown["300"],
+  materialColors.teal["300"],
 ];
 
 export const BarChartComponent = (props: BarChartProps) => {
@@ -72,7 +71,7 @@ export const BarChartComponent = (props: BarChartProps) => {
         />
         <Tooltip />
         {chartBars}
-        <Legend align="center" verticalAlign="top" />
+        <Legend height={24} iconSize={16} align="center" verticalAlign="top" />
       </BarChart>
     </Chart>
   );

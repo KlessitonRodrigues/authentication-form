@@ -4,7 +4,7 @@ import { AWS } from '@packages/common-types';
 import * as cdk from 'aws-cdk-lib';
 import * as gateway from 'aws-cdk-lib/aws-apigateway';
 
-import { AuthTable } from './lib/dynamoDb/authTable';
+import { AuthTable } from './lib/dynamoDb/authTable/table';
 import { AuthAPIGateway } from './lib/gateway/authAPI';
 import { SignInLambda } from './lib/lambdas/signIn/lambda';
 import { addCorsPreflight } from './utils/api/addCors';

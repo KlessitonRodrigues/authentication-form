@@ -13,13 +13,13 @@ interface RadialChartProps {
 }
 
 const colors = [
-  materialColors.green["200"],
-  materialColors.blue["200"],
-  materialColors.pink["200"],
-  materialColors.indigo["200"],
-  materialColors.purple["200"],
-  materialColors.brown["200"],
-  materialColors.teal["200"],
+  materialColors.green["300"],
+  materialColors.blue["300"],
+  materialColors.red["300"],
+  materialColors.indigo["300"],
+  materialColors.purple["300"],
+  materialColors.brown["300"],
+  materialColors.teal["300"],
 ];
 
 export const RadialChartComponent = (props: RadialChartProps) => {
@@ -58,8 +58,8 @@ export const RadialChartComponent = (props: RadialChartProps) => {
           isAnimationActive={isAnimationActive}
         />
         <Legend
-          iconSize={10}
-          height={20}
+          height={24}
+          iconSize={16}
           layout="horizontal"
           verticalAlign="top"
           align="center"

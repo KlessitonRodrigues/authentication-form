@@ -27,6 +27,7 @@
   --color-default-white: #f9fafb;
   --color-default-black: #1f2937;
   --color-opacity-black: #0006;
+  --color-default-border: #d1d5db;
 
   /* Daisy theme */
   --size-field: 0.23rem;
@@ -91,6 +92,7 @@
     --color-fg2: #f3f4f6;
     --color-fg3: #e5e7eb;
     --color-fg4: #d1d5db;
+    --color-default-border: #6b7280;
   }
 }
 
@@ -167,26 +169,8 @@ body {
   background-color: var(--color-default-black);
 }
 
-.border-default-yellow {
-  border-color: var(--color-default-yellow);
-}
-.border-default-red {
-  border-color: var(--color-default-red);
-}
-.border-default-green {
-  border-color: var(--color-default-green);
-}
-.border-default-gray {
-  border-color: var(--color-default-gray);
-}
-.border-default-blue {
-  border-color: var(--color-default-blue);
-}
-.border-default-white {
-  border-color: var(--color-default-white);
-}
-.border-default-black {
-  border-color: var(--color-default-black);
+.border-default {
+  border-color: var(--color-default-border);
 }
 
 .shadow-sm {

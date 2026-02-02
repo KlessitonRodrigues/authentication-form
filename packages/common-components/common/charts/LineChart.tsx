@@ -11,7 +11,6 @@ import { materialColors } from "../../utils/CSSColors";
 import { Chart } from "../../base/containers/Chart";
 import { Text } from "../../base/text/Text";
 import { useMemo } from "react";
-import { twMerge } from "tailwind-merge";
 
 interface LineChartProps {
   className?: string;
@@ -21,13 +20,13 @@ interface LineChartProps {
 }
 
 const lineColors = [
-  materialColors.green["200"],
-  materialColors.blue["200"],
-  materialColors.pink["200"],
-  materialColors.indigo["200"],
-  materialColors.purple["200"],
-  materialColors.brown["200"],
-  materialColors.teal["200"],
+  materialColors.green["300"],
+  materialColors.blue["300"],
+  materialColors.red["300"],
+  materialColors.indigo["300"],
+  materialColors.purple["300"],
+  materialColors.brown["300"],
+  materialColors.teal["300"],
 ];
 
 export const LineChartComponent = (props: LineChartProps) => {
@@ -62,7 +61,7 @@ export const LineChartComponent = (props: LineChartProps) => {
         <XAxis dataKey={xField} stroke={materialColors.grey["500"]} />
         <Tooltip />
         {chartLines}
-        <Legend align="center" verticalAlign="top" />
+        <Legend height={24} iconSize={26} align="center" verticalAlign="top" />
       </LineChart>
     </Chart>
   );
