@@ -36,7 +36,7 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.523.0",
     "@aws-sdk/lib-dynamodb": "^3.523.0",
-    "@packages/common-types": "*",
+    "@packages/common-types": "./packages/common-types",
     "aws-cdk-lib": "^2.137.0",
     "constructs": "^10.3.0"
   },

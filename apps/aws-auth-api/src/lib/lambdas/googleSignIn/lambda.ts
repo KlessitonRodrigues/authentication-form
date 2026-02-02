@@ -5,13 +5,13 @@ import * as nodeLambda from 'aws-cdk-lib/aws-lambda-nodejs';
 
 import { resourceNames } from '../../../contants/resources';
 
-export class SignInLambda extends nodeLambda.NodejsFunction {
+export class GoogleSignInLambda extends nodeLambda.NodejsFunction {
   constructor(scope: cdk.Stack, lambdaEnv: AWS.LambdasProps) {
     const params: nodeLambda.NodejsFunctionProps = {
       runtime: lambda.Runtime.NODEJS_22_X,
       timeout: cdk.Duration.seconds(10),
       handler: 'handler',
-      functionName: resourceNames.signInLambda,
+      functionName: resourceNames.googleSignInLambda,
       entry: __dirname + '/handler.ts',
       environment: lambdaEnv,
       bundling: {
@@ -21,6 +21,6 @@ export class SignInLambda extends nodeLambda.NodejsFunction {
       },
     };
 
-    super(scope, resourceNames.signInLambda, params);
+    super(scope, resourceNames.googleSignInLambda, params);
   }
 }

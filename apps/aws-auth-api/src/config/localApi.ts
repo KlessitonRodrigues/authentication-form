@@ -4,15 +4,16 @@ import * as bodyparser from 'body-parser';
 import * as cors from 'cors';
 import * as express from 'express';
 
-import { handler as signInFn } from '../lib/lambdas/signIn';
-import { handler as signUpFn } from '../lib/lambdas/signUp';
+import { handler as signInFn } from '../lib/lambdas/signIn/handler';
+import { handler as signUpFn } from '../lib/lambdas/signUp/handler';
+import { handler as googleAuth } from '../lib/lambdas/googleSignIn/handler';
 import { createLambdaEvent } from '../utils/api/localApi';
 
 const localRoutes = () => {
   const router = express.Router();
   router.post('/auth/signin', createLambdaEvent(signInFn));
   router.post('/auth/signup', createLambdaEvent(signUpFn));
-  // router.post('/auth/google', createLambdaEvent(googleAuth));
+  router.post('/auth/google', createLambdaEvent(googleAuth));
   return router;
 };
 

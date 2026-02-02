@@ -12,10 +12,11 @@ export class SignUpLambda extends nodeLambda.NodejsFunction {
       timeout: cdk.Duration.seconds(10),
       handler: 'handler',
       functionName: resourceNames.signUpLambda,
-      entry: __dirname + '/index.ts',
+      entry: __dirname + '/handler.ts',
       environment: lambdaEnv,
       bundling: {
         environment: lambdaEnv,
+        nodeModules: ['bcrypt', 'jsonwebtoken', 'class-validator', 'class-transformer'],
       },
     };
 

@@ -17,8 +17,12 @@
     "inlineSources": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "typeRoots": ["./node_modules/@types", "./src/@types"],
+    "typeRoots": ["./node_modules/@types"],
     "outDir": "dist/"
+  },
+  "ts-node": {
+    "skipIgnore": true,
+    "transpileOnly": true
   },
   "exclude": ["node_modules", "cdk.out", "dist"]
 }
