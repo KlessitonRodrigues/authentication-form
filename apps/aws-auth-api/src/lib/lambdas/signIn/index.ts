@@ -1,6 +1,8 @@
 import { AWS } from '@packages/common-types';
 import * as bcrypt from 'bcrypt';
+import * as jwt from 'jsonwebtoken';
 
+import { env } from '../../../contants/enviroment';
 import { createResponse } from '../../../utils/api/createResponse';
 import { getAuthUserByEmail } from '../../dynamoDb/authTable/operations';
 
@@ -23,9 +25,13 @@ export const handler: AWS.APIGatewayHandler = async event => {
       return createResponse(401, { error: 'Invalid email or password' });
     }
 
+    const jwtToken = jwt.sign({ userId: user.userId, email: user.email }, env.SECRET_KEY, {
+      expiresIn: '1h',
+    });
+
     return createResponse(200, {
       success: true,
-      token: 'token123',
+      token: jwtToken,
       userId: user.userId,
       email: user.email,
     });
