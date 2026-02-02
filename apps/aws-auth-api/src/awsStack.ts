@@ -10,6 +10,7 @@ import { SignInLambda } from './lib/lambdas/signIn/lambda';
 import { addCorsPreflight } from './utils/api/addCors';
 import { env } from './contants/enviroment';
 import { SignUpLambda } from './lib/lambdas/signUp/lambda';
+import { GoogleSignInLambda } from './lib/lambdas/googleSignIn/lambda';
 
 export class NodeTemplateStack extends cdk.Stack {
   constructor(scope: cdk.App, props?: cdk.StackProps) {
@@ -26,6 +27,7 @@ export class NodeTemplateStack extends cdk.Stack {
     // Lambdas
     const signInLambda = new SignInLambda(this, lambdaEnv);
     const signUpLambda = new SignUpLambda(this, lambdaEnv);
+    const googleSignInLambda = new GoogleSignInLambda(this, lambdaEnv);
 
     // API Gateway
     const authApi = new AuthAPIGateway(this);
@@ -39,14 +41,19 @@ export class NodeTemplateStack extends cdk.Stack {
     // /auth/signup
     const signupRoute = authRoute.addResource('signup');
     signupRoute.addMethod('POST', new gateway.LambdaIntegration(signUpLambda));
+    // /auth/google
+    const googleRoute = authRoute.addResource('google');
+    googleRoute.addMethod('POST', new gateway.LambdaIntegration(googleSignInLambda));
 
     // Permissions
     authTable.table.grantReadWriteData(signInLambda);
     authTable.table.grantReadWriteData(signUpLambda);
+    authTable.table.grantReadWriteData(googleSignInLambda);
 
     // CORS Preflight
     addCorsPreflight(signinRoute);
     addCorsPreflight(signupRoute);
+    addCorsPreflight(googleRoute);
   }
 }
 

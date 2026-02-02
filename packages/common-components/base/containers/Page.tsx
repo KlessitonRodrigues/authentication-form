@@ -15,9 +15,11 @@ export const Page = ({ className, ...props }: IPage) => {
 
 export const PageFull = ({ className, ...props }: IPage) => {
   return (
-    <Page
+    <div
       {...props}
-      className={`w-screen h-screen overflow-hidden overflow-y-auto ${className}`}
+      className={twMerge(
+        `w-screen h-screen overflow-hidden overflow-y-auto ${className}`,
+      )}
     />
   );
 };

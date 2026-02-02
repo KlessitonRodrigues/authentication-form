@@ -30,18 +30,21 @@ export const createAuthUser = async (authUser: Auth.SignUpRequest) => {
     if (existingUser) throw new Error('Email already exists');
   });
 
+  const newUser = {
+    userId: crypto.randomUUID(),
+    email: authUserInstance.email,
+    userName: authUserInstance.userName,
+    password: await bcrypt.hash(authUserInstance.password, 12),
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+
   const params: PutCommandInput = {
     TableName: resourceNames.authTable,
-    Item: {
-      userId: crypto.randomUUID(),
-      email: authUserInstance.email,
-      userName: authUserInstance.userName,
-      password: await bcrypt.hash(authUserInstance.password, 12),
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    },
+    Item: newUser,
     ConditionExpression: 'attribute_not_exists(email)',
   };
 
   await docClient.send(new PutCommand(params));
+  return newUser;
 };

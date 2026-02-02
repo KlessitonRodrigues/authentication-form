@@ -30,7 +30,6 @@ export const handler: AWS.APIGatewayHandler = async event => {
     });
 
     return createResponse(200, {
-      success: true,
       token: jwtToken,
       userId: user.userId,
       email: user.email,
