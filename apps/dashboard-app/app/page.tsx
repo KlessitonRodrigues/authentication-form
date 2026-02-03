@@ -11,6 +11,7 @@ import {
   RadarChartComponent,
   RadialChartComponent,
   Row,
+  SquareSkeleton,
 } from "@packages/common-components";
 
 const menuItems: MenuProps["items"] = [

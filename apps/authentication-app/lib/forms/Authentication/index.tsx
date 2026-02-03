@@ -25,7 +25,7 @@ const TabItems = [
 export const AuthenticationForm = () => {
   return (
     <FormData>
-      <Card className="w-md min-h-160">
+      <Card className="m-auto w-md min-h-160">
         <TabList items={TabItems} />
       </Card>
     </FormData>

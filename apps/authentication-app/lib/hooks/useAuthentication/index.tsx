@@ -1,6 +1,7 @@
 import { axiosClient } from "@/lib/config/axiosClient";
 import queryClient from "@/lib/config/queryClient";
-import useUserStore from "@/lib/store/user";
+import dotenv from "@/lib/constants/dotenv";
+import { errorToastr } from "@packages/common-components";
 import { useGoogleLogin, TokenResponse } from "@react-oauth/google";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
@@ -11,7 +12,6 @@ interface EmailLoginData {
 }
 
 const useAuthentication = () => {
-  const { setUser } = useUserStore();
   const [googleToken, setGoogleToken] = useState("");
 
   const googleLoginReq = {
@@ -19,10 +19,9 @@ const useAuthentication = () => {
     queryKey: ["google-login", googleToken],
     queryFn: async () => {
       const res = await axiosClient.post("auth/google", { token: googleToken });
-      console.log(res.data);
-      setUser(res.data.user);
-      return res.data;
+      window.location.href = `${dotenv.REDIRECT_URL}?token=${res.data?.token}`;
     },
+    onError: () => errorToastr("Google Login Failed"),
   };
 
   const emailLoginReq = {
@@ -31,19 +30,16 @@ const useAuthentication = () => {
     mutationFn: async (data: EmailLoginData) => {
       await new Promise((resolve) => setTimeout(resolve, 4000));
       const res = await axiosClient.post("auth/signin", data);
-      setUser(res.data);
-      console.log(data, res.data);
-      return res.data;
+      window.location.href = `${dotenv.REDIRECT_URL}?token=${res.data?.token}`;
     },
+    onError: () => errorToastr("Invalid Login Credentials"),
   };
 
   const googleLoginHandler = {
     onSuccess: (tokenResponse: TokenResponse) => {
       setGoogleToken(tokenResponse.access_token);
     },
-    onError: () => {
-      console.log("Google Login Failed");
-    },
+    onError: () => errorToastr("Google Login Failed"),
   };
 
   const loginQuery = useMutation(emailLoginReq, queryClient);

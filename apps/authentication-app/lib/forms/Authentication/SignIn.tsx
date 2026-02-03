@@ -1,7 +1,7 @@
 "use client";
 import {
-  Button,
   Form,
+  IconButton,
   Icons,
   InputField,
   Row,
@@ -44,25 +44,28 @@ export const SignInForm = () => {
         error={formState.errors.password?.message}
       />
 
-      <Button type="submit" loading={loginQuery.isPending}>
-        <Icons icon="signIn" />
+      <IconButton
+        icon="signIn"
+        color="primary"
+        loading={loginQuery.isPending}
+        type="submit"
+      >
         Sign In
-      </Button>
+      </IconButton>
 
       <Row flexX="center" gap={4}>
-        <Button
+        <IconButton
+          icon="google"
           color="neutral"
           type="button"
           onClick={googleLoginHandle}
           loading={googleLoginQuery.isLoading}
         >
-          <Icons icon="google" />
           Google
-        </Button>
-        <Button color="neutral" type="button">
-          <Icons icon="github" />
+        </IconButton>
+        <IconButton icon="github" color="neutral" type="button">
           GitHub
-        </Button>
+        </IconButton>
       </Row>
       <Text fs="sm" className="text-center">
         By signing in, you agree to our Terms of Service and Privacy Policy.

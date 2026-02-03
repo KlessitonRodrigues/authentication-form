@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto, Roboto_Mono } from "next/font/google";
 import "@packages/common-components/globals.css";
 import { PropsWithChildren } from "react";
+import { Toastify } from "@packages/common-components";
 
 const robotoSans = Roboto({
   variable: "--font-roboto-sans",
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         className={`${robotoSans.variable} ${robotoMono.variable} antialiased`}
       >
         {children}
+        <Toastify />
       </body>
     </html>
   );

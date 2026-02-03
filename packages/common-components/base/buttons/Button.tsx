@@ -40,9 +40,11 @@ export const Button = (props: ButtonProps) => {
 };
 
 export const IconButton = (props: ButtonProps & IconProps) => {
+  const { children, ...btnProps } = props;
   return (
-    <Button {...props}>
+    <Button {...btnProps}>
       <Icons icon={props.icon} size={props.size || "22"} />
+      {children}
     </Button>
   );
 };

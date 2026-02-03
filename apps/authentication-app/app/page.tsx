@@ -17,7 +17,7 @@ export default function Home() {
             "New here? Create an account to get started and take control of your financial future today!",
           bgImageUrl:
             "https://wallpapers-clan.com/wp-content/uploads/2024/05/blue-hills-sunset-minimalist-desktop-wallpaper-preview.jpg",
-          bgBrightness: 0.7,
+          bgBrightness: 0.6,
         }}
         login={{
           formComponent: <AuthenticationForm />,

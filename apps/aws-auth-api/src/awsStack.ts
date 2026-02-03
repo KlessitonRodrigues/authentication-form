@@ -51,15 +51,6 @@ export class NodeTemplateStack extends cdk.Stack {
     authTable.table.grantReadWriteData(signUpLambda);
     authTable.table.grantReadWriteData(googleSignInLambda);
 
-    [signInLambda, signUpLambda, googleSignInLambda].forEach(lambda => {
-      lambda.addToRolePolicy(
-        new cdk.aws_iam.PolicyStatement({
-          actions: ['dynamodb:Query', 'dynamodb:PutItem'],
-          resources: [authTable.table.tableArn, `${authTable.table.tableArn}/index/emailIndex`],
-        }),
-      );
-    });
-
     // CORS Preflight
     addCorsPreflight(signinRoute);
     addCorsPreflight(signupRoute);
