@@ -18,7 +18,7 @@ const useAuthentication = () => {
     enabled: !!googleToken,
     queryKey: ["google-login", googleToken],
     queryFn: async () => {
-      const res = await axiosClient.post("auth", { token: googleToken });
+      const res = await axiosClient.post("auth/google", { token: googleToken });
       console.log(res.data);
       setUser(res.data.user);
       return res.data;
@@ -30,7 +30,7 @@ const useAuthentication = () => {
     mutationKey: ["email-login"],
     mutationFn: async (data: EmailLoginData) => {
       await new Promise((resolve) => setTimeout(resolve, 4000));
-      const res = await axiosClient.post("auth", data);
+      const res = await axiosClient.post("auth/signin", data);
       setUser(res.data);
       console.log(data, res.data);
       return res.data;

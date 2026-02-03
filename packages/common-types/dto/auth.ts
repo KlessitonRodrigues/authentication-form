@@ -32,8 +32,12 @@ export class CreateAuthUserDTO {
   @IsOptional()
   updateAt: string;
 
-  static async create(data: Partial<CreateAuthUserDTO>) {
-    const instance = plainToInstance(CreateAuthUserDTO, data);
+  constructor(data: Partial<CreateAuthUserDTO>) {
+    Object.assign(this, data);
+  }
+
+  async validate() {
+    const instance = plainToInstance(CreateAuthUserDTO, this);
     await validateOrReject(instance, {
       validationError: { target: false, value: false },
     });

@@ -4,7 +4,6 @@ import {
   QueryCommand,
   QueryCommandInput,
 } from '@aws-sdk/lib-dynamodb';
-import { Auth, CreateAuthUserDTO } from '@packages/common-types';
 import * as bcrypt from 'bcrypt';
 
 import { docClient } from '../../../config/dynamoDb';
@@ -20,21 +19,23 @@ export const getAuthUserByEmail = async (email: string) => {
     },
   };
   const result = await docClient.send(new QueryCommand(params));
-  return result.Items?.[0] as CreateAuthUserDTO | undefined;
+  return result.Items?.[0] as any | undefined;
 };
 
-export const createAuthUser = async (authUser: Auth.SignUpRequest) => {
-  const authUserInstance = await CreateAuthUserDTO.create(authUser);
+export const createAuthUser = async (authUser: any) => {
+  if (!authUser.email || !authUser.password || !authUser.userName) {
+    throw new Error('Missing required fields');
+  }
 
-  await getAuthUserByEmail(authUserInstance.email).then(existingUser => {
+  await getAuthUserByEmail(authUser.email).then(existingUser => {
     if (existingUser) throw new Error('Email already exists');
   });
 
   const newUser = {
     userId: crypto.randomUUID(),
-    email: authUserInstance.email,
-    userName: authUserInstance.userName,
-    password: await bcrypt.hash(authUserInstance.password, 12),
+    email: authUser.email,
+    userName: authUser.userName,
+    password: await bcrypt.hash(authUser.password, 12),
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };

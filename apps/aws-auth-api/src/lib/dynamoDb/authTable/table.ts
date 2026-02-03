@@ -17,7 +17,7 @@ export class AuthTable {
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
 
-    // Add a GSI for email-based lookups if needed
+    // Add a GSI for email-based lookups
     this.table.addGlobalSecondaryIndex({
       indexName: 'emailIndex',
       partitionKey: {

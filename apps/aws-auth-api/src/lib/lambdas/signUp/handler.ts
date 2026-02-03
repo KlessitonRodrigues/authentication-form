@@ -1,4 +1,4 @@
-import { AWS, Auth } from '../../../../../../packages/common-types';
+import { AWS, Auth } from '../../../../node_modules/@packages/common-types';
 import { createResponse } from '../../../utils/api/createResponse';
 import { createAuthUser } from '../../dynamoDb/authTable/operations';
 

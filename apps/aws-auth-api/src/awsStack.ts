@@ -17,6 +17,7 @@ export class NodeTemplateStack extends cdk.Stack {
     super(scope, env.STACK_NAME, props);
 
     const lambdaEnv: AWS.LambdasProps = {
+      STACK_NAME: env.STACK_NAME || '',
       SECRET_KEY: env.SECRET_KEY || '',
       GOOGLE_CLIENT_ID: env.GOOGLE_CLIENT_ID || '',
     };
@@ -49,6 +50,15 @@ export class NodeTemplateStack extends cdk.Stack {
     authTable.table.grantReadWriteData(signInLambda);
     authTable.table.grantReadWriteData(signUpLambda);
     authTable.table.grantReadWriteData(googleSignInLambda);
+
+    [signInLambda, signUpLambda, googleSignInLambda].forEach(lambda => {
+      lambda.addToRolePolicy(
+        new cdk.aws_iam.PolicyStatement({
+          actions: ['dynamodb:Query', 'dynamodb:PutItem'],
+          resources: [authTable.table.tableArn, `${authTable.table.tableArn}/index/emailIndex`],
+        }),
+      );
+    });
 
     // CORS Preflight
     addCorsPreflight(signinRoute);
