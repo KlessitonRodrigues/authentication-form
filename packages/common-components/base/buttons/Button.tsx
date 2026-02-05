@@ -32,7 +32,11 @@ export const Button = (props: ButtonProps) => {
   btnClasses.push(className || "");
 
   return (
-    <button className={twMerge(...btnClasses)} {...btnProps}>
+    <button
+      className={twMerge(...btnClasses)}
+      disabled={loading || props.disabled}
+      {...btnProps}
+    >
       {loading && <span className="loading loading-spinner loading-xs" />}
       {props.label || props.children}
     </button>

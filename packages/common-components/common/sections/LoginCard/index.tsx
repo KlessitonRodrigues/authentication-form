@@ -27,8 +27,8 @@ export const LoginCardSection = (props: LoginSectionProps) => {
 
   return (
     <div className="flex w-full lg:h-full" style={{ backgroundImage }}>
-      <div className="lg:m-auto lg:w-full lg:flex lg:max-w-7xl bg-bg1 shadow-lg rounded-lg overflow-hidden">
-        <div className="h-150 lg:h-auto p-8 bg-no-repeat bg-cover text-default-white relative">
+      <div className="lg:m-auto lg:w-full lg:flex lg:max-w-7xl bg-bg1 lg:shadow-lg lg:rounded-lg overflow-hidden">
+        <div className="h-150 lg:h-auto p-8 bg-no-repeat bg-cover text-white relative">
           <div
             className="absolute inset-0 bg-no-repeat bg-cover"
             style={sectionImg}

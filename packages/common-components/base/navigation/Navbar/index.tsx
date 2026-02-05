@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Icons } from "../../icons/IconMap";
 import If from "../../containers/If";
 import { Button } from "../../buttons/Button";
+import { Text } from "../../text/Text";
+import { Row } from "../../containers/Flex";
 
 interface NavBarProps {
   title?: string;
@@ -15,39 +17,41 @@ export const NavBar = (props: NavBarProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
+  const openSideBar = () => {
+    setMenuOpen(!menuOpen);
+    setUserMenuOpen(false);
+  };
+
+  const openUserMenu = () => {
+    setUserMenuOpen(!userMenuOpen);
+    setMenuOpen(false);
+  };
+
   return (
     <div className="w-full sticky top-0 z-40">
-      <div className="navbar z-30 bg-base-100 shadow-sm">
-        <div className="flex-none">
-          <Button
-            ghost
-            variant="square"
-            onClick={() => {
-              setMenuOpen(!menuOpen);
-              setUserMenuOpen(false);
-            }}
-          >
-            <Icons icon="menu" size="22" />
+      <div className="navbar z-30 shadow-sm bg-main text-white">
+        <Row gap={4} className="px-4">
+          <Button ghost variant="square" onClick={openSideBar}>
+            <Icons icon="menu" size="28" />
           </Button>
-        </div>
-        <div className="flex-1">
-          <a className="btn btn-ghost text-xl">{title || "Dashboard"}</a>
-        </div>
-        <div className="flex-none">
-          <Button
-            ghost
-            onClick={() => {
-              setUserMenuOpen(!userMenuOpen);
-              setMenuOpen(false);
-            }}
-          >
-            <Icons icon="user" size="22" />
-            Klessiton R.
-          </Button>
-        </div>
+          <Row flexY="center">
+            <Icons icon="logo" size="34" />
+            <Text fs="xl" bold>
+              {title || "Application"}
+            </Text>
+          </Row>
+          <Row className="w-fit">
+            <div
+              className="w-9 h-9 p-2 rounded-full bg-bg1 text-black cursor-pointer"
+              onClick={openUserMenu}
+            >
+              <Icons icon="user" size="28" />
+            </div>
+          </Row>
+        </Row>
       </div>
       <If condition={menuOpen}>
-        <div className="absolute left-0 top-full z-10 fade-down shadow-md">
+        <div className="absolute w-full lg:w-auto left-0 top-full z-10 fade-down shadow-md">
           {sidebarComponent}
         </div>
       </If>

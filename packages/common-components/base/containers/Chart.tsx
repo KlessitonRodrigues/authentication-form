@@ -6,7 +6,7 @@ export const Chart = ({ className, ...props }: IChart) => {
   return (
     <div
       {...props}
-      className={twMerge(`py-2 pr-2 border border-default ${className}`)}
+      className={twMerge(`min-h-120 p-4 border border-default ${className}`)}
     />
   );
 };

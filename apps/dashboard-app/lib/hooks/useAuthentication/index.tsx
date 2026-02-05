@@ -1,53 +1,45 @@
-import { axiosClient } from "@/lib/config/axiosClient";
 import queryClient from "@/lib/config/queryClient";
+import dotenv from "@/lib/constants/dotenv";
 import useUserStore from "@/lib/store/user";
-import { useGoogleLogin, TokenResponse } from "@react-oauth/google";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { useState } from "react";
-
-interface EmailLoginData {
-  email?: string;
-  password?: string;
-}
+import { errorToast } from "@packages/common-components";
+import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const useAuthentication = () => {
   const { setUser } = useUserStore();
-  const [googleToken, setGoogleToken] = useState("");
+  const params = useSearchParams();
+  const router = useRouter();
+  const token = params.get("token");
 
-  const googleLoginReq = {
-    enabled: !!googleToken,
-    queryKey: ["google-login", googleToken],
-    queryFn: async () => {
-      const res = await axiosClient.post("auth", { token: googleToken });
-      setUser(res.data.user);
-      return res.data;
-    },
-  };
-
-  const emailLoginReq = {
+  const refreshTokenReq = {
     enabled: false,
-    mutationKey: ["email-login"],
-    mutationFn: async (data: EmailLoginData) => {
-      const res = await axiosClient.post("auth", data);
-      setUser(res.data);
-      return res.data;
-    },
-  };
-
-  const googleLoginHandler = {
-    onSuccess: (tokenResponse: TokenResponse) => {
-      setGoogleToken(tokenResponse.access_token);
+    queryKey: ["refresh-token"],
+    queryFn: async () => {
+      if (!token) {
+        errorToast("Authentication falied");
+        location.href = dotenv.AUTH_URL;
+      }
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+      // const res = await axiosClient.post("auth/refresh", { token });
+      setUser({
+        id: "123456",
+        name: "John Doe",
+        email: "john.doe@example.com",
+      });
+      router.push("/pages/dashboard");
+      return { success: true };
     },
     onError: () => {
-      console.log("Google Login Failed");
+      errorToast("Failed to refresh token");
+      location.href = dotenv.AUTH_URL;
     },
+    retry: false,
   };
 
-  const loginQuery = useMutation(emailLoginReq, queryClient);
-  const googleLoginQuery = useQuery(googleLoginReq, queryClient);
-  const googleLoginHandle = useGoogleLogin(googleLoginHandler);
+  const refreshTokenQuery = useQuery(refreshTokenReq, queryClient);
 
-  return { googleLoginHandle, googleLoginQuery, loginQuery };
+  return { refreshTokenQuery };
 };
 
 export default useAuthentication;

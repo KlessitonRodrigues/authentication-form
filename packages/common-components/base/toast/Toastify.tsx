@@ -1,25 +1,25 @@
 import { toast, ToastContainer } from "react-toastify";
 
-import { HTMLAttributes } from "react";
-
-interface ToastifyProps extends HTMLAttributes<HTMLDivElement> {}
-
-export const Toastify = (props: ToastifyProps) => {
+export const Toastify = () => {
   return (
-    <div>
-      <ToastContainer position="top-center" theme="colored" autoClose={3000} />
-    </div>
+    <ToastContainer
+      position="top-right"
+      theme="colored"
+      autoClose={3000}
+      pauseOnHover
+      stacked
+    />
   );
 };
 
-export const successToastr = (message: string) => {
+export const successToast = (message: string) => {
   toast.success(message);
 };
 
-export const errorToastr = (message: string) => {
+export const errorToast = (message: string) => {
   toast.error(message);
 };
 
-export const infoToastr = (message: string) => {
+export const infoToast = (message: string) => {
   toast.info(message);
 };

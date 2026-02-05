@@ -1,5 +1,5 @@
 const dotenv = {
-  GOOGLE_CLIENT_ID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "",
+  AUTH_URL: process.env.NEXT_PUBLIC_AUTH_URL || "",
 };
 
 export default dotenv;

@@ -37,10 +37,10 @@ export const Input = forwardRef<any, IInput>((props, ref) => {
       ref={ref}
       className={twMerge(
         `w-full p-2 px-3 mt-1 border text-md rounded-md transition peer
-         outline-none hover:border-default-blue focus:border-default-blue
-         data-[error=true]:border-default-red
-         [&:hover~div]:border-default-blue [&:focus~div]:border-default-blue
-         [&:focus~div]:text-default-blue [&~div]:data-[error=true]:border-default-red
+         outline-none hover:border-blue focus:border-blue
+         data-[error=true]:border-red
+         [&:hover~div]:border-blue [&:focus~div]:border-blue
+         [&:focus~div]:text-blue [&~div]:data-[error=true]:border-red
          ${className}`,
       )}
     />

@@ -34,7 +34,7 @@ export const InputField = (props: InputFieldProps) => {
         />
         {props.after}
       </label>
-      <p className="label text-default-red">{props.error}</p>
+      <p className="label text-red">{props.error}</p>
     </fieldset>
   );
 };

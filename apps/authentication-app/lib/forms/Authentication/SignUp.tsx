@@ -2,12 +2,14 @@
 import { Button, Form, Icons, InputField } from "@packages/common-components";
 import { AuthForm, getAuthValidation } from "./validation";
 import { useForm } from "react-hook-form";
+import useAuthentication from "@/lib/hooks/useAuthentication";
 
 const formValidation = getAuthValidation("signUp");
 
 export const SignUpForm = () => {
+  const { signupQuery } = useAuthentication();
   const { formState, register, handleSubmit } = useForm(formValidation);
-  const onSubmit = (data: AuthForm) => console.log("Sign In Data:", data);
+  const onSubmit = (data: AuthForm) => signupQuery.mutate(data);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -47,7 +49,7 @@ export const SignUpForm = () => {
         error={formState.errors.confirmPassword?.message}
         inputProps={register("confirmPassword")}
       />
-      <Button color="primary">
+      <Button color="primary" loading={signupQuery.isPending}>
         <Icons icon="userPlus" />
         Create Account
       </Button>

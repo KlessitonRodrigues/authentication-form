@@ -14,7 +14,7 @@ export interface MenuProps extends HTMLAttributes<HTMLUListElement> {
 
 export const Menu = (props: MenuProps) => {
   const { className, items, ...menuProps } = props;
-  const classNames = ["menu min-w-40 bg-bg1"];
+  const classNames = ["menu min-w-60 bg-bg1"];
   classNames.push(className || "");
 
   return (
@@ -22,8 +22,8 @@ export const Menu = (props: MenuProps) => {
       {items?.map((item, index) => (
         <li key={index}>
           <a href={item.href} onClick={item.onClick}>
-            <Icons icon={item.icon} size="16" className="mr-2" />
-            <Text>{item.label}</Text>
+            <Icons icon={item.icon} size="22" className="mr-2" />
+            <Text bold>{item.label}</Text>
           </a>
         </li>
       ))}

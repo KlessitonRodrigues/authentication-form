@@ -33,7 +33,7 @@ export const Text = (props: IText) => {
   const { bold, fc, fs, fo, className = "" } = props;
   const textStyle = [];
   if (bold) textStyle.push("font-bold");
-  if (fc) textStyle.push(`text-default-${fc}`);
+  if (fc) textStyle.push(`text-${fc}`);
   if (fs) textStyle.push(`text-${fs}`);
   if (fo) textStyle.push(`opacity-${fo}`);
   if (props.inline) textStyle.push("inline");
@@ -44,6 +44,6 @@ export const Text = (props: IText) => {
 /* tailwind include
     font-bold font-normal
     text-sm text-md text-lg text-xl text-2xl text-3xl text-4xl text-5xl
-    text-default-blue text-default-red text-default-green text-default-yellow text-default-black text-default-gray text-default-white
+    text-blue text-red text-green text-yellow text-black text-gray text-white
     opacity-10 opacity-20 opacity-30 opacity-40 opacity-50 opacity-60 opacity-70 opacity-80 opacity-90 opacity-100
 */

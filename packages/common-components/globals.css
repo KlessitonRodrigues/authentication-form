@@ -8,12 +8,12 @@
 
 :root {
   /* Colors */
-  --color-main: #3949ab;
-  --color-main-bg: #1a237e;
+  --color-main: #597ef7;
+  --color-main-bg: #2f54eb;
   --color-main-text: #f9fafb;
   --color-bg1: #ffffff;
-  --color-bg2: #f9fafb;
-  --color-bg3: #f3f4f6;
+  --color-bg2: #fafafa;
+  --color-bg3: #f5f5f5;
   --color-bg4: #e5e7eb;
   --color-fg1: #1f2937;
   --color-fg2: #374151;
@@ -101,6 +101,9 @@ body {
   color: var(--color-fg4);
 }
 
+.text-main {
+  color: var(--color-main-bg);
+}
 .text-fg1 {
   color: var(--color-fg1);
 }
@@ -113,28 +116,31 @@ body {
 .text-fg4 {
   color: var(--color-fg4);
 }
-.text-default-yellow {
+.text-yellow {
   color: var(--color-default-yellow);
 }
-.text-default-red {
+.text-red {
   color: var(--color-default-red);
 }
-.text-default-green {
+.text-green {
   color: var(--color-default-green);
 }
-.text-default-gray {
+.text-gray {
   color: var(--color-default-gray);
 }
-.text-default-blue {
+.text-blue {
   color: var(--color-default-blue);
 }
-.text-default-white {
+.text-white {
   color: var(--color-default-white);
 }
-.text-default-black {
+.text-black {
   color: var(--color-default-black);
 }
 
+.bg-main {
+  background-color: var(--color-main-bg);
+}
 .bg-bg1 {
   background-color: var(--color-bg1);
 }
@@ -147,29 +153,29 @@ body {
 .bg-bg4 {
   background-color: var(--color-bg4);
 }
-.bg-default-yellow {
+.bg-yellow {
   background-color: var(--color-default-yellow);
 }
-.bg-default-red {
+.bg-red {
   background-color: var(--color-default-red);
 }
-.bg-default-green {
+.bg-green {
   background-color: var(--color-default-green);
 }
-.bg-default-gray {
+.bg-gray {
   background-color: var(--color-default-gray);
 }
-.bg-default-blue {
+.bg-blue {
   background-color: var(--color-default-blue);
 }
-.bg-default-white {
+.bg-white {
   background-color: var(--color-default-white);
 }
-.bg-default-black {
+.bg-black {
   background-color: var(--color-default-black);
 }
 
-.border-default {
+.border {
   border-color: var(--color-default-border);
 }
 
@@ -212,7 +218,7 @@ body {
 
 @keyframes fade-down {
   0% {
-    transform: translateY(-60px);
+    transform: translateY(-50px);
     opacity: 0;
   }
   100% {
@@ -223,7 +229,7 @@ body {
 
 @keyframes slide-left {
   0% {
-    transform: translateX(60px);
+    transform: translateX(50px);
     opacity: 0;
   }
   100% {
@@ -234,7 +240,7 @@ body {
 
 @keyframes slide-up {
   0% {
-    transform: translateY(60px);
+    transform: translateY(50px);
     opacity: 0;
   }
   100% {
