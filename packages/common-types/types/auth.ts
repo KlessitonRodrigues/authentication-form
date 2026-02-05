@@ -18,4 +18,18 @@ export namespace Auth {
     userName?: string;
     password?: string;
   }
+
+  export interface SendRecoveryCodeRequest {
+    email: string;
+  }
+
+  export interface VerifyRecoveryCodeRequest {
+    email: string;
+    code: string;
+  }
+
+  export interface ResetPasswordRequest {
+    newPassword: string;
+    token: string;
+  }
 }

@@ -18,7 +18,7 @@ export const handler: AWS.APIGatewayHandler = async event => {
       recoveryCodeExpiry: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
     });
 
-    return createResponse(200, { code: { recoveryCode } });
+    return createResponse(200, { recoveryCode });
   } catch (err: any) {
     console.error(err);
     return createResponse(500, { error: 'Internal server error', details: err?.message || err });

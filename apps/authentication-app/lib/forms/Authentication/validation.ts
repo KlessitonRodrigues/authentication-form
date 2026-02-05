@@ -3,12 +3,7 @@ import { Resolver } from "react-hook-form";
 import { z } from "zod";
 
 export type AuthForm = Partial<typeof initialState>;
-export type AuthForms =
-  | "signIn"
-  | "signUp"
-  | "resetPassword"
-  | "verifyCode"
-  | "changePassword";
+export type AuthForms = "signIn" | "signUp" | "sendRecoveryCode";
 
 export const initialState = {
   email: "",
@@ -57,18 +52,8 @@ export const getAuthValidation = (type: AuthForms) => {
       formField.confirmPassword = initialState.confirmPassword;
       formField.userName = initialState.userName;
       break;
-    case "resetPassword":
+    case "sendRecoveryCode":
       formField.email = initialState.email;
-      formField.code = initialState.code;
-      break;
-    case "verifyCode":
-      formField.email = initialState.email;
-      formField.code = initialState.code;
-      break;
-    case "changePassword":
-      formField.email = initialState.email;
-      formField.password = initialState.password;
-      formField.confirmPassword = initialState.confirmPassword;
       break;
   }
 

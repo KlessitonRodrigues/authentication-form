@@ -1,8 +1,9 @@
 "use client";
-import { HTMLAttributes, useMemo, useState } from "react";
+import { HTMLAttributes, useEffect, useMemo, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface TabListProps extends HTMLAttributes<HTMLDivElement> {
+  item?: number;
   items: {
     label: string;
     icon: React.ReactNode;
@@ -12,8 +13,12 @@ interface TabListProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const TabList = (props: TabListProps) => {
-  const { items, className, children, ...tabListProps } = props;
+  const { items, item, className, children, ...tabListProps } = props;
   const [tabIndex, setTabIndex] = useState(0);
+
+  useEffect(() => {
+    if (item !== undefined) setTabIndex(item);
+  }, [item]);
 
   const tabOptions = useMemo(() => {
     return items.map((item, index) => {

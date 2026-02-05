@@ -8,12 +8,29 @@ import {
 } from "@packages/common-components";
 import { AuthForm, getAuthValidation } from "./validation";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import useAuthentication from "@/lib/hooks/useAuthentication";
 
 const formValidation = getAuthValidation("verifyCode");
 
 export const VerifyCodeForm = () => {
-  const { formState, register, handleSubmit } = useForm(formValidation);
-  const onSubmit = (data: AuthForm) => console.log(data);
+  const params = useSearchParams();
+  const email = params.get("email");
+  const { verifyRecoveryCodeQuery } = useAuthentication();
+  const { formState, register, handleSubmit, ...form } =
+    useForm(formValidation);
+
+  const onSubmit = (data: AuthForm) => {
+    verifyRecoveryCodeQuery.mutate({
+      email: data.email!,
+      code: data.code!,
+    });
+  };
+
+  useEffect(() => {
+    if (email) form.setValue("email", email);
+  }, [email, form]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -37,7 +54,7 @@ export const VerifyCodeForm = () => {
         error={formState.errors.code?.message}
       />
       <Row flexX="center">
-        <Button color="primary">
+        <Button color="primary" loading={verifyRecoveryCodeQuery.isPending}>
           <Icons icon="checkMark" size="22" />
           Verify Code
         </Button>

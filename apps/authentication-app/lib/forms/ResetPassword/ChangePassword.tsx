@@ -2,18 +2,38 @@
 import {
   Button,
   Form,
+  IconButton,
   Icons,
   InputField,
   Row,
 } from "@packages/common-components";
 import { AuthForm, getAuthValidation } from "./validation";
 import { useForm } from "react-hook-form";
+import useAuthentication from "@/lib/hooks/useAuthentication";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 const formValidation = getAuthValidation("changePassword");
 
 export const ChangePasswordForm = () => {
-  const { formState, register, handleSubmit } = useForm(formValidation);
-  const onSubmit = (data: AuthForm) => console.log(data);
+  const { resetPasswordQuery } = useAuthentication();
+  const params = useSearchParams();
+  const email = params.get("email");
+  const resetToken = params.get("resetToken") || "";
+
+  const { formState, register, handleSubmit, ...form } =
+    useForm(formValidation);
+
+  const onSubmit = (data: AuthForm) => {
+    resetPasswordQuery.mutate({
+      newPassword: data.password!,
+      token: resetToken,
+    });
+  };
+
+  useEffect(() => {
+    if (email) form.setValue("email", email);
+  }, [email, form]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -29,7 +49,6 @@ export const ChangePasswordForm = () => {
       />
       <InputField
         size="lg"
-        type="password"
         label="New Password"
         placeholder="Enter your new password"
         before={<Icons icon="lock" />}
@@ -38,7 +57,6 @@ export const ChangePasswordForm = () => {
       />
       <InputField
         size="lg"
-        type="password"
         label="Confirm Password"
         placeholder="Confirm your new password"
         before={<Icons icon="lock" />}
@@ -46,10 +64,13 @@ export const ChangePasswordForm = () => {
         error={formState.errors.confirmPassword?.message}
       />
       <Row flexX="center">
-        <Button color="error">
-          <Icons icon="checkMark" size="22" />
+        <IconButton
+          icon="checkMark"
+          color="error"
+          loading={resetPasswordQuery.isPending}
+        >
           Change Password
-        </Button>
+        </IconButton>
       </Row>
     </Form>
   );
