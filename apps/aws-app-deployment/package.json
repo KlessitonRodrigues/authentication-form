@@ -2,7 +2,7 @@
   "name": "nextjs-deploy",
   "scripts": {
     "cdk-synt": "cdk synthesize",
-    "cdk-deploy": "cdk deploy"
+    "cdk-deploy": "cdk deploy --all"
   },
   "devDependencies": {
     "@types/node": "24.10.1",

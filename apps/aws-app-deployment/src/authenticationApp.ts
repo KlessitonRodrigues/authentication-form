@@ -5,6 +5,7 @@ import * as s3 from "aws-cdk-lib/aws-s3";
 import * as s3Deploy from "aws-cdk-lib/aws-s3-deployment";
 
 const appName = "AuthenticationApp";
+const appPath = "../authentication-app/out";
 
 export class AuthenticationApp extends cdk.Stack {
   constructor(scope: cdk.App, props?: cdk.StackProps) {
@@ -113,7 +114,7 @@ export class AuthenticationApp extends cdk.Stack {
 
     // Deploy Next.js build output to S3
     new s3Deploy.BucketDeployment(this, `${appName}Deploy`, {
-      sources: [s3Deploy.Source.asset("../../authentication-app/out")],
+      sources: [s3Deploy.Source.asset(appPath)],
       destinationBucket: websiteBucket,
       distribution: distribution,
       distributionPaths: ["/*"],
