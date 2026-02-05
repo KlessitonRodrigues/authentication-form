@@ -2,8 +2,9 @@
 import useAuthentication from "@/lib/hooks/useAuthentication";
 import { LoadScreen } from "@packages/common-components";
 import { useEffect } from "react";
+import { Suspense } from "react";
 
-export default function ProfilePage() {
+const ProfilePageContent = () => {
   const { refreshTokenQuery } = useAuthentication();
 
   useEffect(() => {
@@ -11,4 +12,12 @@ export default function ProfilePage() {
   }, [refreshTokenQuery]);
 
   return <LoadScreen title="Authentication Form" />;
+};
+
+export default function ProfilePage() {
+  return (
+    <Suspense fallback={<LoadScreen title="Loading..." />}>
+      <ProfilePageContent />
+    </Suspense>
+  );
 }

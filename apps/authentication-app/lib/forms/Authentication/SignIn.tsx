@@ -59,7 +59,7 @@ export const SignInForm = () => {
           color="neutral"
           type="button"
           onClick={googleLoginHandle}
-          loading={googleLoginQuery.isLoading}
+          loading={googleLoginQuery.isPending}
         >
           Google
         </IconButton>
