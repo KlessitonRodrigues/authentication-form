@@ -10,6 +10,7 @@ interface NavBarProps {
   title?: string;
   sidebarComponent?: React.ReactNode;
   userMenuComponent?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export const NavBar = (props: NavBarProps) => {
@@ -29,27 +30,37 @@ export const NavBar = (props: NavBarProps) => {
 
   return (
     <div className="w-full sticky top-0 z-40">
-      <div className="navbar z-30 shadow-sm bg-main text-white">
-        <Row gap={4} className="px-4">
-          <Button ghost variant="square" onClick={openSideBar}>
-            <Icons icon="menu" size="28" />
+      <nav className="navbar z-30 shadow-sm bg-main text-white">
+        <Row gap={4}>
+          <Button ghost variant="square" size="lg" onClick={openSideBar}>
+            <If condition={!menuOpen}>
+              <Icons icon="menu" size="28" />
+            </If>
+            <If condition={menuOpen}>
+              <Icons icon="close" size="28" />
+            </If>
           </Button>
+
           <Row flexY="center">
-            <Icons icon="logo" size="34" />
+            <Icons icon="chart" size="28" />
             <Text fs="xl" bold>
               {title || "Application"}
             </Text>
           </Row>
-          <Row className="w-fit">
-            <div
-              className="w-9 h-9 p-2 rounded-full bg-bg1 text-black cursor-pointer"
-              onClick={openUserMenu}
-            >
+
+          <Row flexY="center" className="w-fit">
+            <div className="w-8 h-8 p-1 rounded-full border-2">
               <Icons icon="user" size="28" />
             </div>
+            <Text bold fo="70" className="text-nowrap hidden lg:block">
+              Klessiton R.
+            </Text>
+            <Button ghost variant="square" size="lg" onClick={openUserMenu}>
+              <Icons icon="menuDots" size="22" />
+            </Button>
           </Row>
         </Row>
-      </div>
+      </nav>
       <If condition={menuOpen}>
         <div className="absolute w-full lg:w-auto left-0 top-full z-10 fade-down shadow-md">
           {sidebarComponent}

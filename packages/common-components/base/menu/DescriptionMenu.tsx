@@ -10,6 +10,7 @@ export interface DescriptionMenuProps extends HTMLAttributes<HTMLUListElement> {
     label: string;
     description?: string;
     href?: string;
+    active?: boolean;
     onClick?: () => void;
   }[];
 }
@@ -21,23 +22,28 @@ export const DescriptionMenu = (props: DescriptionMenuProps) => {
 
   return (
     <ul className={twMerge(...classNames)} {...menuProps}>
-      {items?.map((item, index) => (
-        <li key={index}>
-          <a href={item.href} onClick={item.onClick}>
-            <div className="border rounded-md p-2 w-10 bg-bg3">
-              <Icons icon={item.icon} size="22" />
-            </div>
-            <Column flexX="start" gap={0}>
-              <Text fs="lg" bold className="text-main">
-                {item.label}
-              </Text>
-              <Text tag="p" fs="sm" fo="70">
-                {item.description}
-              </Text>
-            </Column>
-          </a>
-        </li>
-      ))}
+      {items?.map((item, index) => {
+        const activeItem = item.active
+          ? "bg-main text-white"
+          : "bg-bg1 text-fg1";
+        return (
+          <li key={index}>
+            <a href={item.href} onClick={item.onClick}>
+              <div className={`border rounded-md p-2 w-10 ${activeItem}`}>
+                <Icons icon={item.icon} size="22" />
+              </div>
+              <Column flexX="start" gap={0}>
+                <Text fs="lg" bold className="text-main">
+                  {item.label}
+                </Text>
+                <Text tag="p" fs="sm" fo="70">
+                  {item.description}
+                </Text>
+              </Column>
+            </a>
+          </li>
+        );
+      })}
     </ul>
   );
 };

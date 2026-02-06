@@ -2,6 +2,7 @@ import { HTMLAttributes } from "react";
 import {
   PiChartScatterBold,
   PiCheckBold,
+  PiDotsThreeOutlineVerticalFill,
   PiEnvelopeSimpleBold,
   PiExclamationMarkBold,
   PiEyeBold,
@@ -47,6 +48,7 @@ export const IconMap = {
   logo: <PiGoogleLogoBold size={"100%"} />,
   close: <PiXBold size={"100%"} />,
   warning: <PiExclamationMarkBold size={"100%"} />,
+  menuDots: <PiDotsThreeOutlineVerticalFill size={"100%"} />,
 };
 
 export interface IconProps extends HTMLAttributes<HTMLDivElement> {

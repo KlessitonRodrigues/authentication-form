@@ -1,4 +1,3 @@
-import UserAccount from "@/lib/views/Users/UserAccount";
 import {
   BarChartComponent,
   Column,
@@ -90,7 +89,6 @@ export default function Home() {
           <RadialChartComponent data={fakeData} dataField="sellers" />
         </Paper>
       </Row>
-      <UserAccount />
     </Column>
   );
 }
