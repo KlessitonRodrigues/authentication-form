@@ -3,6 +3,7 @@ import {
   PiChartScatterBold,
   PiCheckBold,
   PiEnvelopeSimpleBold,
+  PiExclamationMarkBold,
   PiEyeBold,
   PiGearBold,
   PiGithubLogoBold,
@@ -19,6 +20,7 @@ import {
   PiSignOutBold,
   PiUserBold,
   PiUserPlus,
+  PiXBold,
 } from "react-icons/pi";
 import { twMerge } from "tailwind-merge";
 
@@ -43,6 +45,8 @@ export const IconMap = {
   home: <PiHouseBold size={"100%"} />,
   chart: <PiChartScatterBold size={"100%"} />,
   logo: <PiGoogleLogoBold size={"100%"} />,
+  close: <PiXBold size={"100%"} />,
+  warning: <PiExclamationMarkBold size={"100%"} />,
 };
 
 export interface IconProps extends HTMLAttributes<HTMLDivElement> {

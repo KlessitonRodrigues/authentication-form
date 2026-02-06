@@ -179,6 +179,10 @@ body {
   border-color: var(--color-default-border);
 }
 
+.border-2 {
+  border-color: var(--color-default-border);
+}
+
 .shadow-sm {
   box-shadow: var(--shadow-sm);
 }

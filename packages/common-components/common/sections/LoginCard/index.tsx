@@ -8,9 +8,7 @@ interface LoginSectionProps {
     bgImageUrl: string;
     bgBrightness?: number;
   };
-  login: {
-    formComponent: React.ReactNode;
-  };
+  loginForm: React.ReactNode;
   bgGradient?: {
     from: string;
     to: string;
@@ -18,7 +16,7 @@ interface LoginSectionProps {
 }
 
 export const LoginCardSection = (props: LoginSectionProps) => {
-  const { data, login, bgGradient } = props;
+  const { data, loginForm, bgGradient } = props;
   const backgroundImage = `linear-gradient(145deg, ${bgGradient?.from}, ${bgGradient?.to})`;
   const sectionImg = {
     backgroundImage: `url(${data.bgImageUrl})`,
@@ -30,7 +28,7 @@ export const LoginCardSection = (props: LoginSectionProps) => {
       <div className="lg:m-auto lg:w-full lg:flex lg:max-w-7xl bg-bg1 lg:shadow-lg lg:rounded-lg overflow-hidden">
         <div className="h-150 lg:h-auto p-8 bg-no-repeat bg-cover text-white relative">
           <div
-            className="absolute inset-0 bg-no-repeat bg-cover"
+            className="absolute inset-0 bg-no-repeat bg-center bg-cover"
             style={sectionImg}
           />
           <div className="relative z-10 space-y-8">
@@ -45,7 +43,7 @@ export const LoginCardSection = (props: LoginSectionProps) => {
             </Text>
           </div>
         </div>
-        <div className="p-8 lg:p-0">{login.formComponent}</div>
+        <div className="p-8 lg:p-0">{loginForm}</div>
       </div>
     </div>
   );
