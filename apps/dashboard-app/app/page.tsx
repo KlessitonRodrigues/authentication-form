@@ -16,7 +16,7 @@ const ProfilePageContent = () => {
 
 export default function ProfilePage() {
   return (
-    <Suspense fallback={<LoadScreen title="Loading..." />}>
+    <Suspense fallback={<LoadScreen title="Authentication Form" />}>
       <ProfilePageContent />
     </Suspense>
   );

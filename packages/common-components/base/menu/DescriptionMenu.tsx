@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { IconProps, Icons } from "../icons/IconMap";
 import { Text } from "../text/Text";
 import { Column } from "../containers/Flex";
+import Link from "next/link";
 
 export interface DescriptionMenuProps extends HTMLAttributes<HTMLUListElement> {
   items?: {
@@ -28,7 +29,7 @@ export const DescriptionMenu = (props: DescriptionMenuProps) => {
           : "bg-bg1 text-fg1";
         return (
           <li key={index}>
-            <a href={item.href} onClick={item.onClick}>
+            <Link href={item.href || ""} onClick={item.onClick}>
               <div className={`border rounded-md p-2 w-10 ${activeItem}`}>
                 <Icons icon={item.icon} size="22" />
               </div>
@@ -40,7 +41,7 @@ export const DescriptionMenu = (props: DescriptionMenuProps) => {
                   {item.description}
                 </Text>
               </Column>
-            </a>
+            </Link>
           </li>
         );
       })}

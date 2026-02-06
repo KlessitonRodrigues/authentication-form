@@ -2,6 +2,7 @@ import { HTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 import { IconProps, Icons } from "../icons/IconMap";
 import { Text } from "../text/Text";
+import Link from "next/link";
 
 export interface MenuProps extends HTMLAttributes<HTMLUListElement> {
   items?: {
@@ -21,10 +22,10 @@ export const Menu = (props: MenuProps) => {
     <ul className={twMerge(...classNames)} {...menuProps}>
       {items?.map((item, index) => (
         <li key={index}>
-          <a href={item.href} onClick={item.onClick}>
+          <Link href={item.href || ""} onClick={item.onClick}>
             <Icons icon={item.icon} size="22" className="mr-2" />
             <Text bold>{item.label}</Text>
-          </a>
+          </Link>
         </li>
       ))}
     </ul>
