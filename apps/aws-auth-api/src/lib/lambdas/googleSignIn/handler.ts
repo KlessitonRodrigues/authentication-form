@@ -1,6 +1,10 @@
 import * as jwt from 'jsonwebtoken';
 
-import { AWS } from '../../../../node_modules/@packages/common-types';
+import {
+  AWS,
+  signUpWithGoogleSchema,
+  zodErrorStringify,
+} from '../../../../../../packages/common-types';
 import { env } from '../../../contants/enviroment';
 import { createResponse } from '../../../utils/api/createResponse';
 import { createAuthUser, getAuthUserByEmail } from '../../dynamoDb/authTable/operations';
@@ -10,9 +14,15 @@ const userInfoUrl = 'https://www.googleapis.com/oauth2/v2/userinfo';
 export const handler: AWS.APIGatewayHandler = async event => {
   try {
     const jsonBody = JSON.parse(event.body);
-    const { token } = jsonBody;
 
-    if (!token) return createResponse(400, { error: 'Token is required' });
+    const result = signUpWithGoogleSchema.safeParse(jsonBody);
+
+    if (!result.success) {
+      const details = zodErrorStringify(result);
+      return createResponse(400, { error: 'Invalid request body', details });
+    }
+
+    const { token } = result.data;
 
     const userInfoResponse = await fetch(userInfoUrl, {
       headers: { Authorization: `Bearer ${token}` },

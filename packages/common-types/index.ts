@@ -2,5 +2,8 @@
 export * from "./types/auth";
 export * from "./types/aws";
 
-// DTOs
-// export * from "./dto/auth";
+// Schemas
+export * from "./schemas/auth";
+
+// Utils
+export * from "./utils/zod";

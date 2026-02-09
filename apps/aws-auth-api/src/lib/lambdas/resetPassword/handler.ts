@@ -1,6 +1,10 @@
 import * as jwt from 'jsonwebtoken';
 
-import { AWS } from '../../../../../../packages/common-types';
+import {
+  AWS,
+  resetPasswordSchema,
+  zodErrorStringify,
+} from '../../../../../../packages/common-types';
 import { env } from '../../../contants/enviroment';
 import { createResponse } from '../../../utils/api/createResponse';
 import { updateAuthUser } from '../../dynamoDb/authTable/operations';
@@ -8,7 +12,14 @@ import { updateAuthUser } from '../../dynamoDb/authTable/operations';
 export const handler: AWS.APIGatewayHandler = async event => {
   try {
     const jsonBody = JSON.parse(event.body);
-    const { newPassword, token } = jsonBody;
+    const result = resetPasswordSchema.safeParse(jsonBody);
+
+    if (!result.success) {
+      const details = zodErrorStringify(result);
+      return createResponse(400, { error: 'Invalid request body', details });
+    }
+
+    const { token, newPassword } = result.data;
 
     if (!token || !newPassword) {
       return createResponse(400, { error: 'Missing token or newPassword' });

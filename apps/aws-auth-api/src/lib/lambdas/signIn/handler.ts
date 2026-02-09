@@ -1,7 +1,7 @@
-import { AWS } from '@packages/common-types';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 
+import { AWS, signInSchema, zodErrorStringify } from '../../../../../../packages/common-types';
 import { env } from '../../../contants/enviroment';
 import { createResponse } from '../../../utils/api/createResponse';
 import { getAuthUserByEmail } from '../../dynamoDb/authTable/operations';
@@ -9,18 +9,21 @@ import { getAuthUserByEmail } from '../../dynamoDb/authTable/operations';
 export const handler: AWS.APIGatewayHandler = async event => {
   try {
     const jsonBody = JSON.parse(event.body);
-    const { email, password } = jsonBody;
+    const result = signInSchema.safeParse(jsonBody);
 
-    if (!email || !password) {
-      return createResponse(400, { error: 'Missing email or password' });
+    if (!result.success) {
+      const details = zodErrorStringify(result);
+      return createResponse(400, { error: 'Invalid request body', details });
     }
 
+    const { email, password } = result.data;
     const user = await getAuthUserByEmail(email);
+
     if (!user) {
       return createResponse(401, { error: 'Invalid email or password' });
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcrypt.compare(password, user.password || '');
     if (!isPasswordValid) {
       return createResponse(401, { error: 'Invalid email or password' });
     }

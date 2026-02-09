@@ -1,14 +1,24 @@
 import * as jwt from 'jsonwebtoken';
 
-import { AWS } from '../../../../../../packages/common-types';
+import {
+  AWS,
+  refreshTokenSchema,
+  zodErrorStringify,
+} from '../../../../../../packages/common-types';
 import { env } from '../../../contants/enviroment';
 import { createResponse } from '../../../utils/api/createResponse';
 
 export const handler: AWS.APIGatewayHandler = async event => {
   try {
     const jsonBody = JSON.parse(event.body);
-    const { token } = jsonBody;
 
+    const result = refreshTokenSchema.safeParse(jsonBody);
+    if (!result.success) {
+      const details = zodErrorStringify(result);
+      return createResponse(400, { error: 'Invalid request body', details });
+    }
+
+    const { token } = result.data;
     if (!token) {
       return createResponse(400, { error: 'Missing token' });
     }
@@ -22,7 +32,7 @@ export const handler: AWS.APIGatewayHandler = async event => {
 
     const newToken = jwt.sign(
       { userId: decodedToken.userId, email: decodedToken.email },
-      process.env.SECRET_KEY as string,
+      env.SECRET_KEY as string,
       { expiresIn: '1h' },
     );
 

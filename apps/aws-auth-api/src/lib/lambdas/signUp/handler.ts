@@ -1,11 +1,19 @@
-import { AWS, Auth } from '../../../../node_modules/@packages/common-types';
+import { AWS, signUpSchema, zodErrorStringify } from '../../../../../../packages/common-types';
 import { createResponse } from '../../../utils/api/createResponse';
 import { createAuthUser } from '../../dynamoDb/authTable/operations';
 
 export const handler: AWS.APIGatewayHandler = async event => {
   try {
     const jsonBody = JSON.parse(event.body);
-    const { email, password, userName } = jsonBody as Auth.SignUpRequest;
+    const result = signUpSchema.safeParse(jsonBody);
+
+    if (!result.success) {
+      const details = zodErrorStringify(result);
+      return createResponse(400, { error: 'Invalid request body', details });
+    }
+
+    const { email, password, userName } = result.data;
+
     try {
       await createAuthUser({ email, password, userName });
     } catch (err: any) {

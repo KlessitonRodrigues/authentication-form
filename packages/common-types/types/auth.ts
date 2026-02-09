@@ -1,11 +1,13 @@
 export namespace Auth {
   export interface AuthUser {
-    userId: string;
-    email: string;
-    userName: string;
-    password: string;
-    createdAt: string;
-    updatedAt: string;
+    userId?: string;
+    email?: string;
+    userName?: string;
+    password?: string;
+    recoveryCode?: string;
+    recoveryCodeExpiry?: string;
+    createdAt?: string;
+    updatedAt?: string;
   }
 
   export interface SignInRequest {
@@ -20,16 +22,16 @@ export namespace Auth {
   }
 
   export interface SendRecoveryCodeRequest {
-    email: string;
+    email?: string;
   }
 
   export interface VerifyRecoveryCodeRequest {
-    email: string;
-    code: string;
+    email?: string;
+    code?: string;
   }
 
   export interface ResetPasswordRequest {
-    newPassword: string;
-    token: string;
+    newPassword?: string;
+    token?: string;
   }
 }
