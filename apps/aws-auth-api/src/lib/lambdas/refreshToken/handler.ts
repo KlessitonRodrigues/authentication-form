@@ -4,15 +4,17 @@ import {
   AWS,
   refreshTokenSchema,
   zodErrorStringify,
-} from '../../../../../../packages/common-types';
+} from '../../../../node_modules/@packages/common-types';
 import { env } from '../../../contants/enviroment';
 import { createResponse } from '../../../utils/api/createResponse';
 
 export const handler: AWS.APIGatewayHandler = async event => {
   try {
     const jsonBody = JSON.parse(event.body);
-
     const result = refreshTokenSchema.safeParse(jsonBody);
+    const cookies = event.headers?.Cookie || '';
+    console.log(cookies);
+
     if (!result.success) {
       const details = zodErrorStringify(result);
       return createResponse(400, { error: 'Invalid request body', details });
@@ -36,7 +38,9 @@ export const handler: AWS.APIGatewayHandler = async event => {
       { expiresIn: '1h' },
     );
 
-    return createResponse(200, { token: newToken });
+    const cookie = createTokenCookie(newToken, 3600);
+
+    return createResponse(200, { success: true }, { 'Set-Cookie': cookie });
   } catch (err: any) {
     console.error(err);
     return createResponse(500, { error: 'Internal server error', details: err?.message || err });

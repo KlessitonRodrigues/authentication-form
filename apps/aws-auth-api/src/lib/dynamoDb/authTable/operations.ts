@@ -6,7 +6,7 @@ import {
 } from '@aws-sdk/lib-dynamodb';
 import * as bcrypt from 'bcrypt';
 
-import { Auth } from '../../../../../../packages/common-types';
+import { Auth } from '../../../../node_modules/@packages/common-types';
 import { docClient } from '../../../config/dynamoDb';
 import { resourceNames } from '../../../contants/resources';
 

@@ -1,6 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 
-import { AWS } from '../../../../../../packages/common-types';
+import { AWS } from '../../../../node_modules/@packages/common-types';
 import { createResponse } from '../../../utils/api/createResponse';
 import { getAuthUserByEmail } from '../../dynamoDb/authTable/operations';
 

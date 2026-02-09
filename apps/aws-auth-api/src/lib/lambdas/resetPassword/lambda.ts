@@ -3,7 +3,7 @@ import * as cdk from 'aws-cdk-lib';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as nodeLambda from 'aws-cdk-lib/aws-lambda-nodejs';
 
-import { resourceNames } from '../../../contants/resources';
+import { lambdaPackages, resourceNames } from '../../../contants/resources';
 
 export class ResetPasswordLambda extends nodeLambda.NodejsFunction {
   constructor(scope: cdk.Stack, lambdaEnv: AWS.LambdasProps) {
@@ -16,8 +16,7 @@ export class ResetPasswordLambda extends nodeLambda.NodejsFunction {
       environment: lambdaEnv,
       bundling: {
         environment: lambdaEnv,
-        nodeModules: ['jsonwebtoken', 'bcrypt'],
-        inject: [],
+        nodeModules: lambdaPackages,
       },
     };
 

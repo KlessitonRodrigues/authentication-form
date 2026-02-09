@@ -11,3 +11,5 @@ export const resourceNames = {
   verifyRecoveryCodeLambda: env.STACK_NAME + '-verify-recovery-code-lambda',
   resetPasswordLambda: env.STACK_NAME + '-reset-password-lambda',
 };
+
+export const lambdaPackages = ['jsonwebtoken', 'bcrypt', 'zod'];

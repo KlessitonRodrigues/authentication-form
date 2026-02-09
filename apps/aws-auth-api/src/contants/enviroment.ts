@@ -6,4 +6,5 @@ export const env = {
   AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY || '',
   SECRET_KEY: process.env.SECRET_KEY || '',
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || '',
+  LAMBDA_PACKAGES: ['jsonwebtoken', 'bcrypt', 'zod'],
 };

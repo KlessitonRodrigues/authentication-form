@@ -1,7 +1,11 @@
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 
-import { AWS, signInSchema, zodErrorStringify } from '../../../../../../packages/common-types';
+import {
+  AWS,
+  signInSchema,
+  zodErrorStringify,
+} from '../../../../node_modules/@packages/common-types';
 import { env } from '../../../contants/enviroment';
 import { createResponse } from '../../../utils/api/createResponse';
 import { getAuthUserByEmail } from '../../dynamoDb/authTable/operations';
