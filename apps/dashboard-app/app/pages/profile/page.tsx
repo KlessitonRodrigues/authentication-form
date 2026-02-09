@@ -1,9 +1,11 @@
-import { Page } from "@packages/common-components";
+import { Column, Paper, TitleIcon } from "@packages/common-components";
 
 export default function ProfilePage() {
   return (
-    <Page>
-      <h1 className="text-3xl font-bold text-main">Profile Page</h1>
-    </Page>
+    <Column>
+      <Paper>
+        <TitleIcon title="Profile" icon="user" />
+      </Paper>
+    </Column>
   );
 }

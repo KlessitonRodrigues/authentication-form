@@ -1,8 +1,9 @@
 import { twMerge } from "tailwind-merge";
 import { IconProps, Icons } from "../icons/IconMap";
 import { useMemo } from "react";
+import Link from "next/link";
 
-interface BreadcumbsProps {
+export interface BreadcumbsProps {
   className?: string;
   items?: { label: string; icon?: IconProps["icon"]; href?: string }[];
 }
@@ -10,9 +11,8 @@ interface BreadcumbsProps {
 export const Breadcumbs = (props: BreadcumbsProps) => {
   const { className, items } = props;
   const classNames = [
-    "breadcrumbs text-sm font-bold bg-bg1 px-4 py-2 shadow-md",
+    `breadcrumbs text-sm font-bold bg-bg1 px-4 py-2 shadow-md`,
   ];
-  classNames.push(className || "");
 
   const itemList = useMemo(
     () =>
@@ -20,7 +20,7 @@ export const Breadcumbs = (props: BreadcumbsProps) => {
         <li key={index} className="flex gap-2">
           <Icons icon={item.icon} size="22" />
           {item.href ? (
-            <a href={item.href}>{item.label}</a>
+            <Link href={item.href}>{item.label}</Link>
           ) : (
             <span className="inline-flex items-center gap-2">{item.label}</span>
           )}
@@ -30,7 +30,7 @@ export const Breadcumbs = (props: BreadcumbsProps) => {
   );
 
   return (
-    <div className={twMerge(...classNames)}>
+    <div className={twMerge(...classNames, className)}>
       <ul>{itemList}</ul>
     </div>
   );

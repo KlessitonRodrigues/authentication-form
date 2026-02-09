@@ -18,6 +18,7 @@ export * from "./base/toast/Toastify";
 export * from "./base/skeletons/Square";
 export * from "./base/loaders/LoadScreen";
 export * from "./base/breadcumbs/Breadcumbs";
+export * from "./base/title/TitleIcon";
 
 // Commom
 export * from "./common/sections/LoginCard";
@@ -27,6 +28,7 @@ export * from "./common/charts/PieChart";
 export * from "./common/charts/RadarChart";
 export * from "./common/charts/RadialChart";
 export * from "./common/cards/Currency";
+export * from "./common/users/UserInitials";
 
 // Utils
 export * from "./utils/CSSColors";

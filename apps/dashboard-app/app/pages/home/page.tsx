@@ -1,23 +1,17 @@
 import {
   Column,
   CurrencyCard,
-  Icons,
   Paper,
   Row,
-  Text,
+  TitleIcon,
 } from "@packages/common-components";
 
 export default function HomePage() {
   return (
     <Column>
       <Paper>
-        <Row>
-          <Icons icon="chart" />
-          <Text bold fo="70">
-            Status
-          </Text>
-        </Row>
-        <Row responsive="sm" gap={4}>
+        <TitleIcon title="Status" icon="chart" />
+        <Row responsive="lg" gap={4}>
           <CurrencyCard
             total="Total Revenue"
             percentage={12.5}
@@ -45,7 +39,7 @@ export default function HomePage() {
         </Row>
       </Paper>
       <Paper>
-        <Text>Home Page</Text>
+        <TitleIcon title="Financial Overview" icon="currency" />
       </Paper>
     </Column>
   );

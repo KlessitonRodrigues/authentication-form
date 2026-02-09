@@ -18,8 +18,7 @@ export interface DescriptionMenuProps extends HTMLAttributes<HTMLUListElement> {
 
 export const DescriptionMenu = (props: DescriptionMenuProps) => {
   const { className, items, ...menuProps } = props;
-  const classNames = ["menu w-full lg:min-w-md min-h-screen bg-bg1"];
-  classNames.push(className || "");
+  const classNames = [`menu w-full h-full lg:min-w-md bg-bg1 ${className}`];
 
   return (
     <ul className={twMerge(...classNames)} {...menuProps}>

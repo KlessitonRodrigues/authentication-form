@@ -1,5 +1,6 @@
 import { Card } from "../../base/cards/Card";
 import { Row } from "../../base/containers/Flex";
+import { Icons } from "../../base/icons/IconMap";
 import { Text } from "../../base/text/Text";
 
 interface CurrencyCardProps {
@@ -22,7 +23,8 @@ export const CurrencyCard = (props: CurrencyCardProps) => {
           + {percentage}%
         </Text>
       </Row>
-      <Row flexX="end" className="mt-4">
+      <Row flexX="between" className="mt-4">
+        <Icons icon="chart" size="34" />
         <Text bold fo="70" fs="3xl" className="text-blue">
           {amount}
         </Text>

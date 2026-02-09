@@ -5,11 +5,10 @@ interface PaperProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const Paper = (props: PaperProps) => {
   const { className, children, ...paperProps } = props;
-  const classNames = ["paper space-y-4 w-full bg-bg1 p-4 shadow-sm"];
-  classNames.push(className || "");
+  const classNames = ["paper space-y-4 w-full bg-bg1 p-4 shadow-sm slide-up"];
 
   return (
-    <div className={twMerge(...classNames)} {...paperProps}>
+    <div className={twMerge(...classNames, className)} {...paperProps}>
       {children}
     </div>
   );
