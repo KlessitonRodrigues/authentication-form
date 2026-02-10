@@ -5,7 +5,7 @@ import { createAuthUser } from '../../dynamoDb/authTable/operations';
 
 export const handler: AWS.APIGatewayHandler = async event => {
   try {
-    const jsonBody = JSON.parse(event.body);
+    const jsonBody = JSON.parse(event.body || '{}');
     const result = signUpSchema.safeParse(jsonBody);
 
     if (!result.success) {

@@ -1,16 +1,19 @@
 "use client";
+import useAuthentication from "@/lib/hooks/useAuthentication";
 import useUserStore from "@/lib/store/user";
 import {
   Breadcumbs,
   BreadcumbsProps,
   DescriptionMenu,
   DescriptionMenuProps,
+  LoadScreen,
   Menu,
   MenuProps,
   NavBar,
   Row,
 } from "@packages/common-components";
 import { usePathname } from "next/navigation";
+import { Suspense, useEffect } from "react";
 
 const getMenuItems = (pathname: string) => {
   const descriptionMenuItems: DescriptionMenuProps["items"] = [
@@ -69,8 +72,14 @@ const getMenuItems = (pathname: string) => {
 
 const NavBarView = () => {
   const pathname = usePathname();
+  const { verifyAuthentication } = useAuthentication();
   const { descriptionMenuItems, menuItems, pathItems } = getMenuItems(pathname);
   const { user } = useUserStore();
+
+  useEffect(() => {
+    verifyAuthentication();
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>

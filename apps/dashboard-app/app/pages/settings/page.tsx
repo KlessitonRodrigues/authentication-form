@@ -1,9 +1,11 @@
-import { Page } from "@packages/common-components";
+import { Column, Paper, TitleIcon } from "@packages/common-components";
 
 export default function SettingsPage() {
   return (
-    <Page>
-      <h1 className="text-3xl font-bold text-main">Settings Page</h1>
-    </Page>
+    <Column>
+      <Paper>
+        <TitleIcon title="Settings" icon="settings" />
+      </Paper>
+    </Column>
   );
 }

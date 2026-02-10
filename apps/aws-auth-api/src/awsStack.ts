@@ -36,7 +36,8 @@ export class NodeTemplateStack extends cdk.Stack {
       STACK_NAME: env.STACK_NAME,
       SECRET_KEY: env.SECRET_KEY,
       GOOGLE_CLIENT_ID: env.GOOGLE_CLIENT_ID,
-      COOKIE_DOMAIN: env.COOKIE_DOMAIN,
+      AUTH_APP_URL: env.AUTH_APP_URL,
+      DASHBOARD_APP_URL: env.DASHBOARD_APP_URL,
     };
 
     const signInLambda = new SignInLambda(this, lambdaEnv, logGroup);

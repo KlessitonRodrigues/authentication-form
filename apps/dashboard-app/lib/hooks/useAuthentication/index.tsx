@@ -3,23 +3,35 @@ import queryClient from "@/lib/config/queryClient";
 import dotenv from "@/lib/constants/dotenv";
 import useUserStore from "@/lib/store/user";
 import { errorToast } from "@packages/common-components";
-import { useQuery } from "@tanstack/react-query";
+import { DefinedInitialDataOptions, useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { useCallback } from "react";
 
 const useAuthentication = () => {
-  const { setUser } = useUserStore();
+  const { user, setUser } = useUserStore();
   const params = useSearchParams();
   const router = useRouter();
   const token = params.get("token");
 
-  const refreshTokenReq = {
+  const verifyAuthentication = useCallback(async () => {
+    if (!user?.id) router.push("/");
+  }, [user, router]);
+
+  const refreshTokenReq: DefinedInitialDataOptions = {
     enabled: false,
     retry: false,
+    initialData: null,
     queryKey: ["refresh-token"],
     queryFn: async () => {
       const res = await axiosClient.post("auth/refresh-token", { token });
-      if (!res.data.user) return errorToast("No user data found");
+
+      if (!res.data.user) {
+        errorToast("No user data found");
+        await new Promise((resolve) => setTimeout(resolve, 5000));
+        location.href = dotenv.AUTH_URL;
+        return false;
+      }
 
       setUser({
         id: res.data.user.userId,
@@ -29,15 +41,18 @@ const useAuthentication = () => {
       router.push("/pages/home");
       return res.data;
     },
-    onError: () => {
-      errorToast("Failed to refresh token");
-      location.href = dotenv.AUTH_URL;
+    throwOnError: () => {
+      errorToast("Failed to authenticate. Please try to login again.");
+      new Promise((resolve) => setTimeout(resolve, 5000)).then(() => {
+        location.href = dotenv.AUTH_URL;
+      });
+      return true;
     },
   };
 
   const refreshTokenQuery = useQuery(refreshTokenReq, queryClient);
 
-  return { refreshTokenQuery };
+  return { verifyAuthentication, refreshTokenQuery };
 };
 
 export default useAuthentication;

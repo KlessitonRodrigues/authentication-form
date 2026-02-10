@@ -6,17 +6,17 @@ import { apiOrigins } from '../../contants/resources';
 export const addPreflight = (resource: cdk.aws_apigateway.Resource) => {
   resource.addCorsPreflight({
     allowOrigins: apiOrigins,
-    allowMethods: ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    allowMethods: gateway.Cors.ALL_METHODS,
+    allowHeaders: [...gateway.Cors.DEFAULT_HEADERS, 'Cookie'],
     allowCredentials: true,
-    allowHeaders: ['Content-Type', 'Authorization'],
   });
 };
 
 export const addCorsPreflight = (resource: cdk.aws_apigateway.Resource) => {
   resource.addCorsPreflight({
     allowOrigins: gateway.Cors.ALL_ORIGINS,
-    allowMethods: ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    allowMethods: gateway.Cors.ALL_METHODS,
+    allowHeaders: gateway.Cors.DEFAULT_HEADERS,
     allowCredentials: true,
-    allowHeaders: ['Content-Type', 'Authorization'],
   });
 };

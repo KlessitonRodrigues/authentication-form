@@ -5,7 +5,7 @@ import { getAuthUserByEmail, updateAuthUser } from '../../dynamoDb/authTable/ope
 
 export const handler: AWS.APIGatewayHandler = async event => {
   try {
-    const jsonBody = JSON.parse(event.body);
+    const jsonBody = JSON.parse(event.body || '{}');
 
     const result = sendRecoveryCodeSchema.safeParse(jsonBody);
 

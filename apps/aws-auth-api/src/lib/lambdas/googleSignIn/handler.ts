@@ -9,7 +9,7 @@ const userInfoUrl = 'https://www.googleapis.com/oauth2/v2/userinfo';
 
 export const handler: AWS.APIGatewayHandler = async event => {
   try {
-    const jsonBody = JSON.parse(event.body);
+    const jsonBody = JSON.parse(event.body || '{}');
 
     const result = signUpWithGoogleSchema.safeParse(jsonBody);
 

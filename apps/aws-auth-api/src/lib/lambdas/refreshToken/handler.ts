@@ -1,4 +1,4 @@
-import { AWS, refreshTokenSchema, zodErrorStringify } from '@packages/common-types';
+import { AWS } from '@packages/common-types';
 import * as jwt from 'jsonwebtoken';
 
 import { env } from '../../../contants/enviroment';
@@ -7,17 +7,13 @@ import { createResponse, createResponseWithOrigin } from '../../../utils/api/cre
 
 export const handler: AWS.APIGatewayHandler = async event => {
   try {
-    const origin = event.headers.origin || '*';
-    console.log('Received refresh token request from origin:', origin);
-    const jsonBody = JSON.parse(event.body);
-    const result = refreshTokenSchema.safeParse(jsonBody);
+    const origin = event.headers.origin || '';
 
-    if (!result.success) {
-      const details = zodErrorStringify(result);
-      return createResponseWithOrigin(origin, 400, { error: 'Invalid request body', details });
-    }
+    const jsonBody = JSON.parse(event.body || '{}');
+    const bodytoken = jsonBody?.token;
+    const cookie = String(event.headers.Cookie || event.headers.cookie);
+    const token = bodytoken || (cookie?.split('=') || [])[1] || '';
 
-    const { token } = result.data;
     if (!token) {
       return createResponseWithOrigin(origin, 400, { error: 'Missing token' });
     }
@@ -36,8 +32,8 @@ export const handler: AWS.APIGatewayHandler = async event => {
     };
     const jwtToken = jwt.sign(jwtData, env.SECRET_KEY, { expiresIn: '1h' });
 
-    const cookie = createTokenCookie(jwtToken, 3600);
-    return createResponseWithOrigin(origin, 200, { user: jwtData }, { 'Set-Cookie': cookie });
+    const newCookie = createTokenCookie(jwtToken, 3600);
+    return createResponseWithOrigin(origin, 200, { user: jwtData }, { 'Set-Cookie': newCookie });
   } catch (err: any) {
     console.error(err);
     return createResponse(500, { error: 'Internal server error', details: err?.message || err });
