@@ -1,3 +1,4 @@
+import { axiosClient } from "@/lib/config/axiosClient";
 import queryClient from "@/lib/config/queryClient";
 import dotenv from "@/lib/constants/dotenv";
 import useUserStore from "@/lib/store/user";
@@ -14,27 +15,24 @@ const useAuthentication = () => {
 
   const refreshTokenReq = {
     enabled: false,
+    retry: false,
     queryKey: ["refresh-token"],
     queryFn: async () => {
-      if (!token) {
-        errorToast("Authentication falied");
-        location.href = dotenv.AUTH_URL;
-      }
-      await new Promise((resolve) => setTimeout(resolve, 3000));
-      // const res = await axiosClient.post("auth/refresh", { token });
+      const res = await axiosClient.post("auth/refresh-token", { token });
+      if (!res.data.user) return errorToast("No user data found");
+
       setUser({
-        id: "123456",
-        name: "John Doe",
-        email: "john.doe@example.com",
+        id: res.data.user.userId,
+        name: res.data.user.userName,
+        email: res.data.user.email,
       });
-      router.push("/pages/dashboard");
-      return { success: true };
+      router.push("/pages/home");
+      return res.data;
     },
     onError: () => {
       errorToast("Failed to refresh token");
       location.href = dotenv.AUTH_URL;
     },
-    retry: false,
   };
 
   const refreshTokenQuery = useQuery(refreshTokenReq, queryClient);

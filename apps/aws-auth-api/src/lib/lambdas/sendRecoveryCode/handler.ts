@@ -1,8 +1,5 @@
-import {
-  AWS,
-  sendRecoveryCodeSchema,
-  zodErrorStringify,
-} from '../../../../node_modules/@packages/common-types';
+import { AWS, sendRecoveryCodeSchema, zodErrorStringify } from '@packages/common-types';
+
 import { createResponse } from '../../../utils/api/createResponse';
 import { getAuthUserByEmail, updateAuthUser } from '../../dynamoDb/authTable/operations';
 

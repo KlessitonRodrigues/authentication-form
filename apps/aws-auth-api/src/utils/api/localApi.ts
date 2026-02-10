@@ -1,9 +1,9 @@
 import { AWS } from '@packages/common-types';
 import { Request, Response } from 'express';
 
-export const createLambdaEvent =
-  (lambda: AWS.APIGatewayHandler) => (req: Request, res: Response) => {
-    lambda({
+export const createLambdaEvent = (lambda: AWS.APIGatewayHandler) => {
+  return async (req: Request, res: Response) => {
+    const lambdaResponse = await lambda({
       resource: req.path,
       path: req.path,
       httpMethod: req.method,
@@ -12,16 +12,17 @@ export const createLambdaEvent =
       pathParameters: req.params,
       headers: {
         Authorization: req.headers.authorization,
+        ...req.headers,
       },
       stageVariables: {},
       body: JSON.stringify(req.body),
       isBase64Encoded: false,
-    })
-      .then(response => {
-        res
-          .status(response.statusCode)
-          .setHeader('Content-Type', 'application/json')
-          .send(response.body);
-      })
-      .catch(err => res.status(500).json({ error: err.message }));
+    });
+
+    lambdaResponse;
+    res
+      .status(lambdaResponse.statusCode)
+      .set(lambdaResponse.headers || {})
+      .send(lambdaResponse.body);
   };
+};

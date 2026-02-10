@@ -7,7 +7,7 @@ import * as gateway from 'aws-cdk-lib/aws-apigateway';
 import { AuthTable } from './lib/dynamoDb/authTable/table';
 import { AuthAPIGateway } from './lib/gateway/authAPI';
 import { SignInLambda } from './lib/lambdas/signIn/lambda';
-import { addCorsPreflight } from './utils/api/addCors';
+import { addCorsPreflight, addPreflight } from './utils/api/preflightResponse';
 import { env } from './contants/enviroment';
 import { SignUpLambda } from './lib/lambdas/signUp/lambda';
 import { GoogleSignInLambda } from './lib/lambdas/googleSignIn/lambda';
@@ -15,28 +15,37 @@ import { VerifyRecoveryCodeLambda } from './lib/lambdas/verifyRecoveryCode/lambd
 import { SendRecoveryCodeLambda } from './lib/lambdas/sendRecoveryCode/lambda';
 import { RefreshTokenLambda } from './lib/lambdas/refreshToken/lambda';
 import { ResetPasswordLambda } from './lib/lambdas/resetPassword/lambda';
+import { resourceNames } from './contants/resources';
 
 export class NodeTemplateStack extends cdk.Stack {
   constructor(scope: cdk.App, props?: cdk.StackProps) {
     super(scope, env.STACK_NAME, props);
 
-    const lambdaEnv: AWS.LambdasProps = {
-      STACK_NAME: env.STACK_NAME || '',
-      SECRET_KEY: env.SECRET_KEY || '',
-      GOOGLE_CLIENT_ID: env.GOOGLE_CLIENT_ID || '',
-    };
-
     // DynamoDB
     const authTable = new AuthTable(this);
 
-    // Lambdas
-    const signInLambda = new SignInLambda(this, lambdaEnv);
-    const signUpLambda = new SignUpLambda(this, lambdaEnv);
-    const googleSignInLambda = new GoogleSignInLambda(this, lambdaEnv);
-    const verifyRecoveryCodeLambda = new VerifyRecoveryCodeLambda(this, lambdaEnv);
-    const sendRecoveryCodeLambda = new SendRecoveryCodeLambda(this, lambdaEnv);
-    const refreshTokenLambda = new RefreshTokenLambda(this, lambdaEnv);
-    const resetPasswordLambda = new ResetPasswordLambda(this, lambdaEnv);
+    // Log Group
+    const logGroup = new cdk.aws_logs.LogGroup(this, resourceNames.logGroup, {
+      logGroupName: resourceNames.logGroup,
+      retention: cdk.aws_logs.RetentionDays.ONE_WEEK,
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
+    });
+
+    // Lambda Functions
+    const lambdaEnv: AWS.LambdasProps = {
+      STACK_NAME: env.STACK_NAME,
+      SECRET_KEY: env.SECRET_KEY,
+      GOOGLE_CLIENT_ID: env.GOOGLE_CLIENT_ID,
+      COOKIE_DOMAIN: env.COOKIE_DOMAIN,
+    };
+
+    const signInLambda = new SignInLambda(this, lambdaEnv, logGroup);
+    const signUpLambda = new SignUpLambda(this, lambdaEnv, logGroup);
+    const googleSignInLambda = new GoogleSignInLambda(this, lambdaEnv, logGroup);
+    const verifyRecoveryCodeLambda = new VerifyRecoveryCodeLambda(this, lambdaEnv, logGroup);
+    const sendRecoveryCodeLambda = new SendRecoveryCodeLambda(this, lambdaEnv, logGroup);
+    const refreshTokenLambda = new RefreshTokenLambda(this, lambdaEnv, logGroup);
+    const resetPasswordLambda = new ResetPasswordLambda(this, lambdaEnv, logGroup);
 
     // API Gateway
     const authApi = new AuthAPIGateway(this);
@@ -78,13 +87,14 @@ export class NodeTemplateStack extends cdk.Stack {
     authTable.table.grantReadWriteData(refreshTokenLambda);
     authTable.table.grantReadWriteData(resetPasswordLambda);
 
-    // CORS Preflight
+    // API Preflight
+    addPreflight(refreshTokenRoute);
+
     addCorsPreflight(signinRoute);
     addCorsPreflight(signupRoute);
     addCorsPreflight(googleRoute);
     addCorsPreflight(sendRecoveryCodeRoute);
     addCorsPreflight(verifyRecoveryCodeRoute);
-    addCorsPreflight(refreshTokenRoute);
     addCorsPreflight(resetPasswordRoute);
   }
 }

@@ -9,7 +9,8 @@
     "test": "jest",
     "test-w": "jest --watch",
     "test-cover": "jest --coverage",
-    "format": "prettier -c -w ./src"
+    "format": "prettier -c -w ./src",
+    "log-group": "aws logs tail auth-api-dev-log-group --follow"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",

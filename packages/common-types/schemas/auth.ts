@@ -5,9 +5,6 @@ const authSchema = {
   password: z
     .string("Password is required")
     .min(6, "Password must be at least 6 characters"),
-  confirmPassword: z
-    .string("Confirm Password is required")
-    .min(6, "Confirm Password must be at least 6 characters"),
   userName: z
     .string("Username is required")
     .min(3, "Username must be at least 3 characters"),
@@ -29,7 +26,6 @@ export const signUpWithGoogleSchema = z.object({
 export const signUpSchema = z.object({
   email: authSchema.email,
   password: authSchema.password,
-  confirmPassword: authSchema.confirmPassword,
   userName: authSchema.userName,
 });
 

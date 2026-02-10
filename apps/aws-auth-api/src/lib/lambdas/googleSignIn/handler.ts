@@ -1,10 +1,6 @@
+import { AWS, signUpWithGoogleSchema, zodErrorStringify } from '@packages/common-types';
 import * as jwt from 'jsonwebtoken';
 
-import {
-  AWS,
-  signUpWithGoogleSchema,
-  zodErrorStringify,
-} from '../../../../node_modules/@packages/common-types';
 import { env } from '../../../contants/enviroment';
 import { createResponse } from '../../../utils/api/createResponse';
 import { createAuthUser, getAuthUserByEmail } from '../../dynamoDb/authTable/operations';
@@ -53,9 +49,8 @@ export const handler: AWS.APIGatewayHandler = async event => {
       return createResponse(500, { error: 'Failed to create or retrieve user' });
     }
 
-    const jwtToken = jwt.sign({ email: dbUser.email, name: dbUser.userName }, env.SECRET_KEY, {
-      expiresIn: '1h',
-    });
+    const jwtData = { userId: dbUser.userId, email: dbUser.email, userName: dbUser.userName };
+    const jwtToken = jwt.sign(jwtData, env.SECRET_KEY, { expiresIn: '1h' });
 
     return createResponse(200, {
       token: jwtToken,

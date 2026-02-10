@@ -1,46 +1,43 @@
+import { AWS, refreshTokenSchema, zodErrorStringify } from '@packages/common-types';
 import * as jwt from 'jsonwebtoken';
 
-import {
-  AWS,
-  refreshTokenSchema,
-  zodErrorStringify,
-} from '../../../../node_modules/@packages/common-types';
 import { env } from '../../../contants/enviroment';
-import { createResponse } from '../../../utils/api/createResponse';
+import { createTokenCookie } from '../../../utils/api/cookies';
+import { createResponse, createResponseWithOrigin } from '../../../utils/api/createResponse';
 
 export const handler: AWS.APIGatewayHandler = async event => {
   try {
+    const origin = event.headers.origin || '*';
+    console.log('Received refresh token request from origin:', origin);
     const jsonBody = JSON.parse(event.body);
     const result = refreshTokenSchema.safeParse(jsonBody);
-    const cookies = event.headers?.Cookie || '';
-    console.log(cookies);
 
     if (!result.success) {
       const details = zodErrorStringify(result);
-      return createResponse(400, { error: 'Invalid request body', details });
+      return createResponseWithOrigin(origin, 400, { error: 'Invalid request body', details });
     }
 
     const { token } = result.data;
     if (!token) {
-      return createResponse(400, { error: 'Missing token' });
+      return createResponseWithOrigin(origin, 400, { error: 'Missing token' });
     }
 
     let decodedToken: any;
     try {
       decodedToken = jwt.verify(token, env.SECRET_KEY as string);
     } catch (err) {
-      return createResponse(401, { error: 'Invalid or expired token' });
+      return createResponseWithOrigin(origin, 401, { error: 'Invalid or expired token' });
     }
 
-    const newToken = jwt.sign(
-      { userId: decodedToken.userId, email: decodedToken.email },
-      env.SECRET_KEY as string,
-      { expiresIn: '1h' },
-    );
+    const jwtData = {
+      userId: decodedToken.userId,
+      email: decodedToken.email,
+      userName: decodedToken.userName,
+    };
+    const jwtToken = jwt.sign(jwtData, env.SECRET_KEY, { expiresIn: '1h' });
 
-    const cookie = createTokenCookie(newToken, 3600);
-
-    return createResponse(200, { success: true }, { 'Set-Cookie': cookie });
+    const cookie = createTokenCookie(jwtToken, 3600);
+    return createResponseWithOrigin(origin, 200, { user: jwtData }, { 'Set-Cookie': cookie });
   } catch (err: any) {
     console.error(err);
     return createResponse(500, { error: 'Internal server error', details: err?.message || err });

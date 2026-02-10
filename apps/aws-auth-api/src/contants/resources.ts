@@ -3,6 +3,7 @@ import { env } from './enviroment';
 export const resourceNames = {
   authTable: env.STACK_NAME + '-auth-table',
   authAPIGateway: env.STACK_NAME + '-auth-api-gateway',
+  logGroup: env.STACK_NAME + '-log-group',
   signUpLambda: env.STACK_NAME + '-sign-up-lambda',
   signInLambda: env.STACK_NAME + '-sign-in-lambda',
   googleSignInLambda: env.STACK_NAME + '-google-sign-in-lambda',
@@ -13,3 +14,10 @@ export const resourceNames = {
 };
 
 export const lambdaPackages = ['jsonwebtoken', 'bcrypt', 'zod'];
+
+export const apiOrigins = [
+  env.AUTH_APP_URL,
+  env.DASHBOARD_APP_URL,
+  'http://localhost:3000',
+  'http://localhost:3001',
+];

@@ -1,8 +1,5 @@
-import {
-  AWS,
-  signUpSchema,
-  zodErrorStringify,
-} from '../../../../node_modules/@packages/common-types';
+import { AWS, signUpSchema, zodErrorStringify } from '@packages/common-types';
+
 import { createResponse } from '../../../utils/api/createResponse';
 import { createAuthUser } from '../../dynamoDb/authTable/operations';
 

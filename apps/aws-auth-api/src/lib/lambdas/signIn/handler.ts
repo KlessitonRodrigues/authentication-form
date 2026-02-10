@@ -1,11 +1,7 @@
+import { AWS, signInSchema, zodErrorStringify } from '@packages/common-types';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 
-import {
-  AWS,
-  signInSchema,
-  zodErrorStringify,
-} from '../../../../node_modules/@packages/common-types';
 import { env } from '../../../contants/enviroment';
 import { createResponse } from '../../../utils/api/createResponse';
 import { getAuthUserByEmail } from '../../dynamoDb/authTable/operations';
@@ -32,14 +28,14 @@ export const handler: AWS.APIGatewayHandler = async event => {
       return createResponse(401, { error: 'Invalid email or password' });
     }
 
-    const jwtToken = jwt.sign({ userId: user.userId, email: user.email }, env.SECRET_KEY, {
-      expiresIn: '1h',
-    });
+    const jwtData = { userId: user.userId, email: user.email, userName: user.userName };
+    const jwtToken = jwt.sign(jwtData, env.SECRET_KEY, { expiresIn: '1h' });
 
     return createResponse(200, {
       token: jwtToken,
       userId: user.userId,
       email: user.email,
+      userName: user.userName,
     });
   } catch (err: any) {
     console.error(err);

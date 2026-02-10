@@ -32,7 +32,12 @@ const localApi = async () => {
 
   app.use(bodyparser.urlencoded({ extended: false }));
   app.use(bodyparser.json());
-  app.use(cors());
+  app.use(
+    cors({
+      credentials: true,
+      origin: (_, callback) => callback(null, true),
+    }),
+  );
   app.use(routes);
   app.listen(port, () => console.log('Running at: http://localhost:' + port));
 };

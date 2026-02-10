@@ -1,5 +1,7 @@
 import axios from "axios";
+import dotenv from "../constants/dotenv";
 
-const URI = "http://localhost:3005";
-
-export const axiosClient = axios.create({ baseURL: URI });
+export const axiosClient = axios.create({
+  baseURL: dotenv.AUTH_API_URL,
+  withCredentials: true,
+});
