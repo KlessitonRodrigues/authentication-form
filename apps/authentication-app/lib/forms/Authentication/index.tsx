@@ -1,23 +1,23 @@
-import { Card, Icons, TabList } from "@packages/common-components";
+import { Card, TabList, TabListProps } from "@packages/common-components";
 import { SignInForm } from "./SignIn";
 import { SignUpForm } from "./SignUp";
 import { ResetPassForm } from "./ResetPass";
 import FormData from "../FormData";
 
-const TabItems = [
+const TabItems: TabListProps["items"] = [
   {
     label: "Login",
-    icon: <Icons icon="signIn" />,
+    icon: "signIn",
     content: <SignInForm />,
   },
   {
     label: "Register",
-    icon: <Icons icon="userPlus" />,
+    icon: "userPlus",
     content: <SignUpForm />,
   },
   {
     label: "Forgot Password",
-    icon: <Icons icon="questionMark" />,
+    icon: "questionMark",
     content: <ResetPassForm />,
   },
 ];

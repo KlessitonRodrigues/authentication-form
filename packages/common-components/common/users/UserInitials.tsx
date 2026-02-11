@@ -14,8 +14,8 @@ export const UserInitials = (props: UserInitialsProps) => {
     .toUpperCase();
 
   return (
-    <Row flexX="center" className="w-9 h-9 rounded-full bg-bg1 text-fg1">
-      <Text bold fs="lg" fo="90">
+    <Row flexX="center" className="w-8 h-8 border rounded-full bg-bg1 text-fg1">
+      <Text bold fo="70">
         {initials}
       </Text>
     </Row>

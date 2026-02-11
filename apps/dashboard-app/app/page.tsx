@@ -3,7 +3,7 @@ import useAuthentication from "@/lib/hooks/useAuthentication";
 import { LoadScreen } from "@packages/common-components";
 import { Suspense, useEffect } from "react";
 
-const ProfilePageContent = () => {
+const AuthPageContent = () => {
   const { refreshTokenQuery } = useAuthentication();
 
   useEffect(() => {
@@ -14,10 +14,10 @@ const ProfilePageContent = () => {
   return <LoadScreen title="Authentication Form" />;
 };
 
-export default function ProfilePage() {
+export default function AuthPage() {
   return (
     <Suspense fallback={<LoadScreen title="Authentication Form" />}>
-      <ProfilePageContent />
+      <AuthPageContent />
     </Suspense>
   );
 }

@@ -1,12 +1,13 @@
 "use client";
 import { HTMLAttributes, useEffect, useMemo, useState } from "react";
 import { twMerge } from "tailwind-merge";
+import { IconProps, Icons } from "../icons/IconMap";
 
-interface TabListProps extends HTMLAttributes<HTMLDivElement> {
+export interface TabListProps extends HTMLAttributes<HTMLDivElement> {
   item?: number;
   items: {
     label: string;
-    icon: React.ReactNode;
+    icon: IconProps["icon"];
     content: React.ReactNode;
     disabled?: boolean;
   }[];
@@ -33,7 +34,7 @@ export const TabList = (props: TabListProps) => {
           className={classNames.join(" ")}
           onClick={() => setTabIndex(index)}
         >
-          {item.icon}
+          {item.icon && <Icons icon={item.icon} size="16" />}
           {item.label}
         </a>
       );
@@ -45,7 +46,7 @@ export const TabList = (props: TabListProps) => {
       <div role="tablist" className="tabs tabs-lift">
         {tabOptions}
       </div>
-      <div className="mt-4">{items[tabIndex].content}</div>
+      <div className="mt-2">{items[tabIndex].content}</div>
     </div>
   );
 };

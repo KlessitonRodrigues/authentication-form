@@ -19,6 +19,8 @@ export * from "./base/skeletons/Square";
 export * from "./base/loaders/LoadScreen";
 export * from "./base/breadcumbs/Breadcumbs";
 export * from "./base/title/TitleIcon";
+export * from "./base/tables/Table";
+export * from "./base/pagination/Pagination";
 
 // Commom
 export * from "./common/sections/LoginCard";

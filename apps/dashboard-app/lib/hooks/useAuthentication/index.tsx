@@ -2,7 +2,6 @@ import { axiosClient } from "@/lib/config/axiosClient";
 import queryClient from "@/lib/config/queryClient";
 import dotenv from "@/lib/constants/dotenv";
 import useUserStore from "@/lib/store/user";
-import { errorToast } from "@packages/common-components";
 import { DefinedInitialDataOptions, useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -27,8 +26,6 @@ const useAuthentication = () => {
       const res = await axiosClient.post("auth/refresh-token", { token });
 
       if (!res.data.user) {
-        errorToast("No user data found");
-        await new Promise((resolve) => setTimeout(resolve, 5000));
         location.href = dotenv.AUTH_URL;
         return false;
       }
@@ -42,10 +39,7 @@ const useAuthentication = () => {
       return res.data;
     },
     throwOnError: () => {
-      errorToast("Failed to authenticate. Please try to login again.");
-      new Promise((resolve) => setTimeout(resolve, 5000)).then(() => {
-        location.href = dotenv.AUTH_URL;
-      });
+      location.href = dotenv.AUTH_URL;
       return true;
     },
   };

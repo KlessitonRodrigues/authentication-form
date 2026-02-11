@@ -1,3 +1,4 @@
+import TransactionsView from "@/lib/views/Transactions/TransactionsView";
 import {
   Column,
   CurrencyCard,
@@ -40,6 +41,7 @@ export default function HomePage() {
       </Paper>
       <Paper>
         <TitleIcon title="Financial Overview" icon="currency" />
+        <TransactionsView />
       </Paper>
     </Column>
   );

@@ -2,7 +2,7 @@ import { AWS } from '@packages/common-types';
 import * as jwt from 'jsonwebtoken';
 
 import { env } from '../../../contants/enviroment';
-import { createTokenCookie } from '../../../utils/api/cookies';
+import { cookieToObject, createTokenCookie } from '../../../utils/api/cookies';
 import { createResponse, createResponseWithOrigin } from '../../../utils/api/createResponse';
 
 export const handler: AWS.APIGatewayHandler = async event => {
@@ -12,7 +12,7 @@ export const handler: AWS.APIGatewayHandler = async event => {
     const jsonBody = JSON.parse(event.body || '{}');
     const bodytoken = jsonBody?.token;
     const cookie = String(event.headers.Cookie || event.headers.cookie);
-    const token = bodytoken || (cookie?.split('=') || [])[1] || '';
+    const token = bodytoken || cookieToObject(cookie)?.token;
 
     if (!token) {
       return createResponseWithOrigin(origin, 400, { error: 'Missing token' });
