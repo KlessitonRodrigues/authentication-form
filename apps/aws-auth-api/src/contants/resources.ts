@@ -7,6 +7,7 @@ export const resourceNames = {
   signUpLambda: env.STACK_NAME + '-sign-up-lambda',
   signInLambda: env.STACK_NAME + '-sign-in-lambda',
   googleSignInLambda: env.STACK_NAME + '-google-sign-in-lambda',
+  githubSignInLambda: env.STACK_NAME + '-github-sign-in-lambda',
   refreshTokenLambda: env.STACK_NAME + '-refresh-token-lambda',
   sendRecoveryCodeLambda: env.STACK_NAME + '-send-recovery-code-lambda',
   verifyRecoveryCodeLambda: env.STACK_NAME + '-verify-recovery-code-lambda',

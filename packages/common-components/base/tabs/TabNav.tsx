@@ -43,8 +43,9 @@ export const TabList = (props: TabListProps) => {
 
   return (
     <div className={twMerge("w-full", className)} {...tabListProps}>
-      <div role="tablist" className="tabs tabs-lift">
+      <div role="tablist" className="tabs flex lg:tabs-lift lg:flex-nowrap">
         {tabOptions}
+        <div className="flex-1 border-b" />
       </div>
       <div className="mt-2">{items[tabIndex].content}</div>
     </div>

@@ -15,7 +15,7 @@ interface InputFieldProps extends HTMLAttributes<HTMLDivElement> {
 
 export const InputField = (props: InputFieldProps) => {
   const { className } = props;
-  const classNames = ["input rounded-md shadow-sm outline-none w-full"];
+  const classNames = ["input rounded-sm outline-none w-full"];
   if (props.error) classNames.push("input-error");
   classNames.push(`input-${props.size || "md"}`);
   classNames.push(className || "");

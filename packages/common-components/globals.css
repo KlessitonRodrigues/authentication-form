@@ -82,6 +82,7 @@
 
 @media (prefers-color-scheme: light) {
   :root {
+    --color-main: #597ef7;
     --color-main-bg: #2553eb;
     --color-main-text: #ffffff;
     --color-bg1: #000000;
@@ -110,7 +111,7 @@ body {
 }
 
 .text-main {
-  color: var(--color-main-bg);
+  color: var(--color-main);
 }
 .text-fg1 {
   color: var(--color-fg1);
@@ -185,6 +186,10 @@ body {
 
 .border {
   border-color: var(--color-default-border);
+}
+
+.border-b {
+  border-bottom-color: var(--color-default-border);
 }
 
 .border-2 {

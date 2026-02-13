@@ -29,11 +29,10 @@ export const Button = (props: ButtonProps) => {
   if (props.variant) btnClasses.push(`btn-${props.variant}`);
   btnClasses.push(`btn-${props.color || ""}`);
   btnClasses.push(`btn-${props.size || "md"}`);
-  btnClasses.push(className || "");
 
   return (
     <button
-      className={twMerge(...btnClasses)}
+      className={twMerge(...btnClasses, className)}
       disabled={loading || props.disabled}
       {...btnProps}
     >

@@ -5,17 +5,12 @@ import useUserStore from "@/lib/store/user";
 import { DefinedInitialDataOptions, useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { useCallback } from "react";
 
 const useAuthentication = () => {
-  const { user, setUser } = useUserStore();
+  const { setUser } = useUserStore();
   const params = useSearchParams();
   const router = useRouter();
   const token = params.get("token");
-
-  const verifyAuthentication = useCallback(async () => {
-    if (!user?.id) router.push("/");
-  }, [user, router]);
 
   const refreshTokenReq: DefinedInitialDataOptions = {
     enabled: false,
@@ -46,7 +41,7 @@ const useAuthentication = () => {
 
   const refreshTokenQuery = useQuery(refreshTokenReq, queryClient);
 
-  return { verifyAuthentication, refreshTokenQuery };
+  return { refreshTokenQuery };
 };
 
 export default useAuthentication;

@@ -11,9 +11,9 @@ export const TitleIcon = (props: TitleIconProps) => {
   const { title, icon } = props;
 
   return (
-    <Row>
+    <Row className="border-b pb-2">
       <Icons icon={icon} size="22" />
-      <Text bold fo="80">
+      <Text bold fo="60">
         {title}
       </Text>
     </Row>

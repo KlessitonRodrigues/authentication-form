@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Row } from "../../base/containers/Flex";
 import { Text } from "../../base/text/Text";
 
@@ -7,15 +8,18 @@ interface UserInitialsProps {
 
 export const UserInitials = (props: UserInitialsProps) => {
   const { name } = props;
-  const initials = name
-    .split(" ")
-    .map((part) => part[0])
-    .join("")
-    .toUpperCase();
+
+  const initials = useMemo(() => {
+    return name
+      .split(" ")
+      .map((part) => part[0])
+      .join("")
+      .toUpperCase();
+  }, [name]);
 
   return (
     <Row flexX="center" className="w-8 h-8 border rounded-full bg-bg1 text-fg1">
-      <Text bold fo="70">
+      <Text bold fo="70" className="mt-1">
         {initials}
       </Text>
     </Row>

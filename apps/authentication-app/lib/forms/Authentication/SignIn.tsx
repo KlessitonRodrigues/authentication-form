@@ -63,7 +63,15 @@ export const SignInForm = () => {
         >
           Google
         </IconButton>
-        <IconButton icon="github" color="neutral" type="button">
+        <IconButton
+          icon="github"
+          color="neutral"
+          type="button"
+          onClick={() => {
+            window.location.href =
+              "https://github.com/login/oauth/authorize?client_id=b211ddaae7459405412acb5ad869ec02f3c16af8&scope=read:user user:email";
+          }}
+        >
           GitHub
         </IconButton>
       </Row>

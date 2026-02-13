@@ -13,6 +13,7 @@ import {
   PiEnvelopeSimpleBold,
   PiExclamationMarkBold,
   PiEyeBold,
+  PiFloppyDiskBold,
   PiGearBold,
   PiGithubLogoBold,
   PiGoogleLogoBold,
@@ -20,7 +21,9 @@ import {
   PiListBold,
   PiLockBold,
   PiMagnifyingGlassBold,
+  PiMailbox,
   PiMailboxBold,
+  PiMapPinBold,
   PiMoneyBold,
   PiNumpadBold,
   PiPhoneBold,
@@ -67,6 +70,8 @@ export const IconMap = {
   skipRight: <PiCaretDoubleRightBold size={"100%"} />,
   skipLeft: <PiCaretDoubleLeftBold size={"100%"} />,
   plus: <PiPlusBold size={"100%"} />,
+  save: <PiFloppyDiskBold size={"100%"} />,
+  address: <PiMailbox size={"100%"} />,
 };
 
 export interface IconProps extends HTMLAttributes<HTMLDivElement> {
