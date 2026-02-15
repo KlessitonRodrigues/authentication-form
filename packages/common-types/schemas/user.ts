@@ -6,6 +6,7 @@ const userSchema = {
     .string()
     .min(10, "Phone number must be at least 10 digits")
     .default(""),
+  phone2: z.string().default(""),
   addressStreet: z
     .string()
     .min(2, "Street must be at least 2 characters")
@@ -26,6 +27,7 @@ const userSchema = {
 
 export const createUserSchema = z.object({
   phone: userSchema.phone,
+  phone2: userSchema.phone2,
   addressStreet: userSchema.addressStreet,
   addressCity: userSchema.addressCity,
   addressState: userSchema.addressState,

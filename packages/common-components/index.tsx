@@ -22,6 +22,7 @@ export * from "./base/title/TitleIcon";
 export * from "./base/tables/Table";
 export * from "./base/pagination/Pagination";
 export * from "./base/display/DataDisplay";
+export * from "./base/switch/Switch";
 
 // Commom
 export * from "./common/sections/LoginCard";

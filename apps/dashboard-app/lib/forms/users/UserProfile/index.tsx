@@ -7,21 +7,10 @@ import {
   Row,
 } from "@packages/common-components";
 import { createUserSchema } from "@packages/common-types";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-
-export const initialState = {
-  email: "",
-  password: "",
-  confirmPassword: "",
-  userName: "",
-  code: "",
-};
-
-const resolver = zodResolver(createUserSchema);
+import UserFormSchema from "@/lib/hooks/useFormSchema";
 
 export const UserProfileForm = () => {
-  const { formState, register, handleSubmit } = useForm({ resolver });
+  const { errors, register, handleSubmit } = UserFormSchema(createUserSchema);
 
   const onSubmit = (data: unknown) => {
     console.log(data);
@@ -29,7 +18,7 @@ export const UserProfileForm = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <Row>
+      <Row responsive="md" flexY="start">
         <InputField
           size="lg"
           type="text"
@@ -37,7 +26,7 @@ export const UserProfileForm = () => {
           placeholder="(xx) xxxxx-xxxx"
           before={<Icons icon="phone" />}
           inputProps={register("phone")}
-          error={formState.errors.phone?.message}
+          error={errors.phone?.message?.toString()}
         />
         <InputField
           size="lg"
@@ -45,11 +34,11 @@ export const UserProfileForm = () => {
           label="Phone 2"
           placeholder="(xx) xxxxx-xxxx"
           before={<Icons icon="phone" />}
-          inputProps={register("phone")}
-          error={formState.errors.phone?.message}
+          inputProps={register("phone2")}
+          error={errors.phone2?.message?.toString()}
         />
       </Row>
-      <Row>
+      <Row responsive="md" flexY="start">
         <InputField
           size="lg"
           type="text"
@@ -57,7 +46,7 @@ export const UserProfileForm = () => {
           placeholder="San Francisco"
           before={<Icons icon="address" />}
           inputProps={register("addressCity")}
-          error={formState.errors.addressCity?.message}
+          error={errors.addressCity?.message?.toString()}
         />
         <InputField
           size="lg"
@@ -66,10 +55,10 @@ export const UserProfileForm = () => {
           placeholder="Saint Artunes, 123"
           before={<Icons icon="address" />}
           inputProps={register("addressStreet")}
-          error={formState.errors.addressStreet?.message}
+          error={errors.addressStreet?.message?.toString()}
         />
       </Row>
-      <Row>
+      <Row responsive="md" flexY="start">
         <InputField
           size="lg"
           type="text"
@@ -77,7 +66,7 @@ export const UserProfileForm = () => {
           placeholder="California"
           before={<Icons icon="address" />}
           inputProps={register("addressState")}
-          error={formState.errors.addressState?.message}
+          error={errors.addressState?.message?.toString()}
         />
         <InputField
           size="lg"
@@ -86,7 +75,7 @@ export const UserProfileForm = () => {
           placeholder="94103"
           before={<Icons icon="address" />}
           inputProps={register("addressZip")}
-          error={formState.errors.addressZip?.message}
+          error={errors.addressZip?.message?.toString()}
         />
       </Row>
 

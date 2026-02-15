@@ -6,7 +6,7 @@ const UserAccountView = () => {
   const { user } = useUserStore();
 
   return (
-    <Row flexX="start" gap={4}>
+    <Row flexX="start" responsive="md" gap={4}>
       <Row className="border p-16 w-fit">
         <Icons icon="user" size="34" />
       </Row>
