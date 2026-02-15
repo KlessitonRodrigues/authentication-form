@@ -23,7 +23,7 @@ const resolver = zodResolver(createUserSchema);
 export const UserProfileForm = () => {
   const { formState, register, handleSubmit } = useForm({ resolver });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: unknown) => {
     console.log(data);
   };
 

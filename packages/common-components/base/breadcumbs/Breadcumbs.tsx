@@ -11,7 +11,7 @@ export interface BreadcumbsProps {
 export const Breadcumbs = (props: BreadcumbsProps) => {
   const { className, items } = props;
   const classNames = [
-    `breadcrumbs text-sm font-bold bg-bg1 px-4 py-2 shadow-md`,
+    `breadcrumbs text-sm font-bold bg-bg1 px-4 py-2 rounded-md shadow-sm`,
   ];
 
   const itemList = useMemo(
