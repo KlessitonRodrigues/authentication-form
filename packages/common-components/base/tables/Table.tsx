@@ -15,7 +15,7 @@ export const Table = (props: TableProps) => {
   ));
 
   const tableRows = items.map((item, index) => (
-    <tr className="hover:bg-gray-200 cursor-pointer" key={index}>
+    <tr className="hover:bg-bg3 cursor-pointer" key={index}>
       {columns.map((column) => (
         <td key={column.key}>
           {column.render ? column.render(item) : item[column.key]}

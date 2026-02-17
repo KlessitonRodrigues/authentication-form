@@ -36,3 +36,4 @@ export * from "./common/users/UserInitials";
 
 // Utils
 export * from "./utils/CSSColors";
+export * from "./utils/html";

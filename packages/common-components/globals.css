@@ -39,8 +39,8 @@
   --color-primary-content: var(--color-main-text);
   --color-secondary: var(--color-default-blue);
   --color-secondary-content: var(--color-default-white);
-  --color-accent: var(--color-fg1);
-  --color-accent-content: var(--color-bg1);
+  --color-accent: var(--color-bg1);
+  --color-accent-content: var(--color-fg1);
   --color-neutral: var(--color-bg1);
   --color-neutral-content: var(--color-fg1);
   --color-info: var(--color-default-blue);
@@ -51,6 +51,7 @@
   --color-warning-content: var(--color-default-white);
   --color-error: var(--color-default-red);
   --color-error-content: var(--color-default-white);
+  --tab-bg: var(--color-bg2);
 
   /* Font Families */
   --font-sans: Rubik, sans-serif;
@@ -80,34 +81,63 @@
   --shadow-xl: 1px 1px 6px 0 #0005;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --color-main: #597ef7;
-    --color-main-bg: #2553eb;
-    --color-main-text: #ffffff;
-    --color-bg1: #000000;
-    --color-bg2: #374151;
-    --color-bg3: #4b5563;
-    --color-bg4: #595959;
-    --color-fg1: #f9fafb;
-    --color-fg2: #f3f4f6;
-    --color-fg3: #e5e7eb;
-    --color-fg4: #d1d5db;
-    --color-default-yellow: #fffb8f;
-    --color-default-red: #ffa39e;
-    --color-default-green: #95de64;
-    --color-default-gray: #9ca3af;
-    --color-default-blue: #69b1ff;
-    --color-default-white: #f9fafb;
-    --color-default-black: #1f2937;
-    --color-opacity-black: #0006;
-    --color-default-border: #595959;
-  }
+html {
+  overflow-y: scroll;
 }
 
 body {
   background-color: var(--color-bg4);
   color: var(--color-fg4);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+body.dark {
+  --color-main: #597ef7;
+  --color-main-bg: #2553eb;
+  --color-main-text: #ffffff;
+  --color-bg1: #000000;
+  --color-bg2: #374151;
+  --color-bg3: #4b5563;
+  --color-bg4: #595959;
+  --color-fg1: #f9fafb;
+  --color-fg2: #f3f4f6;
+  --color-fg3: #e5e7eb;
+  --color-fg4: #d1d5db;
+  --color-default-yellow: #fffb8f;
+  --color-default-red: #ffa39e;
+  --color-default-green: #95de64;
+  --color-default-gray: #9ca3af;
+  --color-default-blue: #69b1ff;
+  --color-default-white: #f9fafb;
+  --color-default-black: #1f2937;
+  --color-opacity-black: #0006;
+  --color-default-border: #595959;
+
+  /* Daisy theme */
+  --size-field: 0.23rem;
+  --color-base-100: var(--color-bg1);
+  --color-base-200: var(--color-bg3);
+  --color-base-300: var(--color-bg4);
+  --color-base-content: var(--color-fg1);
+  --color-primary: var(--color-main);
+  --color-primary-content: var(--color-main-text);
+  --color-secondary: var(--color-default-blue);
+  --color-secondary-content: var(--color-default-white);
+  --color-accent: var(--color-bg1);
+  --color-accent-content: var(--color-fg1);
+  --color-neutral: var(--color-bg1);
+  --color-neutral-content: var(--color-fg1);
+  --color-info: var(--color-default-blue);
+  --color-info-content: var(--color-default-white);
+  --color-success: var(--color-default-green);
+  --color-success-content: var(--color-default-white);
+  --color-warning: var(--color-default-yellow);
+  --color-warning-content: var(--color-default-white);
+  --color-error: var(--color-default-red);
+  --color-error-content: var(--color-default-white);
+  --tab-bg: var(--color-bg2);
 }
 
 .text-main {
@@ -184,14 +214,25 @@ body {
   background-color: var(--color-default-black);
 }
 
+.hover\:bg-bg1:hover {
+  background-color: var(--color-bg1);
+}
+.hover\:bg-bg2:hover {
+  background-color: var(--color-bg2);
+}
+.hover\:bg-bg3:hover {
+  background-color: var(--color-bg3);
+}
+.hover\:bg-bg4:hover {
+  background-color: var(--color-bg4);
+}
+
 .border {
   border-color: var(--color-default-border);
 }
-
 .border-b {
   border-bottom-color: var(--color-default-border);
 }
-
 .border-2 {
   border-color: var(--color-default-border);
 }
@@ -214,29 +255,25 @@ body {
   transition: all 0.5s ease-in;
 }
 
-.fade-down {
-  animation: fade-down 0.5s ease-out forwards;
+.slide-down {
+  animation: slide-down 0.5s ease-out forwards;
 }
-
 .slide-left {
   animation: slide-left 0.5s ease-out forwards;
 }
-
 .slide-up {
   animation: slide-up 0.5s ease-out forwards;
 }
-
 .slide-up-delay-500 {
   opacity: 0;
   animation: slide-up 0.5s ease-out 0.5s forwards;
 }
-
 .slide-up-delay-1000 {
   opacity: 0;
   animation: slide-up 0.5s ease-out 1s forwards;
 }
 
-@keyframes fade-down {
+@keyframes slide-down {
   0% {
     transform: translateY(-20px);
     opacity: 0;
