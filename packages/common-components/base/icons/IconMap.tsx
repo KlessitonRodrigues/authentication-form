@@ -26,6 +26,8 @@ import {
   PiMapPinBold,
   PiMoneyBold,
   PiNumpadBold,
+  PiPaintBrushBold,
+  PiPencilBold,
   PiPhoneBold,
   PiPlusBold,
   PiQuestionMarkBold,
@@ -72,6 +74,8 @@ export const IconMap = {
   plus: <PiPlusBold size={"100%"} />,
   save: <PiFloppyDiskBold size={"100%"} />,
   address: <PiMailbox size={"100%"} />,
+  brush: <PiPaintBrushBold size={"100%"} />,
+  pencil: <PiPencilBold size={"100%"} />,
 };
 
 export interface IconProps extends HTMLAttributes<HTMLDivElement> {

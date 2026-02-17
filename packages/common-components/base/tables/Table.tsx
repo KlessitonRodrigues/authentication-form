@@ -5,17 +5,22 @@ interface TableProps {
     key: string;
     render?: (item: any) => React.ReactNode;
   }[];
+  onSelect?: (item: any) => void;
 }
 
 export const Table = (props: TableProps) => {
-  const { items, columns } = props;
+  const { items, columns, onSelect } = props;
 
   const tableTitles = columns.map((column) => (
     <th key={column.key}>{column.label}</th>
   ));
 
   const tableRows = items.map((item, index) => (
-    <tr className="hover:bg-bg3 cursor-pointer" key={index}>
+    <tr
+      className="hover:bg-bg3 cursor-pointer"
+      key={index}
+      onClick={() => onSelect?.(item)}
+    >
       {columns.map((column) => (
         <td key={column.key}>
           {column.render ? column.render(item) : item[column.key]}

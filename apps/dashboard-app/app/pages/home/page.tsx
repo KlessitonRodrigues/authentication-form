@@ -1,4 +1,4 @@
-import TransactionsView from "@/lib/views/Transactions/TransactionsView";
+import TransactionsView from "@/lib/views/Transactions/TransactionView";
 import {
   Column,
   CurrencyCard,

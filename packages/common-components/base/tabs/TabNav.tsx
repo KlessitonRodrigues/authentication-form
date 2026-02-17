@@ -10,6 +10,8 @@ export interface TabListProps extends HTMLAttributes<HTMLDivElement> {
     icon: IconProps["icon"];
     content: React.ReactNode;
     disabled?: boolean;
+    color?: "main" | "blue" | "red" | "green";
+    responsive?: "sm" | "md" | "lg";
   }[];
 }
 
@@ -26,6 +28,8 @@ export const TabList = (props: TabListProps) => {
       const classNames = ["tab tabs-lg text-sm gap-2"];
       if (tabIndex === index) classNames.push("tab-active");
       if (item.disabled) classNames.push("tab-disabled");
+      if (item.color) classNames.push(`text-${item.color}`);
+      if (item.responsive) classNames.push("hidden", `${item.responsive}:flex`);
 
       return (
         <a
@@ -51,3 +55,7 @@ export const TabList = (props: TabListProps) => {
     </div>
   );
 };
+
+/* tailwind include
+   sm:flex md:flex lg:flex 
+*/

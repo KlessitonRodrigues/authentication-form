@@ -39,9 +39,27 @@ const useAuthentication = () => {
     },
   };
 
-  const refreshTokenQuery = useQuery(refreshTokenReq, queryClient);
+  const signOutReq: DefinedInitialDataOptions = {
+    enabled: false,
+    retry: false,
+    initialData: null,
+    queryKey: ["sign-out"],
+    queryFn: async () => {
+      await axiosClient.post("auth/sign-out");
+      setUser(null);
+      location.href = dotenv.AUTH_URL;
+      return true;
+    },
+    throwOnError: () => {
+      location.href = dotenv.AUTH_URL;
+      return true;
+    },
+  };
 
-  return { refreshTokenQuery };
+  const refreshTokenQuery = useQuery(refreshTokenReq, queryClient);
+  const signOutQuery = useQuery(signOutReq, queryClient);
+
+  return { refreshTokenQuery, signOutQuery };
 };
 
 export default useAuthentication;
