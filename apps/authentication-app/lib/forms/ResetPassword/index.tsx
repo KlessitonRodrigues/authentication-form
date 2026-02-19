@@ -31,7 +31,7 @@ export const ResetPasswordForm = () => {
   return (
     <FormData>
       <Card className="m-auto w-md min-h-160">
-        <TabList item={resetToken ? 1 : 0} items={tabItems} />
+        <TabList defaultItem={resetToken ? 1 : 0} items={tabItems} />
       </Card>
     </FormData>
   );

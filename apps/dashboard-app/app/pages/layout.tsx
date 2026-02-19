@@ -7,8 +7,8 @@ export default function PageLayout(props: PropsWithChildren) {
     <Page>
       <Suspense fallback={<LoadScreen />}>
         <NavbarView />
+        {props.children}
       </Suspense>
-      {props.children}
       <Toastify />
     </Page>
   );
