@@ -1,10 +1,11 @@
 "use client";
-import { HTMLAttributes, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { IconProps, Icons } from "../icons/IconMap";
 
-export interface TabListProps extends HTMLAttributes<HTMLDivElement> {
-  item?: number;
+export type TabListProps = {
+  className?: string;
+  defaultItem?: number;
   items: {
     label: string;
     icon: IconProps["icon"];
@@ -12,16 +13,23 @@ export interface TabListProps extends HTMLAttributes<HTMLDivElement> {
     disabled?: boolean;
     color?: "main" | "blue" | "red" | "green";
     responsive?: "sm" | "md" | "lg";
+    value?: string;
   }[];
-}
+  onSelect?: (item: TabListProps["items"][number]) => void;
+};
 
 export const TabList = (props: TabListProps) => {
-  const { items, item, className, children, ...tabListProps } = props;
-  const [tabIndex, setTabIndex] = useState(0);
+  const { items, defaultItem, className, onSelect, ...tabListProps } = props;
+  const [tabIndex, setTabIndex] = useState(defaultItem ?? 0);
+
+  const onSelectItem = (index: number) => {
+    setTabIndex(index);
+    if (onSelect) onSelect(items[index]);
+  };
 
   useEffect(() => {
-    if (item !== undefined) setTabIndex(item);
-  }, [item]);
+    if (defaultItem !== undefined) setTabIndex(defaultItem);
+  }, [defaultItem]);
 
   const tabOptions = useMemo(() => {
     return items.map((item, index) => {
@@ -33,10 +41,10 @@ export const TabList = (props: TabListProps) => {
 
       return (
         <a
-          key={index}
           role="tab"
+          key={index}
           className={classNames.join(" ")}
-          onClick={() => setTabIndex(index)}
+          onClick={() => onSelectItem(index)}
         >
           {item.icon && <Icons icon={item.icon} size="16" />}
           {item.label}
@@ -51,7 +59,7 @@ export const TabList = (props: TabListProps) => {
         {tabOptions}
         <div className="flex-1 border-b" />
       </div>
-      <div className="mt-2">{items[tabIndex].content}</div>
+      <div className="mt-2">{items[tabIndex]?.content}</div>
     </div>
   );
 };

@@ -18,10 +18,7 @@ export const UserInitials = (props: UserInitialsProps) => {
   }, [name]);
 
   return (
-    <Row
-      flexX="center"
-      className="h-10 w-10 border rounded-full bg-bg1 text-fg1"
-    >
+    <Row flexX="center" className="h-9 w-9 border rounded-full bg-bg1 text-fg1">
       <Text bold fs="lg" fo="60" className="mt-0.5">
         {initials}
       </Text>

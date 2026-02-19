@@ -6,6 +6,31 @@
 
 @source "../";
 
+@layer base {
+  /* WebKit browsers */
+  ::-webkit-scrollbar {
+    @apply w-5;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-base-200;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-base-100 rounded;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-base-200;
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #597ef7 #2f54eb; /* main main-bg */
+  }
+}
+
 :root {
   /* Colors */
   --color-main: #597ef7;
