@@ -91,7 +91,7 @@ export const NavBar = (props: NavBarProps) => {
                 onClick={() => handleNotifications()}
                 onMouseEnter={() => handleNotifications(true)}
               >
-                <Icons icon="notifications" size="22" />
+                <Icons icon="notification" size="22" />
               </Button>
             </Badge>
             <Button

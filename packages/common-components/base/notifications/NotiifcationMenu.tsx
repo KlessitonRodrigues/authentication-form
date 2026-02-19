@@ -9,10 +9,11 @@ interface NotificationListProps {
     id: string;
     message: string;
   }[];
+  onRemove?: (id: string) => void;
 }
 
 export const NotificationList = (props: NotificationListProps) => {
-  const { notifications } = props;
+  const { notifications, onRemove } = props;
 
   const notificationItems = useMemo(() => {
     if (!notifications || notifications.length === 0) {
@@ -30,20 +31,31 @@ export const NotificationList = (props: NotificationListProps) => {
         <Text fs="sm" className="w-full">
           {notification.message}
         </Text>
-        <Button ghost variant="square" size="xs">
+        <Button
+          ghost
+          variant="square"
+          size="xs"
+          onClick={() => onRemove?.(notification.id)}
+        >
           <Icons icon="close" size="16" />
         </Button>
       </Row>
     ));
-  }, [notifications]);
+  }, [notifications, onRemove]);
 
   return (
     <Column className="p-4 bg-bg1 shadow-lg">
       <Row>
+        <Icons icon="notification" size="22" />
         <Text bold fs="lg" className="w-full">
           Notifications
         </Text>
-        <Button ghost variant="square" size="sm">
+        <Button
+          ghost
+          variant="square"
+          size="sm"
+          onClick={() => onRemove?.("all")}
+        >
           <Icons icon="close" size="16" />
         </Button>
       </Row>

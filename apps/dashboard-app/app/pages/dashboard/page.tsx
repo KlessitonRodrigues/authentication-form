@@ -42,7 +42,7 @@ const fakeData = [
   },
 ];
 
-export default function Home() {
+export default function DashboardPage() {
   return (
     <Column>
       <Row responsive="lg">

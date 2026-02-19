@@ -61,7 +61,8 @@ const getMenuItems = (pathname: string) => {
     },
   ];
 
-  const pathItems: BreadcumbsProps["items"] = [descriptionMenuItems[0]];
+  const pathItems: BreadcumbsProps["items"] = [];
+  pathItems.push(descriptionMenuItems[0]);
   [...descriptionMenuItems, ...menuItems].forEach((item, i) => {
     if (i === 0) return;
     if (item?.active) pathItems.push(item);
