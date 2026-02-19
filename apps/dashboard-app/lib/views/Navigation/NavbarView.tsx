@@ -9,6 +9,7 @@ import {
   Menu,
   MenuProps,
   NavBar,
+  NotificationList,
   Row,
 } from "@packages/common-components";
 import { usePathname } from "next/navigation";
@@ -69,6 +70,14 @@ const getMenuItems = (pathname: string) => {
   return { descriptionMenuItems, menuItems, pathItems };
 };
 
+const notificationList = [
+  { id: "1", message: "Teste notification 1" },
+  { id: "2", message: "Teste notification 2" },
+  { id: "3", message: "Teste notification 3" },
+  { id: "4", message: "Teste notification 4" },
+  { id: "5", message: "Teste notification 5" },
+];
+
 const NavBarView = () => {
   const pathname = usePathname();
   const { refreshTokenQuery } = useAuthentication();
@@ -85,8 +94,12 @@ const NavBarView = () => {
       <NavBar
         title="Authentication Form"
         userName={user?.name}
+        userNotifications={notificationList.length}
         sidebarComponent={<DescriptionMenu items={descriptionMenuItems} />}
         userMenuComponent={<Menu items={menuItems} />}
+        notificationsComponent={
+          <NotificationList notifications={notificationList} />
+        }
       />
       <Row>
         <Breadcumbs items={pathItems} />

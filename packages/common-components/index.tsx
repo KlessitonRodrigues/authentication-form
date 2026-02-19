@@ -23,6 +23,8 @@ export * from "./base/tables/Table";
 export * from "./base/pagination/Pagination";
 export * from "./base/display/DataDisplay";
 export * from "./base/switch/Switch";
+export * from "./base/notifications/NotiifcationMenu";
+export * from "./base/badge/Bagde";
 
 // Commom
 export * from "./common/sections/LoginCard";

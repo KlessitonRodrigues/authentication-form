@@ -42,7 +42,7 @@ export const Button = (props: ButtonProps) => {
   );
 };
 
-export const IconButton = (props: ButtonProps & IconProps) => {
+export const IconButton = (props: IconProps & ButtonProps) => {
   const { children, ...btnProps } = props;
   return (
     <Button {...btnProps}>

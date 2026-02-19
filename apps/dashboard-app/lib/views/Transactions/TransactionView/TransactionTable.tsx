@@ -8,25 +8,23 @@ interface TransactionsTableProps {
   onSelect?: (item: any) => void;
 }
 
+const transactionTable = [
+  { label: "Nome", key: "nome" },
+  { label: "Type", key: "type" },
+  { label: "Data", key: "data" },
+  {
+    label: "Value",
+    key: "value",
+    render: (item: any) => `$ ${item.value.toFixed(2)}`,
+  },
+];
+
 const TransactionsTable = (props: TransactionsTableProps) => {
   const { items, page, lastPage, onPageChange, onSelect } = props;
 
   return (
     <div>
-      <Table
-        columns={[
-          { label: "Nome", key: "nome" },
-          { label: "Type", key: "type" },
-          { label: "Data", key: "data" },
-          {
-            label: "Value",
-            key: "value",
-            render: (item: any) => `$ ${item.value.toFixed(2)}`,
-          },
-        ]}
-        items={items}
-        onSelect={onSelect}
-      />
+      <Table columns={transactionTable} items={items} onSelect={onSelect} />
       <Pagination
         currentPage={page}
         lastPage={lastPage}

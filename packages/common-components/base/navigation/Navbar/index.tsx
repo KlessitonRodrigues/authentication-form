@@ -6,33 +6,53 @@ import { Button } from "../../buttons/Button";
 import { Text } from "../../text/Text";
 import { Row } from "../../containers/Flex";
 import { UserInitials } from "../../../common/users/UserInitials";
+import { Badge } from "../../badge/Bagde";
 
 interface NavBarProps {
   title?: string;
   userName?: string;
+  userNotifications?: number;
   sidebarComponent?: React.ReactNode;
   userMenuComponent?: React.ReactNode;
+  notificationsComponent?: React.ReactNode;
   children?: React.ReactNode;
 }
 
 export const NavBar = (props: NavBarProps) => {
-  const { title, userName, sidebarComponent, userMenuComponent } = props;
+  const {
+    title,
+    userName,
+    userNotifications,
+    sidebarComponent,
+    userMenuComponent,
+    notificationsComponent,
+  } = props;
   const [menuOpen, setMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
 
   const handleSideBar = (to?: boolean) => {
     setMenuOpen(to ?? !menuOpen);
     setUserMenuOpen(false);
+    setNotificationsOpen(false);
   };
 
   const handleUserMenu = (to?: boolean) => {
     setUserMenuOpen(to ?? !userMenuOpen);
     setMenuOpen(false);
+    setNotificationsOpen(false);
+  };
+
+  const handleNotifications = (to?: boolean) => {
+    setNotificationsOpen(to ?? !notificationsOpen);
+    setMenuOpen(false);
+    setUserMenuOpen(false);
   };
 
   const closeMenus = () => {
     setMenuOpen(false);
     setUserMenuOpen(false);
+    setNotificationsOpen(false);
   };
 
   return (
@@ -61,8 +81,19 @@ export const NavBar = (props: NavBarProps) => {
             </Text>
           </Row>
 
-          <Row flexY="center" className="w-fit">
-            <UserInitials name={userName || "User Name"} />
+          <Row flexY="center" className="w-fit px-2" gap={4}>
+            <Badge content={userNotifications || 0}>
+              <Button
+                ghost
+                variant="square"
+                size="md"
+                className="transition"
+                onClick={() => handleNotifications()}
+                onMouseEnter={() => handleNotifications(true)}
+              >
+                <Icons icon="notifications" size="22" />
+              </Button>
+            </Badge>
             <Button
               ghost
               variant="square"
@@ -71,21 +102,26 @@ export const NavBar = (props: NavBarProps) => {
               onClick={() => handleUserMenu()}
               onMouseEnter={() => handleUserMenu(true)}
             >
-              <If
-                condition={!userMenuOpen}
-                true={<Icons icon="menuDots" size="22" />}
-                false={<Icons icon="close" size="22" />}
-              />
+              <UserInitials name={userName || "User Name"} />
             </Button>
           </Row>
         </Row>
       </nav>
+
       <div
         className="absolute w-full lg:w-auto h-[93vh] max-w-md left-0 top-full z-10 overflow-hidden fade-down shadow-md transition"
         style={{ width: menuOpen ? "100%" : "0" }}
       >
         {sidebarComponent}
       </div>
+
+      <div
+        className="absolute max-w-md right-0 top-full z-10 overflow-hidden fade-down shadow-md transition"
+        style={{ width: notificationsOpen ? "100%" : "0" }}
+      >
+        {notificationsComponent}
+      </div>
+
       <div
         className="absolute max-w-60 right-0 top-full z-10 overflow-hidden fade-down shadow-md transition"
         style={{ width: userMenuOpen ? "100%" : "0" }}
