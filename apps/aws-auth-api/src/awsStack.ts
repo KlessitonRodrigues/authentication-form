@@ -8,7 +8,6 @@ import { AuthTable } from './lib/dynamoDb/authTable/table';
 import { AuthAPIGateway } from './lib/gateway/authAPI';
 import { SignInLambda } from './lib/lambdas/signIn/lambda';
 import { addCorsPreflight, addPreflight } from './utils/api/preflightResponse';
-import { env } from './contants/enviroment';
 import { SignUpLambda } from './lib/lambdas/signUp/lambda';
 import { GoogleSignInLambda } from './lib/lambdas/googleSignIn/lambda';
 import { VerifyRecoveryCodeLambda } from './lib/lambdas/verifyRecoveryCode/lambda';
@@ -16,10 +15,11 @@ import { SendRecoveryCodeLambda } from './lib/lambdas/sendRecoveryCode/lambda';
 import { RefreshTokenLambda } from './lib/lambdas/refreshToken/lambda';
 import { ResetPasswordLambda } from './lib/lambdas/resetPassword/lambda';
 import { resourceNames } from './contants/resources';
+import dotenv from './contants/dotenv';
 
 export class NodeTemplateStack extends cdk.Stack {
   constructor(scope: cdk.App, props?: cdk.StackProps) {
-    super(scope, env.STACK_NAME, props);
+    super(scope, dotenv.STACK_NAME, props);
 
     // DynamoDB
     const authTable = new AuthTable(this);
@@ -33,11 +33,11 @@ export class NodeTemplateStack extends cdk.Stack {
 
     // Lambda Functions
     const lambdaEnv: AWS.LambdasProps = {
-      STACK_NAME: env.STACK_NAME,
-      SECRET_KEY: env.SECRET_KEY,
-      GOOGLE_CLIENT_ID: env.GOOGLE_CLIENT_ID,
-      AUTH_APP_URL: env.AUTH_APP_URL,
-      DASHBOARD_APP_URL: env.DASHBOARD_APP_URL,
+      STACK_NAME: dotenv.STACK_NAME,
+      SECRET_KEY: dotenv.SECRET_KEY,
+      GOOGLE_CLIENT_ID: dotenv.GOOGLE_CLIENT_ID,
+      AUTH_APP_URL: dotenv.AUTH_APP_URL,
+      DASHBOARD_APP_URL: dotenv.DASHBOARD_APP_URL,
     };
 
     const signInLambda = new SignInLambda(this, lambdaEnv, logGroup);

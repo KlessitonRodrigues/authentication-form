@@ -2,7 +2,7 @@ import { AWS, zodErrorStringify } from '@packages/common-types';
 import * as jwt from 'jsonwebtoken';
 import { z } from 'zod';
 
-import { env } from '../../../contants/enviroment';
+import dotenv from '../../../contants/dotenv';
 import { createResponse } from '../../../utils/api/createResponse';
 import { createAuthUser, getAuthUserByEmail } from '../../dynamoDb/authTable/operations';
 
@@ -90,7 +90,7 @@ export const handler: AWS.APIGatewayHandler = async event => {
       userName: dbUser.userName,
     };
 
-    const jwtToken = jwt.sign(jwtData, env.SECRET_KEY, { expiresIn: '1h' });
+    const jwtToken = jwt.sign(jwtData, dotenv.SECRET_KEY, { expiresIn: '1h' });
 
     return createResponse(200, {
       token: jwtToken,

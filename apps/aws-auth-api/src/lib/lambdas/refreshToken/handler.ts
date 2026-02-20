@@ -1,7 +1,7 @@
 import { AWS } from '@packages/common-types';
 import * as jwt from 'jsonwebtoken';
 
-import { env } from '../../../contants/enviroment';
+import dotenv from '../../../contants/dotenv';
 import { cookieToObject, createTokenCookie } from '../../../utils/api/cookies';
 import { createResponse, createResponseWithOrigin } from '../../../utils/api/createResponse';
 
@@ -20,7 +20,7 @@ export const handler: AWS.APIGatewayHandler = async event => {
 
     let decodedToken: any;
     try {
-      decodedToken = jwt.verify(token, env.SECRET_KEY as string);
+      decodedToken = jwt.verify(token, dotenv.SECRET_KEY as string);
     } catch (err) {
       return createResponseWithOrigin(origin, 401, { error: 'Invalid or expired token' });
     }
@@ -30,7 +30,7 @@ export const handler: AWS.APIGatewayHandler = async event => {
       email: decodedToken.email,
       userName: decodedToken.userName,
     };
-    const jwtToken = jwt.sign(jwtData, env.SECRET_KEY, { expiresIn: '1h' });
+    const jwtToken = jwt.sign(jwtData, dotenv.SECRET_KEY, { expiresIn: '1h' });
 
     const newCookie = createTokenCookie(jwtToken, 3600);
     return createResponseWithOrigin(origin, 200, { user: jwtData }, { 'Set-Cookie': newCookie });

@@ -1,6 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 
 import { AWS } from '../../../../node_modules/@packages/common-types';
+import dotenv from '../../../contants/dotenv';
 import { createResponse } from '../../../utils/api/createResponse';
 import { getAuthUserByEmail } from '../../dynamoDb/authTable/operations';
 
@@ -27,7 +28,7 @@ export const handler: AWS.APIGatewayHandler = async event => {
 
     const newToken = jwt.sign(
       { userId: user.userId, email: user.email },
-      process.env.SECRET_KEY as string,
+      dotenv.SECRET_KEY as string,
       { expiresIn: '15m' },
     );
 

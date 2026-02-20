@@ -1,4 +1,4 @@
-import { env } from '../../contants/enviroment';
+import dotenv from '../../contants/dotenv';
 
 export const cookieToObject = (cookie: string) => {
   return cookie.split(';').reduce(
@@ -13,7 +13,7 @@ export const cookieToObject = (cookie: string) => {
 
 export const createTokenCookie = (token: string, expiresIn: number) => {
   const expires = new Date(Date.now() + expiresIn * 1000).toUTCString();
-  const isLocalhost = String(env.AUTH_APP_URL).includes('localhost');
+  const isLocalhost = String(dotenv.AUTH_APP_URL).includes('localhost');
   const cookieOptions = [`token=${token}; Expires=${expires}; Path=/; `];
   if (!isLocalhost) cookieOptions.push(`SameSite=None; Secure`);
 

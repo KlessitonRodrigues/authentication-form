@@ -1,7 +1,7 @@
 import { AWS, resetPasswordSchema, zodErrorStringify } from '@packages/common-types';
 import * as jwt from 'jsonwebtoken';
 
-import { env } from '../../../contants/enviroment';
+import dotenv from '../../../contants/dotenv';
 import { createResponse } from '../../../utils/api/createResponse';
 import { updateAuthUser } from '../../dynamoDb/authTable/operations';
 
@@ -21,7 +21,7 @@ export const handler: AWS.APIGatewayHandler = async event => {
       return createResponse(400, { error: 'Missing token or newPassword' });
     }
 
-    const decodedToken = jwt.verify(token, env.SECRET_KEY) as { email: string; userId: string };
+    const decodedToken = jwt.verify(token, dotenv.SECRET_KEY) as { email: string; userId: string };
 
     const newUser = await updateAuthUser(decodedToken.userId, {
       password: newPassword,
