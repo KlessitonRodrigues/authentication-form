@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 
 const mockData = [
-  { id: "1", nome: "test", data: "12/01/2025", type: "Revenue", value: 12344 },
-  { id: "2", nome: "test", data: "12/01/2025", type: "Expense", value: 12344 },
-  { id: "3", nome: "test", data: "12/01/2025", type: "Profit", value: 12344 },
-  { id: "4", nome: "test", data: "12/01/2025", type: "Revenue", value: 12344 },
-  { id: "5", nome: "test", data: "12/01/2025", type: "Expense", value: 12344 },
-  { id: "6", nome: "test", data: "12/01/2025", type: "Profit", value: 12344 },
-  { id: "7", nome: "test", data: "12/01/2025", type: "Revenue", value: 12344 },
-  { id: "8", nome: "test", data: "12/01/2025", type: "Expense", value: 12344 },
-  { id: "9", nome: "test", data: "12/01/2025", type: "Profit", value: 12344 },
-  { id: "10", nome: "test", data: "12/01/2025", type: "Revenue", value: 12344 },
+  { id: "1", name: "test", date: "12/01/2025", type: "Revenue", value: 12344 },
+  { id: "2", name: "test", date: "12/01/2025", type: "Expense", value: 12344 },
+  { id: "3", name: "test", date: "12/01/2025", type: "Profit", value: 12344 },
+  { id: "4", name: "test", date: "12/01/2025", type: "Revenue", value: 12344 },
+  { id: "5", name: "test", date: "12/01/2025", type: "Expense", value: 12344 },
+  { id: "6", name: "test", date: "12/01/2025", type: "Profit", value: 12344 },
+  { id: "7", name: "test", date: "12/01/2025", type: "Revenue", value: 12344 },
+  { id: "8", name: "test", date: "12/01/2025", type: "Expense", value: 12344 },
+  { id: "9", name: "test", date: "12/01/2025", type: "Profit", value: 12344 },
+  { id: "10", name: "test", date: "12/01/2025", type: "Revenue", value: 12344 },
 ];
 
 const useTransactions = () => {

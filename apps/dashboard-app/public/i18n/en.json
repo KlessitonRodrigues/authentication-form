@@ -9,7 +9,7 @@
       "label": "Logout",
       "description": "Logout from the application"
     },
-    "help": { "label": "Help", "description": "Get help and support" }
+    "help": { "label": "Help & Support", "description": "Get help and support" }
   },
   "home": {
     "status": {
@@ -46,5 +46,23 @@
     "network": "Network error. Please try again later.",
     "unauthorized": "You are not authorized to perform this action.",
     "notFound": "The requested resource was not found."
+  },
+  "tables": {
+    "transactions": {
+      "columns": {
+        "name": "Name",
+        "type": "Type",
+        "date": "Date",
+        "value": "Value"
+      },
+      "filters": {
+        "allTransactions": "All Transactions",
+        "revenue": "Revenue",
+        "expenses": "Expenses",
+        "profit": "Profit",
+        "new": "New Transaction",
+        "edit": "Edit Transaction"
+      }
+    }
   }
 }

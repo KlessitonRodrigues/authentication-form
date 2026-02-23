@@ -9,12 +9,12 @@ export { generateStaticParams };
 
 export default async function PageLayout(props: NEXTJS.PageProps) {
   return (
-    <Suspense fallback={<LoadScreen />}>
-      <Page>
+    <Page>
+      <Suspense fallback={<LoadScreen />}>
         <NavbarView />
         {props.children}
-        <Toastify />
-      </Page>
-    </Suspense>
+      </Suspense>
+      <Toastify />
+    </Page>
   );
 }

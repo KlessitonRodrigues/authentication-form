@@ -2,9 +2,11 @@
 import { Column, TabList, TabListProps } from "@packages/common-components";
 import TransactionsTable from "./TransactionTable";
 import useTransactions from "@/lib/hooks/useTransactions";
+import { useClientTranslations } from "@/lib/hooks/useClientTranslation";
 
 const TransactionsView = () => {
-  const { transactions, setType, editId, setEditId } = useTransactions();
+  const { t } = useClientTranslations();
+  const { transactions, setType, setEditId } = useTransactions();
 
   const TabContent = () => {
     return (
@@ -17,44 +19,37 @@ const TransactionsView = () => {
 
   const tabItems: TabListProps["items"] = [
     {
-      label: "All transactions",
+      label: t("tables.transactions.filters.allTransactions"),
       icon: "chart",
       value: "All",
       content: <TabContent />,
     },
     {
-      label: "Revenue",
+      label: t("tables.transactions.filters.revenue"),
       icon: "chart",
       responsive: "sm",
       value: "Revenue",
       content: <TabContent />,
     },
     {
-      label: "Expenses",
+      label: t("tables.transactions.filters.expenses"),
       icon: "chart",
       responsive: "sm",
       value: "Expense",
       content: <TabContent />,
     },
     {
-      label: "Profit",
+      label: t("tables.transactions.filters.profit"),
       icon: "chart",
       responsive: "sm",
       value: "Profit",
       content: <TabContent />,
     },
     {
-      label: "New",
+      label: t("tables.transactions.filters.new"),
       icon: "plus",
       content: <div>Add Form</div>,
       color: "main",
-      value: "",
-    },
-    {
-      label: "Edit",
-      icon: "pencil",
-      content: <div>Edit Form</div>,
-      disabled: !editId,
       value: "",
     },
   ];

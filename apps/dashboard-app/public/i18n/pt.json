@@ -12,7 +12,10 @@
       "label": "Sair",
       "description": "Sair do aplicativo"
     },
-    "help": { "label": "Ajuda", "description": "Obter ajuda e suporte" }
+    "help": {
+      "label": "Ajuda e Suporte",
+      "description": "Obter ajuda e suporte"
+    }
   },
   "home": {
     "status": {
@@ -49,5 +52,23 @@
     "network": "Erro de rede. Tente novamente mais tarde.",
     "unauthorized": "Você não tem autorização para realizar esta ação.",
     "notFound": "O recurso solicitado não foi encontrado."
+  },
+  "tables": {
+    "transactions": {
+      "columns": {
+        "name": "Nome",
+        "type": "Tipo",
+        "date": "Data",
+        "value": "Valor"
+      },
+      "filters": {
+        "allTransactions": "Todas as Transações",
+        "revenue": "Receita",
+        "expenses": "Despesas",
+        "profit": "Lucro",
+        "new": "Nova Transação",
+        "edit": "Editar Transação"
+      }
+    }
   }
 }

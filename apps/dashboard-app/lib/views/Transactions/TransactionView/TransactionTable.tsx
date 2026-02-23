@@ -1,3 +1,4 @@
+import { useClientTranslations } from "@/lib/hooks/useClientTranslation";
 import { Pagination, Table } from "@packages/common-components";
 
 interface TransactionsTableProps {
@@ -8,19 +9,20 @@ interface TransactionsTableProps {
   onSelect?: (item: any) => void;
 }
 
-const transactionTable = [
-  { label: "Nome", key: "nome" },
-  { label: "Type", key: "type" },
-  { label: "Data", key: "data" },
-  {
-    label: "Value",
-    key: "value",
-    render: (item: any) => `$ ${item.value.toFixed(2)}`,
-  },
-];
-
 const TransactionsTable = (props: TransactionsTableProps) => {
+  const { t } = useClientTranslations();
   const { items, page, lastPage, onPageChange, onSelect } = props;
+
+  const transactionTable = [
+    { label: t("tables.transactions.columns.name"), key: "name" },
+    { label: t("tables.transactions.columns.type"), key: "type" },
+    { label: t("tables.transactions.columns.date"), key: "date" },
+    {
+      label: t("tables.transactions.columns.value"),
+      key: "value",
+      render: (item: any) => `$ ${item.value.toFixed(2)}`,
+    },
+  ];
 
   return (
     <div>

@@ -33,7 +33,7 @@ const useAuthentication = () => {
       });
 
       const lang = getDefaultLanguage();
-      router.push(`/${lang}/home`);
+      router.push(`/${lang}/home/`);
       return res.data;
     },
     throwOnError: () => {
