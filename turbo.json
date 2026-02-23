@@ -3,10 +3,11 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["out/**", "dist/**", "cdk.out/**"]
+      "outputs": ["out/**", "dist/**", "cdk.out/**"],
+      "cache": false
     },
     "dev": {
-      "cache": false,
+      "cache": true,
       "persistent": true
     },
     "lint": {
