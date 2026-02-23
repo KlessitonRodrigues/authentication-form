@@ -6,31 +6,6 @@
 
 @source "../";
 
-@layer base {
-  /* WebKit browsers */
-  ::-webkit-scrollbar {
-    @apply w-5;
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-base-200;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-base-100 rounded;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-base-200;
-  }
-
-  /* Firefox */
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: #597ef7 #2f54eb; /* main main-bg */
-  }
-}
-
 :root {
   /* Colors */
   --color-main: #597ef7;
@@ -106,18 +81,10 @@
   --shadow-xl: 1px 1px 6px 0 #0005;
 }
 
-html::-webkit-scrollbar {
-  width: 1.5rem;
-}
-html::-webkit-scrollbar-track {
-  background: var(--color-bg4);
-}
-html::-webkit-scrollbar-thumb {
-  background: var(--color-main);
-  border-radius: 0px;
-}
-html::-webkit-scrollbar-thumb:hover {
-  background: var(--color-main-bg);
+* {
+  scrollbar-color: var(--color-default-gray) var(--color-bg4);
+  scrollbar-width: auto;
+  scroll-behavior: smooth;
 }
 
 body {

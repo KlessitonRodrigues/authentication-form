@@ -14,6 +14,7 @@ import { Text } from "../../base/text/Text";
 import { useMemo } from "react";
 
 interface RadarChartProps {
+  title?: string;
   className?: string;
   data?: Record<string, string | number>[];
   nameField?: string;
@@ -31,7 +32,7 @@ const radarColors = [
 ];
 
 export const RadarChartComponent = (props: RadarChartProps) => {
-  const { data, nameField, dataFields, className } = props;
+  const { title, data, nameField, dataFields, className } = props;
 
   const chartRadars = useMemo(() => {
     return dataFields?.map((field, index) => (
@@ -49,7 +50,7 @@ export const RadarChartComponent = (props: RadarChartProps) => {
   return (
     <Chart className={className || ""}>
       <Text tag="h3" bold className="text-center">
-        Radar Chart Example
+        {title || "Radar Chart"}
       </Text>
       <RadarChart
         responsive

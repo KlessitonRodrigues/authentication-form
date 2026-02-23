@@ -6,6 +6,7 @@ import {
   BreadcumbsProps,
   DescriptionMenu,
   DescriptionMenuProps,
+  getDefaultLanguage,
   Menu,
   MenuProps,
   NavBar,
@@ -16,27 +17,29 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 const getMenuItems = (pathname: string) => {
+  const lang = getDefaultLanguage();
+
   const descriptionMenuItems: DescriptionMenuProps["items"] = [
     {
       icon: "home",
       label: "Home",
       description: "Go to homepage",
-      href: "/pages/home/",
-      active: pathname === "/pages/home/",
+      href: `/${lang}/home/`,
+      active: pathname === `/${lang}/home/`,
     },
     {
       icon: "chart",
       label: "Dashboard",
       description: "User dashboard",
-      href: "/pages/dashboard/",
-      active: pathname === "/pages/dashboard/",
+      href: `/${lang}/dashboard/`,
+      active: pathname === `/${lang}/dashboard/`,
     },
     {
       icon: "email",
       label: "Help",
       description: "Get help and support",
-      href: "/pages/help/",
-      active: pathname === "/pages/help/",
+      href: `/${lang}/help/`,
+      active: pathname === `/${lang}/help/`,
     },
   ];
 
@@ -44,20 +47,20 @@ const getMenuItems = (pathname: string) => {
     {
       icon: "user",
       label: "Profile",
-      href: "/pages/profile/",
-      active: pathname === "/pages/profile/",
+      href: `/${lang}/profile/`,
+      active: pathname === `/${lang}/profile/`,
     },
     {
       icon: "settings",
       label: "Settings",
-      href: "/pages/settings/",
-      active: pathname === "/pages/settings/",
+      href: `/${lang}/settings/`,
+      active: pathname === `/${lang}/settings/`,
     },
     {
       icon: "signOut",
       label: "Logout",
-      href: "/pages/logout/",
-      active: pathname === "/pages/logout/",
+      href: `/${lang}/logout/`,
+      active: pathname === `/${lang}/logout/`,
     },
   ];
 

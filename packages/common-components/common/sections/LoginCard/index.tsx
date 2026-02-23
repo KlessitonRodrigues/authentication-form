@@ -43,7 +43,7 @@ export const LoginCardSection = (props: LoginSectionProps) => {
             </Text>
           </div>
         </div>
-        <div className="p-8 lg:p-0">{loginForm}</div>
+        <div className="p-8 lg:p-0 bg-bg4">{loginForm}</div>
       </div>
     </div>
   );

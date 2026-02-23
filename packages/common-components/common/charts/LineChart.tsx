@@ -13,6 +13,7 @@ import { Text } from "../../base/text/Text";
 import { useMemo } from "react";
 
 interface LineChartProps {
+  title?: string;
   className?: string;
   data?: Record<string, string | number>[];
   xField?: string;
@@ -30,7 +31,7 @@ const lineColors = [
 ];
 
 export const LineChartComponent = (props: LineChartProps) => {
-  const { data, xField, dataFields, className } = props;
+  const { title, data, xField, dataFields, className } = props;
 
   const chartLines = useMemo(() => {
     return dataFields?.map((field, index) => (
@@ -49,7 +50,7 @@ export const LineChartComponent = (props: LineChartProps) => {
   return (
     <Chart className={className || ""}>
       <Text tag="h3" bold className="text-center">
-        Line Chart Example
+        {title || "Line Chart"}
       </Text>
       <LineChart
         responsive

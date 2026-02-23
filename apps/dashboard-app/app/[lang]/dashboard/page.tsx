@@ -9,6 +9,12 @@ import {
   Row,
 } from "@packages/common-components";
 
+import {
+  useServerTranslations,
+  generateStaticParams,
+} from "@/lib/hooks/useTranslations";
+import { NEXTJS } from "@packages/common-types";
+
 const fakeData = [
   {
     name: "JAN",
@@ -42,12 +48,17 @@ const fakeData = [
   },
 ];
 
-export default function DashboardPage() {
+export { generateStaticParams };
+
+export default async function DashboardPage(props: NEXTJS.PageProps) {
+  const { t } = await useServerTranslations(props);
+
   return (
     <Column>
       <Row responsive="lg">
         <Paper>
           <BarChartComponent
+            title={t("dashboard.barchart.title")}
             data={fakeData}
             yField="name"
             dataFields={["sellers", "resources", "profit"]}
@@ -55,6 +66,7 @@ export default function DashboardPage() {
         </Paper>
         <Paper>
           <BarChartComponent
+            title={t("dashboard.barchart.title")}
             data={fakeData}
             xField="name"
             dataFields={["sellers", "resources", "profit"]}

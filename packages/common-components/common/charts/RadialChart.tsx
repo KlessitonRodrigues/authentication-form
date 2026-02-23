@@ -6,6 +6,7 @@ import { Text } from "../../base/text/Text";
 import { useMemo } from "react";
 
 interface RadialChartProps {
+  title?: string;
   className?: string;
   data?: Record<string, string | number | { fill: string }>[];
   dataField?: string;
@@ -23,7 +24,7 @@ const colors = [
 ];
 
 export const RadialChartComponent = (props: RadialChartProps) => {
-  const { data, dataField, className, isAnimationActive = true } = props;
+  const { title, data, dataField, className, isAnimationActive = true } = props;
 
   const customData = useMemo(
     () =>
@@ -37,7 +38,7 @@ export const RadialChartComponent = (props: RadialChartProps) => {
   return (
     <Chart className={className || ""}>
       <Text tag="h3" bold className="text-center">
-        Radial Chart Example
+        {title || "Radial Chart"}
       </Text>
       <RadialBarChart
         responsive

@@ -6,33 +6,43 @@ import {
   Row,
   TitleIcon,
 } from "@packages/common-components";
+import { NEXTJS } from "@packages/common-types";
 
-export default function HomePage() {
+import {
+  useServerTranslations,
+  generateStaticParams,
+} from "@/lib/hooks/useTranslations";
+
+export { generateStaticParams };
+
+export default async function HomePage(props: NEXTJS.PageProps) {
+  const { t } = await useServerTranslations(props);
+
   return (
     <Column>
       <Paper>
-        <TitleIcon title="Status" icon="chart" />
+        <TitleIcon title={t("home.status.title")} icon="chart" />
         <Row responsive="lg" gap={4}>
           <CurrencyCard
-            total="Total Revenue"
+            total={t("home.status.totalRevenue")}
             percentage={12.5}
             amount="$25,000"
             percentageClassName="text-green"
           />
           <CurrencyCard
-            total="Total Expenses"
+            total={t("home.status.totalExpenses")}
             percentage={8.2}
             amount="$15,000"
             percentageClassName="text-red"
           />
           <CurrencyCard
-            total="Net Profit"
+            total={t("home.status.netProfit")}
             percentage={5.3}
             amount="$10,000"
             percentageClassName="text-green"
           />
           <CurrencyCard
-            total="Customer Growth"
+            total={t("home.status.customerGrowth")}
             percentage={20.1}
             amount="1,200"
             percentageClassName="text-green"
@@ -40,7 +50,7 @@ export default function HomePage() {
         </Row>
       </Paper>
       <Paper>
-        <TitleIcon title="Financial Overview" icon="currency" />
+        <TitleIcon title={t("home.financial.title")} icon="currency" />
         <TransactionsView />
       </Paper>
     </Column>

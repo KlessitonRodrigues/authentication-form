@@ -14,6 +14,7 @@ import { Text } from "../../base/text/Text";
 import { useMemo } from "react";
 
 interface BarChartProps {
+  title?: string;
   className?: string;
   data?: Record<string, string | number>[];
   xField?: string;
@@ -32,7 +33,7 @@ const barColors = [
 ];
 
 export const BarChartComponent = (props: BarChartProps) => {
-  const { data, xField, yField, dataFields, className } = props;
+  const { title, data, xField, yField, dataFields, className } = props;
 
   const chartBars = useMemo(() => {
     return dataFields?.map((field) => (
@@ -49,7 +50,7 @@ export const BarChartComponent = (props: BarChartProps) => {
   return (
     <Chart className={className || ""}>
       <Text tag="h3" bold className="text-center">
-        Bar Chart Example
+        {title || "Bar Chart"}
       </Text>
       <BarChart
         responsive

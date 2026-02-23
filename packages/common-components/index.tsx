@@ -25,6 +25,7 @@ export * from "./base/display/DataDisplay";
 export * from "./base/switch/Switch";
 export * from "./base/notifications/NotiifcationMenu";
 export * from "./base/badge/Bagde";
+export * from "./base/selector/Selector";
 
 // Commom
 export * from "./common/sections/LoginCard";

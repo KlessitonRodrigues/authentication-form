@@ -1,0 +1,38 @@
+{
+  "home": {
+    "status": {
+      "title": "Status",
+      "totalRevenue": "Receita Total",
+      "totalExpenses": "Despesas Totais",
+      "netProfit": "Lucro Líquido",
+      "financialOverview": "Visão Financeira",
+      "customerGrowth": "Clientes"
+    },
+    "financial": {
+      "title": "Visão Financeira"
+    }
+  },
+  "dashboard": {
+    "title": "Painel",
+    "barchart": {
+      "title": "Desempenho de Vendas"
+    }
+  },
+  "settings": {
+    "title": "Configurações"
+  },
+  "profile": {
+    "title": "Perfil"
+  },
+  "logout": {
+    "confirmation": "Tem certeza de que deseja sair?"
+  },
+  "help": {
+    "title": "Ajuda e Suporte"
+  },
+  "errors": {
+    "network": "Erro de rede. Tente novamente mais tarde.",
+    "unauthorized": "Você não tem autorização para realizar esta ação.",
+    "notFound": "O recurso solicitado não foi encontrado."
+  }
+}

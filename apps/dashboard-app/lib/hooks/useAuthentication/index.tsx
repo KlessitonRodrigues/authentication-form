@@ -2,6 +2,7 @@ import { axiosClient } from "@/lib/config/axiosClient";
 import queryClient from "@/lib/config/queryClient";
 import dotenv from "@/lib/constants/dotenv";
 import useUserStore from "@/lib/store/user";
+import { getDefaultLanguage } from "@packages/common-components";
 import { DefinedInitialDataOptions, useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -30,7 +31,9 @@ const useAuthentication = () => {
         name: res.data.user.userName,
         email: res.data.user.email,
       });
-      router.push("/pages/home");
+
+      const lang = getDefaultLanguage();
+      router.push(`/${lang}/home`);
       return res.data;
     },
     throwOnError: () => {

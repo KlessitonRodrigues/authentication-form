@@ -1,0 +1,38 @@
+{
+  "home": {
+    "status": {
+      "title": "Status",
+      "totalRevenue": "Total Revenue",
+      "totalExpenses": "Total Expenses",
+      "netProfit": "Net Profit",
+      "financialOverview": "Financial Overview",
+      "customerGrowth": "Customers"
+    },
+    "financial": {
+      "title": "Financial Overview"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "barchart": {
+      "title": "Sales Performance"
+    }
+  },
+  "settings": {
+    "title": "Settings"
+  },
+  "profile": {
+    "title": "Profile"
+  },
+  "logout": {
+    "confirmation": "Are you sure you want to logout?"
+  },
+  "help": {
+    "title": "Help & Support"
+  },
+  "errors": {
+    "network": "Network error. Please try again later.",
+    "unauthorized": "You are not authorized to perform this action.",
+    "notFound": "The requested resource was not found."
+  }
+}

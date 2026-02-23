@@ -6,6 +6,7 @@ import { Text } from "../../base/text/Text";
 import { useMemo } from "react";
 
 interface PieChartProps {
+  title?: string;
   className?: string;
   data?: Record<string, string | number>[];
   nameField?: string;
@@ -23,7 +24,7 @@ const pieColors = [
 ];
 
 export const PieChartComponent = (props: PieChartProps) => {
-  const { data, nameField, dataField, className } = props;
+  const { title, data, nameField, dataField, className } = props;
 
   const chartCells = useMemo(() => {
     return (data || []).map((_, index) => (
@@ -37,7 +38,7 @@ export const PieChartComponent = (props: PieChartProps) => {
   return (
     <Chart className={className || ""}>
       <Text tag="h3" bold className="text-center">
-        Pie Chart Example
+        {title || "Pie Chart"}
       </Text>
       <PieChart
         responsive
