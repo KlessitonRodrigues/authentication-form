@@ -1,10 +1,12 @@
 "use client";
 import useAuthentication from "@/lib/hooks/useAuthentication";
+import useUserStore from "@/lib/store/user";
 import { LoadScreen } from "@packages/common-components";
 import { Suspense, useEffect } from "react";
 
 const AuthPageContent = () => {
   const { refreshTokenQuery } = useAuthentication();
+  const {} = useUserStore();
 
   useEffect(() => {
     refreshTokenQuery.refetch();

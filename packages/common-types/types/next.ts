@@ -1,5 +1,6 @@
 export namespace NEXTJS {
   export interface PageProps {
-    params: Record<string, string>;
+    params: Promise<Record<string, string>>;
+    children?: any;
   }
 }

@@ -1,4 +1,19 @@
 {
+  "navigation": {
+    "appName": "Aplicativo do Painel",
+    "home": { "label": "Início", "description": "Ir para a página inicial" },
+    "dashboard": { "label": "Painel", "description": "Painel do usuário" },
+    "settings": {
+      "label": "Configurações",
+      "description": "Configurações do aplicativo"
+    },
+    "profile": { "label": "Perfil", "description": "Perfil do usuário" },
+    "logout": {
+      "label": "Sair",
+      "description": "Sair do aplicativo"
+    },
+    "help": { "label": "Ajuda", "description": "Obter ajuda e suporte" }
+  },
   "home": {
     "status": {
       "title": "Status",

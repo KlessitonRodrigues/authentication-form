@@ -1,13 +1,9 @@
 import SignOutView from "@/lib/views/Navigation/SignOutView";
 import { Column, Paper, Text } from "@packages/common-components";
 
-import {
-  useServerTranslations,
-  generateStaticParams,
-} from "@/lib/hooks/useTranslations";
-import { NEXTJS } from "@packages/common-types";
+import { useServerTranslations } from "@/lib/hooks/useServerTranslation";
 
-export { generateStaticParams };
+import { NEXTJS } from "@packages/common-types";
 
 export default async function LogoutPage(props: NEXTJS.PageProps) {
   const { t } = await useServerTranslations(props);

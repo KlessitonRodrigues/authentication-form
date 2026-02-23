@@ -1,5 +1,7 @@
 "use client";
 import useAuthentication from "@/lib/hooks/useAuthentication";
+import { useClientTranslations } from "@/lib/hooks/useClientTranslation";
+
 import useUserStore from "@/lib/store/user";
 import {
   Breadcumbs,
@@ -18,26 +20,27 @@ import { useEffect } from "react";
 
 const getMenuItems = (pathname: string) => {
   const lang = getDefaultLanguage();
+  const { t } = useClientTranslations();
 
   const descriptionMenuItems: DescriptionMenuProps["items"] = [
     {
       icon: "home",
-      label: "Home",
-      description: "Go to homepage",
+      label: t("navigation.home.label"),
+      description: t("navigation.home.description"),
       href: `/${lang}/home/`,
       active: pathname === `/${lang}/home/`,
     },
     {
       icon: "chart",
-      label: "Dashboard",
-      description: "User dashboard",
+      label: t("navigation.dashboard.label"),
+      description: t("navigation.dashboard.description"),
       href: `/${lang}/dashboard/`,
       active: pathname === `/${lang}/dashboard/`,
     },
     {
       icon: "email",
-      label: "Help",
-      description: "Get help and support",
+      label: t("navigation.help.label"),
+      description: t("navigation.help.description"),
       href: `/${lang}/help/`,
       active: pathname === `/${lang}/help/`,
     },
@@ -46,19 +49,19 @@ const getMenuItems = (pathname: string) => {
   const menuItems: MenuProps["items"] = [
     {
       icon: "user",
-      label: "Profile",
+      label: t("navigation.profile.label"),
       href: `/${lang}/profile/`,
       active: pathname === `/${lang}/profile/`,
     },
     {
       icon: "settings",
-      label: "Settings",
+      label: t("navigation.settings.label"),
       href: `/${lang}/settings/`,
       active: pathname === `/${lang}/settings/`,
     },
     {
       icon: "signOut",
-      label: "Logout",
+      label: t("navigation.logout.label"),
       href: `/${lang}/logout/`,
       active: pathname === `/${lang}/logout/`,
     },
@@ -87,6 +90,7 @@ const NavBarView = () => {
   const { refreshTokenQuery } = useAuthentication();
   const { descriptionMenuItems, menuItems, pathItems } = getMenuItems(pathname);
   const { user } = useUserStore();
+  const { t } = useClientTranslations();
 
   useEffect(() => {
     refreshTokenQuery.refetch();
@@ -96,7 +100,7 @@ const NavBarView = () => {
   return (
     <>
       <NavBar
-        title="Authentication Form"
+        title={t("navigation.appName")}
         userName={user?.name}
         userNotifications={notificationList.length}
         sidebarComponent={<DescriptionMenu items={descriptionMenuItems} />}

@@ -9,10 +9,8 @@ import {
   Row,
 } from "@packages/common-components";
 
-import {
-  useServerTranslations,
-  generateStaticParams,
-} from "@/lib/hooks/useTranslations";
+import { useServerTranslations } from "@/lib/hooks/useServerTranslation";
+
 import { NEXTJS } from "@packages/common-types";
 
 const fakeData = [
@@ -47,8 +45,6 @@ const fakeData = [
     profit: 520,
   },
 ];
-
-export { generateStaticParams };
 
 export default async function DashboardPage(props: NEXTJS.PageProps) {
   const { t } = await useServerTranslations(props);

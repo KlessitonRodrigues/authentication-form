@@ -8,12 +8,7 @@ import {
 } from "@packages/common-components";
 import { NEXTJS } from "@packages/common-types";
 
-import {
-  useServerTranslations,
-  generateStaticParams,
-} from "@/lib/hooks/useTranslations";
-
-export { generateStaticParams };
+import { useServerTranslations } from "@/lib/hooks/useServerTranslation";
 
 export default async function HomePage(props: NEXTJS.PageProps) {
   const { t } = await useServerTranslations(props);

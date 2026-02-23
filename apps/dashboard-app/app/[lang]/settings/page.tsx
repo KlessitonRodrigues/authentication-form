@@ -1,13 +1,9 @@
 import SettingsView from "@/lib/views/System/SettingsView";
 import { Column, Paper, TitleIcon } from "@packages/common-components";
 
-import {
-  generateStaticParams,
-  useServerTranslations,
-} from "@/lib/hooks/useTranslations";
-import { NEXTJS } from "@packages/common-types";
+import { useServerTranslations } from "@/lib/hooks/useServerTranslation";
 
-export { generateStaticParams };
+import { NEXTJS } from "@packages/common-types";
 
 export default async function SettingsPage(props: NEXTJS.PageProps) {
   const { t } = await useServerTranslations(props);

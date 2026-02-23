@@ -1,4 +1,16 @@
 {
+  "navigation": {
+    "appName": "Dashboard App",
+    "home": { "label": "Home", "description": "Go to homepage" },
+    "dashboard": { "label": "Dashboard", "description": "User dashboard" },
+    "settings": { "label": "Settings", "description": "Application settings" },
+    "profile": { "label": "Profile", "description": "User profile" },
+    "logout": {
+      "label": "Logout",
+      "description": "Logout from the application"
+    },
+    "help": { "label": "Help", "description": "Get help and support" }
+  },
   "home": {
     "status": {
       "title": "Status",
