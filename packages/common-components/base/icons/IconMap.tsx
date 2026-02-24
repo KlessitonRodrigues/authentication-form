@@ -1,6 +1,7 @@
 import { HTMLAttributes } from "react";
 import {
   PiBellBold,
+  PiCalendar,
   PiCaretDoubleLeftBold,
   PiCaretDoubleRightBold,
   PiCaretLeftBold,
@@ -78,6 +79,8 @@ export const IconMap = {
   brush: <PiPaintBrushBold size={"100%"} />,
   pencil: <PiPencilBold size={"100%"} />,
   notification: <PiBellBold size={"100%"} />,
+  dollar: <PiMoneyBold size={"100%"} />,
+  calendar: <PiCalendar size={"100%"} />,
 };
 
 export interface IconProps extends HTMLAttributes<HTMLDivElement> {

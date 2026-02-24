@@ -81,6 +81,13 @@
       "state": "State",
       "zipCode": "ZIP Code",
       "saveBtn": "Save"
+    },
+    "transactions": {
+      "name": "Name",
+      "type": "Type",
+      "date": "Date",
+      "value": "Value",
+      "saveBtn": "Save"
     }
   }
 }

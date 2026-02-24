@@ -3,6 +3,7 @@ import { Column, TabList, TabListProps } from "@packages/common-components";
 import TransactionsTable from "./TransactionTable";
 import useTransactions from "@/lib/hooks/useTransactions";
 import { useClientTranslations } from "@/lib/hooks/useClientTranslation";
+import TransactionsForm from "@/lib/forms/transactions";
 
 const TransactionsView = () => {
   const { t } = useClientTranslations();
@@ -48,7 +49,7 @@ const TransactionsView = () => {
     {
       label: t("tables.transactions.filters.new"),
       icon: "plus",
-      content: <div>Add Form</div>,
+      content: <TransactionsForm />,
       color: "main",
       value: "",
     },

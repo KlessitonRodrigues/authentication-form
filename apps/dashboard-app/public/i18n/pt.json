@@ -84,6 +84,13 @@
       "state": "Estado",
       "zipCode": "CEP",
       "saveBtn": "Salvar"
+    },
+    "transactions": {
+      "name": "Nome",
+      "type": "Tipo",
+      "date": "Data",
+      "value": "Valor",
+      "saveBtn": "Salvar"
     }
   }
 }

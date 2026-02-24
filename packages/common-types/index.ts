@@ -6,6 +6,7 @@ export * from "./types/next";
 // Schemas
 export * from "./schemas/auth";
 export * from "./schemas/user";
+export * from "./schemas/transaction";
 
 // Utils
 export * from "./utils/zod";
