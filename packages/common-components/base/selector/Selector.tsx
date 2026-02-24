@@ -10,7 +10,7 @@ export const Selector = (props: SelectorProps) => {
   const { options, label, description, defaultValue, onChange } = props;
 
   return (
-    <fieldset className="fieldset min-w-20">
+    <fieldset className="fieldset min-w-40">
       <legend className="fieldset-legend">{label}</legend>
       <select
         defaultValue={defaultValue || "Select"}

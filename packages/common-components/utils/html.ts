@@ -35,6 +35,8 @@ export const setToStorage = (key: string, value: string) => {
 
 export const getDefaultLanguage = () => {
   const languages = ["en", "pt"];
+  const defaultLang = process.env.NEXT_PUBLIC_APP_LOCALE;
+  if (defaultLang) return defaultLang;
 
   const storedLang = getFromStorage("language") || "";
   if (languages.includes(storedLang)) return storedLang;
@@ -51,6 +53,5 @@ export const getDefaultLanguage = () => {
 export const setDefaultLanguage = (lang: string) => {
   setToStorage("language", lang);
   const window = getBrowserWindow();
-  if (!window) return;
-  window.location.reload();
+  if (window) window.location.reload();
 };

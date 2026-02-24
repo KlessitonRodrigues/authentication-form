@@ -15,6 +15,10 @@
     "help": {
       "label": "Ajuda e Suporte",
       "description": "Obter ajuda e suporte"
+    },
+    "notifications": {
+      "label": "Notificações",
+      "emptyLabel": "Nenhuma notificação nova"
     }
   },
   "home": {
@@ -69,6 +73,17 @@
         "new": "Nova Transação",
         "edit": "Editar Transação"
       }
+    }
+  },
+  "forms": {
+    "users": {
+      "phone": "Telefone",
+      "phone2": "Telefone Alternativo",
+      "city": "Cidade",
+      "street": "Rua",
+      "state": "Estado",
+      "zipCode": "CEP",
+      "saveBtn": "Salvar"
     }
   }
 }

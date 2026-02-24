@@ -24,3 +24,7 @@ export const useServerTranslations = async (props: NEXTJS.PageProps) => {
 export const generateStaticParams = () => {
   return [{ lang: "en" }, { lang: "pt" }];
 };
+
+export const setTranslationEnv = (lang: string) => {
+  process.env.NEXT_PUBLIC_APP_LOCALE = lang;
+};

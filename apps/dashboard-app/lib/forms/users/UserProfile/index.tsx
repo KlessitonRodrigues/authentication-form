@@ -8,8 +8,10 @@ import {
 } from "@packages/common-components";
 import { createUserSchema } from "@packages/common-types";
 import UserFormSchema from "@/lib/hooks/useFormSchema";
+import { useClientTranslations } from "@/lib/hooks/useClientTranslation";
 
 export const UserProfileForm = () => {
+  const { t } = useClientTranslations();
   const { errors, register, handleSubmit } = UserFormSchema(createUserSchema);
 
   const onSubmit = (data: unknown) => {
@@ -22,7 +24,7 @@ export const UserProfileForm = () => {
         <InputField
           size="lg"
           type="text"
-          label="Phone"
+          label={t("forms.users.phone")}
           placeholder="(xx) xxxxx-xxxx"
           before={<Icons icon="phone" />}
           inputProps={register("phone")}
@@ -31,7 +33,7 @@ export const UserProfileForm = () => {
         <InputField
           size="lg"
           type="text"
-          label="Phone 2"
+          label={t("forms.users.phone2")}
           placeholder="(xx) xxxxx-xxxx"
           before={<Icons icon="phone" />}
           inputProps={register("phone2")}
@@ -42,7 +44,7 @@ export const UserProfileForm = () => {
         <InputField
           size="lg"
           type="text"
-          label="City"
+          label={t("forms.users.city")}
           placeholder="San Francisco"
           before={<Icons icon="address" />}
           inputProps={register("addressCity")}
@@ -51,7 +53,7 @@ export const UserProfileForm = () => {
         <InputField
           size="lg"
           type="text"
-          label="Street"
+          label={t("forms.users.street")}
           placeholder="Saint Artunes, 123"
           before={<Icons icon="address" />}
           inputProps={register("addressStreet")}
@@ -62,7 +64,7 @@ export const UserProfileForm = () => {
         <InputField
           size="lg"
           type="text"
-          label="State"
+          label={t("forms.users.state")}
           placeholder="California"
           before={<Icons icon="address" />}
           inputProps={register("addressState")}
@@ -71,7 +73,7 @@ export const UserProfileForm = () => {
         <InputField
           size="lg"
           type="text"
-          label="Zip Code"
+          label={t("forms.users.zipCode")}
           placeholder="94103"
           before={<Icons icon="address" />}
           inputProps={register("addressZip")}
@@ -81,7 +83,7 @@ export const UserProfileForm = () => {
 
       <Row>
         <IconButton type="submit" icon="save" color="primary">
-          Save
+          {t("forms.users.saveBtn")}
         </IconButton>
       </Row>
     </Form>

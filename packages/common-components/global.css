@@ -83,8 +83,12 @@
 
 * {
   scrollbar-color: var(--color-default-gray) var(--color-bg4);
-  scrollbar-width: auto;
+  scrollbar-width: thin;
   scroll-behavior: smooth;
+}
+
+html {
+  overflow-y: scroll;
 }
 
 body {

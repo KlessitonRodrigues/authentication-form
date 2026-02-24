@@ -106,7 +106,11 @@ const NavBarView = () => {
         sidebarComponent={<DescriptionMenu items={descriptionMenuItems} />}
         userMenuComponent={<Menu items={menuItems} />}
         notificationsComponent={
-          <NotificationList notifications={notificationList} />
+          <NotificationList
+            title={t("navigation.notifications.label")}
+            noNotificationsMessage={t("navigation.notifications.emptyLabel")}
+            notifications={notificationList}
+          />
         }
       />
       <Row>

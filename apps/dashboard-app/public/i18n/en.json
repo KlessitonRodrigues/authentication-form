@@ -9,7 +9,14 @@
       "label": "Logout",
       "description": "Logout from the application"
     },
-    "help": { "label": "Help & Support", "description": "Get help and support" }
+    "help": {
+      "label": "Help & Support",
+      "description": "Get help and support"
+    },
+    "notifications": {
+      "label": "Notifications",
+      "emptyLabel": "No new notifications"
+    }
   },
   "home": {
     "status": {
@@ -63,6 +70,17 @@
         "new": "New Transaction",
         "edit": "Edit Transaction"
       }
+    }
+  },
+  "forms": {
+    "users": {
+      "phone": "Phone",
+      "phone2": "Alternate Phone",
+      "city": "City",
+      "street": "Street",
+      "state": "State",
+      "zipCode": "ZIP Code",
+      "saveBtn": "Save"
     }
   }
 }

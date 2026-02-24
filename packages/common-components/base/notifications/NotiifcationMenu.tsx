@@ -5,22 +5,24 @@ import { Icons } from "../icons/IconMap";
 import { Text } from "../text/Text";
 
 interface NotificationListProps {
+  title?: string;
+  noNotificationsMessage?: string;
   notifications?: {
     id: string;
     message: string;
   }[];
-  onRemove?: (id: string) => void;
+  onRemove?: () => void;
 }
 
 export const NotificationList = (props: NotificationListProps) => {
-  const { notifications, onRemove } = props;
+  const { title, noNotificationsMessage, notifications, onRemove } = props;
 
   const notificationItems = useMemo(() => {
     if (!notifications || notifications.length === 0) {
       return (
         <Row flexX="center">
           <Text bold fo="60">
-            No new notifications
+            {noNotificationsMessage || "No new notifications"}
           </Text>
         </Row>
       );
@@ -31,14 +33,6 @@ export const NotificationList = (props: NotificationListProps) => {
         <Text fs="sm" className="w-full">
           {notification.message}
         </Text>
-        <Button
-          ghost
-          variant="square"
-          size="xs"
-          onClick={() => onRemove?.(notification.id)}
-        >
-          <Icons icon="close" size="16" />
-        </Button>
       </Row>
     ));
   }, [notifications, onRemove]);
@@ -48,14 +42,9 @@ export const NotificationList = (props: NotificationListProps) => {
       <Row>
         <Icons icon="notification" size="22" />
         <Text bold fs="lg" className="w-full">
-          Notifications
+          {title || "Notifications"}
         </Text>
-        <Button
-          ghost
-          variant="square"
-          size="sm"
-          onClick={() => onRemove?.("all")}
-        >
+        <Button ghost variant="square" size="sm" onClick={() => onRemove?.()}>
           <Icons icon="close" size="16" />
         </Button>
       </Row>
