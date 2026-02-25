@@ -1,3 +1,5 @@
+import { KeyboardEvent } from "react";
+
 export const getBrowserWindow = () => {
   if (typeof window === "undefined") return null;
   return window;
@@ -54,4 +56,30 @@ export const setDefaultLanguage = (lang: string) => {
   setToStorage("language", lang);
   const window = getBrowserWindow();
   if (window) window.location.reload();
+};
+
+export const inputNumbers = (ev: any, decimals?: boolean) => {
+  const value = ev.currentTarget.value;
+  const key = ev.key;
+  const invalidKeys = [".", ",", "e", "E", "-"];
+
+  if (decimals) invalidKeys.splice(0, 2);
+
+  if (invalidKeys.includes(key)) ev.preventDefault();
+
+  if (decimals && (key === "," || key === ".")) {
+    if (value.includes(".") || value.includes(",")) {
+      ev.preventDefault();
+    } else {
+      ev.currentTarget.value = value.replace(",", ".");
+    }
+  }
+  if (Number(value) < 0) {
+    ev.currentTarget.value = "1";
+    ev.preventDefault();
+  }
+  if (Number(value) === 0 && key === "ArrowDown") {
+    ev.currentTarget.value = "1";
+    ev.preventDefault();
+  }
 };

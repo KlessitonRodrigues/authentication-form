@@ -87,10 +87,6 @@
   scroll-behavior: smooth;
 }
 
-html {
-  overflow-y: scroll;
-}
-
 body {
   background-color: var(--color-bg4);
   color: var(--color-fg4);
@@ -100,7 +96,7 @@ body {
 }
 
 body.dark {
-  --color-main: #597ef7;
+  --color-main: #7897ff;
   --color-main-bg: #2553eb;
   --color-main-text: #ffffff;
   --color-bg1: #000000;
@@ -143,6 +139,11 @@ body.dark {
   --color-error: var(--color-default-red);
   --color-error-content: var(--color-default-white);
   --tab-bg: var(--color-bg2);
+}
+
+input.hide-caret,
+textarea.hide-caret {
+  caret-color: transparent;
 }
 
 .text-main {

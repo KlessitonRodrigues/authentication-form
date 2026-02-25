@@ -1,17 +1,12 @@
 import { z } from "zod";
+import { errorMsg } from "../constants/dictionary";
 
 const authSchema = {
-  email: z.email("Invalid email address"),
-  password: z
-    .string("Password is required")
-    .min(6, "Password must be at least 6 characters"),
-  userName: z
-    .string("Username is required")
-    .min(3, "Username must be at least 3 characters"),
-  code: z
-    .string("Code is required")
-    .min(6, "Code must be at least 6 characters"),
-  token: z.string("Google token is required"),
+  email: z.string(errorMsg.REQUIRED).email(errorMsg.INVALID_EMAIL),
+  password: z.string(errorMsg.REQUIRED).min(6, errorMsg.PASSWORD_MIN),
+  userName: z.string(errorMsg.REQUIRED).min(3, errorMsg.USERNAME_MIN),
+  code: z.string(errorMsg.REQUIRED).min(6, errorMsg.CODE_MIN),
+  token: z.string(errorMsg.REQUIRED),
 };
 
 export const signInSchema = z.object({
