@@ -112,21 +112,21 @@ export const NavBar = (props: NavBarProps) => {
         className="absolute w-full lg:w-auto h-[93vh] max-w-md left-0 top-full z-10 overflow-hidden fade-down shadow-md transition"
         style={{ width: menuOpen ? "100%" : "0" }}
       >
-        {sidebarComponent}
+        <div className="min-w-md h-full">{sidebarComponent}</div>
       </div>
 
       <div
         className="absolute max-w-md right-0 top-full z-10 overflow-hidden fade-down shadow-md transition"
         style={{ width: notificationsOpen ? "100%" : "0" }}
       >
-        {notificationsComponent}
+        <div className="min-w-md h-full">{notificationsComponent}</div>
       </div>
 
       <div
-        className="absolute max-w-60 right-0 top-full z-10 overflow-hidden fade-down shadow-md transition"
+        className="absolute max-w-xs right-0 top-full z-10 overflow-hidden fade-down shadow-md transition"
         style={{ width: userMenuOpen ? "100%" : "0" }}
       >
-        {userMenuComponent}
+        <div className="min-w-xs h-full">{userMenuComponent}</div>
       </div>
     </div>
   );
