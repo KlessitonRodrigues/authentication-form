@@ -11,6 +11,7 @@ import { handler as refreshToken } from '../lib/lambdas/refreshToken/handler';
 import { handler as sendRecoveryCode } from '../lib/lambdas/sendRecoveryCode/handler';
 import { handler as verifyRecoveryCode } from '../lib/lambdas/verifyRecoveryCode/handler';
 import { handler as resetPassword } from '../lib/lambdas/resetPassword/handler';
+import { handler as signOut } from '../lib/lambdas/signOut/handler';
 import { createLambdaEvent } from '../utils/api/localApi';
 
 const localRoutes = () => {
@@ -22,6 +23,7 @@ const localRoutes = () => {
   router.post('/auth/send-recovery-code', createLambdaEvent(sendRecoveryCode));
   router.post('/auth/verify-recovery-code', createLambdaEvent(verifyRecoveryCode));
   router.post('/auth/reset-password', createLambdaEvent(resetPassword));
+  router.post('/auth/signout', createLambdaEvent(signOut));
   return router;
 };
 

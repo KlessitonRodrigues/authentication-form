@@ -24,7 +24,6 @@ const useAuthentication = () => {
     enabled: false,
     mutationKey: ["email-login"],
     mutationFn: async (data: Auth.SignInRequest) => {
-      await new Promise((resolve) => setTimeout(resolve, 4000));
       const res = await axiosClient.post("auth/signin", data);
       location.href = `${dotenv.REDIRECT_URL}?token=${res.data?.token}`;
     },
@@ -35,7 +34,6 @@ const useAuthentication = () => {
     enabled: false,
     mutationKey: ["email-signup"],
     mutationFn: async (data: Auth.SignUpRequest) => {
-      await new Promise((resolve) => setTimeout(resolve, 4000));
       const res = await axiosClient.post("auth/signup", data);
       location.href = `${dotenv.REDIRECT_URL}?token=${res.data?.token}`;
     },

@@ -14,6 +14,7 @@ import { VerifyRecoveryCodeLambda } from './lib/lambdas/verifyRecoveryCode/lambd
 import { SendRecoveryCodeLambda } from './lib/lambdas/sendRecoveryCode/lambda';
 import { RefreshTokenLambda } from './lib/lambdas/refreshToken/lambda';
 import { ResetPasswordLambda } from './lib/lambdas/resetPassword/lambda';
+import { SignOutLambda } from './lib/lambdas/signOut/lambda';
 import { resourceNames } from './contants/resources';
 import dotenv from './contants/dotenv';
 
@@ -47,6 +48,7 @@ export class NodeTemplateStack extends cdk.Stack {
     const sendRecoveryCodeLambda = new SendRecoveryCodeLambda(this, lambdaEnv, logGroup);
     const refreshTokenLambda = new RefreshTokenLambda(this, lambdaEnv, logGroup);
     const resetPasswordLambda = new ResetPasswordLambda(this, lambdaEnv, logGroup);
+    const signOutLambda = new SignOutLambda(this, lambdaEnv, logGroup);
 
     // API Gateway
     const authApi = new AuthAPIGateway(this);
@@ -78,6 +80,9 @@ export class NodeTemplateStack extends cdk.Stack {
     // /auth/reset-password
     const resetPasswordRoute = authRoute.addResource('reset-password');
     resetPasswordRoute.addMethod('POST', new gateway.LambdaIntegration(resetPasswordLambda));
+    // /auth/signout
+    const signOutRoute = authRoute.addResource('signout');
+    signOutRoute.addMethod('POST', new gateway.LambdaIntegration(signOutLambda));
 
     // Permissions
     authTable.table.grantReadWriteData(signInLambda);
@@ -90,6 +95,7 @@ export class NodeTemplateStack extends cdk.Stack {
 
     // API Preflight
     addPreflight(refreshTokenRoute);
+    addPreflight(signOutRoute);
 
     addCorsPreflight(signinRoute);
     addCorsPreflight(signupRoute);

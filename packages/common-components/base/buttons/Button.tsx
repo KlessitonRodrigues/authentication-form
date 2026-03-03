@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import { IconProps, Icons } from "../icons/IconMap";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label?: string;
   onClick?: () => void;
   color?:

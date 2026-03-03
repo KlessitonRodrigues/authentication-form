@@ -4,6 +4,7 @@ import {
   Column,
   getDefaultLanguage,
   isDarkTheme,
+  RadioInputField,
   Selector,
   setDefaultLanguage,
   setTheme,
@@ -14,15 +15,15 @@ const SettingsView = () => {
   const isDarkMode = isDarkTheme();
 
   return (
-    <Column flexX="start">
+    <Column flexX="start" className="max-w-md">
       <Selector
         label="Language"
+        defaultValue={getDefaultLanguage()}
+        onChange={(value) => setDefaultLanguage(value)}
         options={[
           { label: "English", value: "en" },
           { label: "Portuguese", value: "pt" },
         ]}
-        defaultValue={getDefaultLanguage()}
-        onChange={(value) => setDefaultLanguage(value)}
       />
       <Switch
         label="Dark Mode"

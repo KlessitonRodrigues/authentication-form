@@ -90,7 +90,7 @@ export interface IconProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Icons = (props: IconProps) => {
   const { className, icon, size, children, ...iconProps } = props;
-  const classNames = ["icon"];
+  const classNames = ["icon block"];
   classNames.push(`w-[${size || "22"}px]`);
   classNames.push(className || "");
 

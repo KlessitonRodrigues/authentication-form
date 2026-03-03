@@ -48,7 +48,7 @@ const useAuthentication = () => {
     initialData: null,
     queryKey: ["sign-out"],
     queryFn: async () => {
-      await axiosClient.post("auth/sign-out");
+      await axiosClient.post("auth/signout");
       setUser(null);
       location.href = dotenv.AUTH_URL;
       return true;

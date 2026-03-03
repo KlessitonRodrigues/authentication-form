@@ -9,6 +9,7 @@ export * from "./base/tabs/TabNav";
 export * from "./base/inputs/InputField";
 export * from "./base/inputs/MaskInputField";
 export * from "./base/inputs/CurrencyInputField";
+export * from "./base/inputs/RadioInputField";
 export * from "./base/icons/IconMap";
 export * from "./base/containers/Forms";
 export * from "./base/navigation/Navbar";
