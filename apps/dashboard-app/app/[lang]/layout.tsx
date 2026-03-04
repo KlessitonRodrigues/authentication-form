@@ -1,5 +1,5 @@
 import NavbarView from "@/lib/views/Navigation/NavbarView";
-import { LoadScreen, Page, Toastify } from "@packages/common-components";
+import { LoadScreen, Page, Toastify } from "@packages/daisy-ui-components";
 import { Suspense } from "react";
 
 import {

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto, Roboto_Mono } from "next/font/google";
-import "@packages/common-components/global.css";
+import "@packages/daisy-ui-components/global.css";
 import { PropsWithChildren } from "react";
 
 const robotoSans = Roboto({

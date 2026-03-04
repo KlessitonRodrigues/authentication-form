@@ -1,6 +1,6 @@
 import { UserProfileForm } from "@/lib/forms/users/UserProfile";
 import UserAccountView from "@/lib/views/Users/UserAccountView";
-import { Column, Paper, TitleIcon } from "@packages/common-components";
+import { Column, Paper, TitleIcon } from "@packages/daisy-ui-components";
 
 import { useServerTranslations } from "@/lib/hooks/useServerTranslation";
 

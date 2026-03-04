@@ -3,7 +3,7 @@ import {
   materialColors,
   LoginCardSection,
   PageFull,
-} from "@packages/common-components";
+} from "@packages/daisy-ui-components";
 
 import LoginBgImg from "@/public/images/bluehillssunset.jpg";
 

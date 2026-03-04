@@ -7,7 +7,7 @@ import {
   RadarChartComponent,
   RadialChartComponent,
   Row,
-} from "@packages/common-components";
+} from "@packages/daisy-ui-components";
 
 import { useServerTranslations } from "@/lib/hooks/useServerTranslation";
 

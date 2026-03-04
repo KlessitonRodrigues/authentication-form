@@ -1,4 +1,4 @@
-import { Card, TabList, TabListProps } from "@packages/common-components";
+import { Card, TabList, TabListProps } from "@packages/daisy-ui-components";
 import { SignInForm } from "./SignIn";
 import { SignUpForm } from "./SignUp";
 import { ResetPassForm } from "./ResetPass";

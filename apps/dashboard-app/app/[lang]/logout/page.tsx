@@ -1,5 +1,5 @@
 import SignOutView from "@/lib/views/Navigation/SignOutView";
-import { Column, Paper, Text } from "@packages/common-components";
+import { Column, Paper, Text } from "@packages/daisy-ui-components";
 
 import { useServerTranslations } from "@/lib/hooks/useServerTranslation";
 

@@ -1,7 +1,7 @@
 import { axiosClient } from "@/lib/config/axiosClient";
 import client from "@/lib/config/queryClient";
 import dotenv from "@/lib/constants/dotenv";
-import { errorToast, successToast } from "@packages/common-components";
+import { errorToast, successToast } from "@packages/daisy-ui-components";
 import { Auth } from "@packages/common-types";
 import { useGoogleLogin, TokenResponse } from "@react-oauth/google";
 import { useMutation } from "@tanstack/react-query";

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Roboto, Roboto_Mono } from "next/font/google";
-import "@packages/common-components/global.css";
+import "@packages/daisy-ui-components/global.css";
 import { PropsWithChildren } from "react";
-import { Toastify } from "@packages/common-components";
+import { Toastify } from "@packages/daisy-ui-components";
 
 const robotoSans = Roboto({
   variable: "--font-roboto-sans",

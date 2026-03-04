@@ -5,7 +5,7 @@ import {
   Icons,
   InputField,
   Row,
-} from "@packages/common-components";
+} from "@packages/daisy-ui-components";
 import { AuthForm, getAuthValidation } from "./validation";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";

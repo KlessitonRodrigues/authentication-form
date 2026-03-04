@@ -1,5 +1,5 @@
 "use client";
-import { Card, TabList, TabListProps } from "@packages/common-components";
+import { Card, TabList, TabListProps } from "@packages/daisy-ui-components";
 import FormData from "../FormData";
 import { VerifyCodeForm } from "./VerifyCode";
 import { ChangePasswordForm } from "./ChangePassword";

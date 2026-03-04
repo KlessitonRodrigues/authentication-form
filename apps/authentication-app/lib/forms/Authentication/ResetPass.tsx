@@ -1,5 +1,5 @@
 "use client";
-import { Button, Form, Icons, InputField } from "@packages/common-components";
+import { Button, Form, Icons, InputField } from "@packages/daisy-ui-components";
 import { AuthForm, getAuthValidation } from "./validation";
 import { useForm } from "react-hook-form";
 import useAuthentication from "@/lib/hooks/useAuthentication";

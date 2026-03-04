@@ -5,7 +5,7 @@ import {
   Paper,
   Row,
   TitleIcon,
-} from "@packages/common-components";
+} from "@packages/daisy-ui-components";
 import { NEXTJS } from "@packages/common-types";
 
 import { useServerTranslations } from "@/lib/hooks/useServerTranslation";

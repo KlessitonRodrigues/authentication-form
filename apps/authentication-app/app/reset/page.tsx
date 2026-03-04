@@ -3,7 +3,7 @@ import {
   LoginCardSection,
   PageFull,
   LoadScreen,
-} from "@packages/common-components";
+} from "@packages/daisy-ui-components";
 import { Suspense } from "react";
 import { loginContent, loginGradient } from "../page";
 
