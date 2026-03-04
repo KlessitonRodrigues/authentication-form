@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@packages/daisy-ui-components": "*",
     "@packages/common-components": "*",
     "@packages/common-types": "*",
     "next": "16.1.6",

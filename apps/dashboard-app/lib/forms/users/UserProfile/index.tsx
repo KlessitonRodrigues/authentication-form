@@ -5,7 +5,7 @@ import {
   Icons,
   InputField,
   Row,
-} from "@packages/common-components";
+} from "@packages/daisy-ui-components";
 import { createUserSchema } from "@packages/common-types";
 import UserFormSchema from "@/lib/hooks/useFormSchema";
 import { useClientTranslations } from "@/lib/hooks/useClientTranslation";

@@ -8,7 +8,7 @@ import {
   MaskInputField,
   Row,
   Selector,
-} from "@packages/common-components";
+} from "@packages/daisy-ui-components";
 import UserFormSchema from "@/lib/hooks/useFormSchema";
 import { useClientTranslations } from "@/lib/hooks/useClientTranslation";
 import { createTransactionSchema } from "@packages/common-types";

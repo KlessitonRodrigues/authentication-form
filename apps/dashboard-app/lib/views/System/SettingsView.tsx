@@ -9,7 +9,7 @@ import {
   setDefaultLanguage,
   setTheme,
   Switch,
-} from "@packages/common-components";
+} from "@packages/daisy-ui-components";
 
 const SettingsView = () => {
   const isDarkMode = isDarkTheme();

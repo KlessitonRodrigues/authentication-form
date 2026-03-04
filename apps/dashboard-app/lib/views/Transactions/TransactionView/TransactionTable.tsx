@@ -1,5 +1,5 @@
 import { useClientTranslations } from "@/lib/hooks/useClientTranslation";
-import { Pagination, Table } from "@packages/common-components";
+import { Pagination, Table } from "@packages/daisy-ui-components";
 
 interface TransactionsTableProps {
   items: any[];

@@ -1,5 +1,5 @@
 "use client";
-import { Column, TabList, TabListProps } from "@packages/common-components";
+import { Column, TabList, TabListProps } from "@packages/daisy-ui-components";
 import TransactionsTable from "./TransactionTable";
 import useTransactions from "@/lib/hooks/useTransactions";
 import { useClientTranslations } from "@/lib/hooks/useClientTranslation";

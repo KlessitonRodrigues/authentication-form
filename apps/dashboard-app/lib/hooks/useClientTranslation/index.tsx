@@ -1,4 +1,4 @@
-import { getDefaultLanguage } from "@packages/common-components";
+import { getDefaultLanguage } from "@packages/daisy-ui-components";
 import { getTranslation, translations } from "../useServerTranslation";
 
 export const useClientTranslations = () => {

@@ -2,7 +2,7 @@ import { axiosClient } from "@/lib/config/axiosClient";
 import queryClient from "@/lib/config/queryClient";
 import dotenv from "@/lib/constants/dotenv";
 import useUserStore from "@/lib/store/user";
-import { getDefaultLanguage } from "@packages/common-components";
+import { getDefaultLanguage } from "@packages/daisy-ui-components";
 import { DefinedInitialDataOptions, useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";

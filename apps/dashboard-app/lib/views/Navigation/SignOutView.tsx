@@ -1,6 +1,6 @@
 "use client";
 import useAuthentication from "@/lib/hooks/useAuthentication";
-import { Column, IconButton } from "@packages/common-components";
+import { Column, IconButton } from "@packages/daisy-ui-components";
 
 const SignOutView = () => {
   const { signOutQuery } = useAuthentication();

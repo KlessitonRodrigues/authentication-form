@@ -1,6 +1,6 @@
 "use client";
 import useUserStore from "@/lib/store/user";
-import { Column, DataDisplay, Icons, Row } from "@packages/common-components";
+import { Column, DataDisplay, Icons, Row } from "@packages/daisy-ui-components";
 
 const UserAccountView = () => {
   const { user } = useUserStore();

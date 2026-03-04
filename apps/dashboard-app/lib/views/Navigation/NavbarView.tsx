@@ -14,7 +14,7 @@ import {
   NavBar,
   NotificationList,
   Row,
-} from "@packages/common-components";
+} from "@packages/daisy-ui-components";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
