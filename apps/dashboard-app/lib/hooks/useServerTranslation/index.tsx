@@ -10,7 +10,7 @@ export const translations: Record<string, typeof enLang> = {
 export const getTranslation = (key: string, translation: typeof enLang) => {
   const keys = key.split(".");
   const getValue = (obj: any, key: string) => (obj ? obj[key] : undefined);
-  const result = keys.reduce(getValue, translation);
+  const result = keys.reduce(getValue, translation) as string;
   return result || "NO_TEXT";
 };
 

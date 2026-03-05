@@ -56,6 +56,11 @@
   },
   "tables": {
     "transactions": {
+      "tab": {
+        "all": "All Transactions",
+        "new": "New Transaction",
+        "edit": "Edit Transaction"
+      },
       "columns": {
         "name": "Name",
         "type": "Type",
@@ -63,12 +68,21 @@
         "value": "Value"
       },
       "filters": {
-        "allTransactions": "All Transactions",
-        "revenue": "Revenue",
-        "expenses": "Expenses",
-        "profit": "Profit",
-        "new": "New Transaction",
-        "edit": "Edit Transaction"
+        "type": {
+          "title": "Type",
+          "allTransactions": "All Transactions",
+          "revenue": "Revenue",
+          "expense": "Expense",
+          "profit": "Profit"
+        },
+        "date": {
+          "title": "Date",
+          "all": "All Dates",
+          "last7Days": "Last 7 Days",
+          "last30Days": "Last 30 Days",
+          "thisMonth": "This Month",
+          "lastMonth": "Last Month"
+        }
       }
     }
   },

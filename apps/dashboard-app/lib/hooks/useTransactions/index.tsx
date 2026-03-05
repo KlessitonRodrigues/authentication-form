@@ -16,14 +16,17 @@ const mockData = [
 const useTransactions = () => {
   const [transactions, setTransactions] = useState(mockData);
   const [type, setType] = useState("All");
+  const [date, setDate] = useState("All");
   const [editId, setEditId] = useState(0);
+
+  console.log(type);
 
   useEffect(() => {
     if (!type || type === "All") setTransactions(mockData);
     else setTransactions(mockData.filter((item) => item.type === type));
   }, [type]);
 
-  return { transactions, type, setType, editId, setEditId };
+  return { transactions, type, date, editId, setType, setDate, setEditId };
 };
 
 export default useTransactions;

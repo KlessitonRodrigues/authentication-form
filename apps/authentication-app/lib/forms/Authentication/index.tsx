@@ -25,7 +25,7 @@ const TabItems: TabListProps["items"] = [
 export const AuthenticationForm = () => {
   return (
     <FormData>
-      <Card className="m-auto w-md min-h-160">
+      <Card className="m-auto w-full min-h-160 lg:w-md">
         <TabList items={TabItems} />
       </Card>
     </FormData>
