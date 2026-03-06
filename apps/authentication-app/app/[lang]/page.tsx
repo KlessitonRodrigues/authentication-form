@@ -3,12 +3,16 @@ import {
   materialColors,
   LoginCardSection,
   PageFull,
-  RedirectPage,
 } from "@packages/daisy-ui-components";
 
 import LoginBgImg from "@/public/images/bluehillssunset.jpg";
-import { useServerTranslations } from "@/lib/hooks/useServerTranslation";
 import { NEXTJS } from "@packages/common-types";
+import {
+  generateStaticParams,
+  useServerTranslations,
+} from "@/lib/hooks/useServerTranslation";
+
+export { generateStaticParams };
 
 export default async function RootPage(page: NEXTJS.PageProps) {
   const { t } = await useServerTranslations(page);
@@ -29,7 +33,6 @@ export default async function RootPage(page: NEXTJS.PageProps) {
         }}
         loginForm={<AuthenticationForm t={t} />}
       />
-      <RedirectPage />
     </PageFull>
   );
 }

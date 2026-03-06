@@ -8,18 +8,19 @@ import {
   Text,
 } from "@packages/daisy-ui-components";
 
-import { useForm } from "react-hook-form";
-import { AuthForm, getAuthValidation } from "./validation";
 import useAuthentication from "@/lib/hooks/useAuthentication";
-
-const formValidation = getAuthValidation("signIn");
+import { createAuthSchemas } from "@packages/common-types";
+import { useFormSchema } from "@/lib/hooks/useFormSchema";
+import { useClientTranslations } from "@/lib/hooks/useClientTranslation";
 
 export const SignInForm = () => {
+  const { t, lang } = useClientTranslations();
   const { loginQuery, googleLoginQuery, googleLoginHandle } =
     useAuthentication();
-  const { formState, register, handleSubmit } = useForm(formValidation);
+  const { signInSchema } = createAuthSchemas({ lang });
+  const { errors, register, handleSubmit } = useFormSchema(signInSchema);
 
-  const onSubmit = (data: AuthForm) => {
+  const onSubmit = (data: any) => {
     loginQuery.mutate({ email: data.email, password: data.password });
   };
 
@@ -28,20 +29,20 @@ export const SignInForm = () => {
       <InputField
         size="lg"
         type="email"
-        label="Email"
-        placeholder="Enter your e-mail"
+        label={t("forms.signIn.email")}
+        placeholder={t("forms.signIn.emailPlaceholder")}
         inputProps={register("email")}
         before={<Icons icon="email" />}
-        error={formState.errors.email?.message}
+        error={errors.email?.message?.toString()}
       />
       <InputField
         size="lg"
         type="password"
-        label="Password"
-        placeholder="Enter your password"
+        label={t("forms.signIn.password")}
+        placeholder={t("forms.signIn.passwordPlaceholder")}
         inputProps={register("password")}
         before={<Icons icon="lock" />}
-        error={formState.errors.password?.message}
+        error={errors.password?.message?.toString()}
       />
 
       <IconButton
@@ -50,7 +51,7 @@ export const SignInForm = () => {
         loading={loginQuery.isPending}
         type="submit"
       >
-        Sign In
+        {t("forms.signIn.signInButton")}
       </IconButton>
 
       <Row flexX="center" gap={4}>
@@ -61,7 +62,7 @@ export const SignInForm = () => {
           onClick={googleLoginHandle}
           loading={googleLoginQuery.isPending}
         >
-          Google
+          {t("forms.signIn.googleButton")}
         </IconButton>
         <IconButton
           icon="github"
@@ -72,11 +73,11 @@ export const SignInForm = () => {
               "https://github.com/login/oauth/authorize?client_id=b211ddaae7459405412acb5ad869ec02f3c16af8&scope=read:user user:email";
           }}
         >
-          GitHub
+          {t("forms.signIn.githubButton")}
         </IconButton>
       </Row>
       <Text fs="sm" className="text-center">
-        By signing in, you agree to our Terms of Service and Privacy Policy.
+        {t("forms.signIn.termsAndPrivacy")}
       </Text>
     </Form>
   );

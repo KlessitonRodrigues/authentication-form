@@ -1,16 +1,17 @@
-import { AuthenticationForm } from "@/lib/forms/Authentication";
+import { ResetPasswordForm } from "@/lib/forms/ResetPassword";
 import {
-  materialColors,
   LoginCardSection,
   PageFull,
-  RedirectPage,
+  materialColors,
 } from "@packages/daisy-ui-components";
-
-import LoginBgImg from "@/public/images/bluehillssunset.jpg";
-import { useServerTranslations } from "@/lib/hooks/useServerTranslation";
+import { generateStaticParams } from "../page";
 import { NEXTJS } from "@packages/common-types";
+import { useServerTranslations } from "@/lib/hooks/useServerTranslation";
+import LoginBgImg from "@/public/images/bluehillssunset.jpg";
 
-export default async function RootPage(page: NEXTJS.PageProps) {
+export { generateStaticParams };
+
+export default async function ResetPage(page: NEXTJS.PageProps) {
   const { t } = await useServerTranslations(page);
 
   return (
@@ -27,9 +28,8 @@ export default async function RootPage(page: NEXTJS.PageProps) {
           from: materialColors.blue["200"],
           to: materialColors.amber["100"],
         }}
-        loginForm={<AuthenticationForm t={t} />}
+        loginForm={<ResetPasswordForm />}
       />
-      <RedirectPage />
     </PageFull>
   );
 }

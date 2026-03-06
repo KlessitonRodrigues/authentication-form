@@ -1,0 +1,61 @@
+{
+  "pages": {
+    "signIn": {
+      "title": "Welcome Back!",
+      "description": "Sign in with Google or GitHub to access your financial dashboard and manage your investments. Securely connect your accounts, track your portfolio performance, view detailed analytics, and make informed decisions about your financial goals.",
+      "description2": "New here? Create an account to get started and take control of your financial future today!"
+    }
+  },
+  "forms": {
+    "authentication": {
+      "login": "Login",
+      "register": "Register",
+      "forgotPassword": "Forgot Password"
+    },
+    "resetPass": {
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "sendChangePasswordLink": "Send password reset link"
+    },
+    "signIn": {
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "signInButton": "Sign In",
+      "googleButton": "Google",
+      "githubButton": "GitHub",
+      "termsAndPrivacy": "By signing in, you agree to our Terms of Service and Privacy Policy."
+    },
+    "signUp": {
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "username": "Username",
+      "usernamePlaceholder": "Choose a username",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "Confirm your password",
+      "createAccountButton": "Sign Up"
+    },
+    "forgotPassword": {
+      "email": "Email",
+      "submit": "Reset Password"
+    },
+    "resetPassword": {
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "verificationCode": "Verification Code",
+      "verificationCodePlaceholder": "Enter your verification code",
+      "verifyCode": "Verify Code",
+      "resetPassword": "Reset Password",
+      "password": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "submit": "Set New Password"
+    },
+    "verification": {
+      "code": "Verification Code",
+      "submit": "Verify Account"
+    }
+  }
+}

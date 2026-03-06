@@ -1,16 +1,19 @@
 "use client";
 import { Button, Form, Icons, InputField } from "@packages/daisy-ui-components";
-import { AuthForm, getAuthValidation } from "./validation";
-import { useForm } from "react-hook-form";
 import useAuthentication from "@/lib/hooks/useAuthentication";
-
-const formValidation = getAuthValidation("sendRecoveryCode");
+import { useFormSchema } from "@/lib/hooks/useFormSchema";
+import { createAuthSchemas } from "@packages/common-types";
+import { useClientTranslations } from "@/lib/hooks/useClientTranslation";
 
 export const ResetPassForm = () => {
+  const { t, lang } = useClientTranslations();
   const { sendRecoveryCodeQuery } = useAuthentication();
-  const { formState, register, handleSubmit } = useForm(formValidation);
+  const { sendRecoveryCodeSchema } = createAuthSchemas({ lang });
+  const { errors, register, handleSubmit } = useFormSchema(
+    sendRecoveryCodeSchema,
+  );
 
-  const onSubmit = (data: AuthForm) => {
+  const onSubmit = (data: any) => {
     sendRecoveryCodeQuery.mutate({ email: data.email || "" });
   };
 
@@ -19,15 +22,15 @@ export const ResetPassForm = () => {
       <InputField
         size="lg"
         type="email"
-        label="Email"
-        placeholder="Enter your e-mail"
+        label={t("forms.resetPass.email")}
+        placeholder={t("forms.resetPass.emailPlaceholder")}
         before={<Icons icon="email" />}
         inputProps={register("email")}
-        error={formState.errors.email?.message}
+        error={errors.email?.message?.toString()}
       />
       <Button color="primary" loading={sendRecoveryCodeQuery.isPending}>
         <Icons icon="email" />
-        Send Change Password Link
+        {t("forms.resetPass.sendChangePasswordLink")}
       </Button>
     </Form>
   );

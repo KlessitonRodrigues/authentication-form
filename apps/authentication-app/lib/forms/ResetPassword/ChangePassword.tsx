@@ -1,6 +1,5 @@
 "use client";
 import {
-  Button,
   Form,
   IconButton,
   Icons,
@@ -12,10 +11,12 @@ import { useForm } from "react-hook-form";
 import useAuthentication from "@/lib/hooks/useAuthentication";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import { useClientTranslations } from "@/lib/hooks/useClientTranslation";
 
 const formValidation = getAuthValidation("changePassword");
 
 export const ChangePasswordForm = () => {
+  const { t } = useClientTranslations();
   const { resetPasswordQuery } = useAuthentication();
   const params = useSearchParams();
   const email = params.get("email");
@@ -40,8 +41,8 @@ export const ChangePasswordForm = () => {
       <InputField
         size="lg"
         type="email"
-        label="Email"
-        placeholder="Enter your e-mail"
+        label={t("forms.resetPassword.email")}
+        placeholder={t("forms.resetPassword.emailPlaceholder")}
         before={<Icons icon="email" />}
         disabled
         inputProps={register("email")}
@@ -49,16 +50,16 @@ export const ChangePasswordForm = () => {
       />
       <InputField
         size="lg"
-        label="New Password"
-        placeholder="Enter your new password"
+        label={t("forms.resetPassword.password")}
+        placeholder={t("forms.resetPassword.passwordPlaceholder")}
         before={<Icons icon="lock" />}
         inputProps={register("password")}
         error={formState.errors.password?.message}
       />
       <InputField
         size="lg"
-        label="Confirm Password"
-        placeholder="Confirm your new password"
+        label={t("forms.resetPassword.confirmPassword")}
+        placeholder={t("forms.resetPassword.confirmPasswordPlaceholder")}
         before={<Icons icon="lock" />}
         inputProps={register("confirmPassword")}
         error={formState.errors.confirmPassword?.message}
@@ -69,7 +70,7 @@ export const ChangePasswordForm = () => {
           color="error"
           loading={resetPasswordQuery.isPending}
         >
-          Change Password
+          {t("forms.resetPassword.submit")}
         </IconButton>
       </Row>
     </Form>

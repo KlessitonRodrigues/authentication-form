@@ -5,21 +5,23 @@ import { VerifyCodeForm } from "./VerifyCode";
 import { ChangePasswordForm } from "./ChangePassword";
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
+import { useClientTranslations } from "@/lib/hooks/useClientTranslation";
 
 export const ResetPasswordForm = () => {
+  const { t } = useClientTranslations();
   const params = useSearchParams();
   const resetToken = params.get("resetToken") || "";
 
   const tabItems: TabListProps["items"] = useMemo(
     () => [
       {
-        label: "Verify Code",
+        label: t("forms.resetPassword.verifyCode"),
         icon: "code",
         content: <VerifyCodeForm />,
         disabled: !!resetToken,
       },
       {
-        label: "Reset Password",
+        label: t("forms.resetPassword.resetPassword"),
         icon: "lock",
         content: <ChangePasswordForm />,
         disabled: !resetToken,

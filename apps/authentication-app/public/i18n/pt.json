@@ -1,0 +1,61 @@
+{
+  "pages": {
+    "signIn": {
+      "title": "Bem-vindo de volta!",
+      "description": "Entre com Google ou GitHub para acessar seu painel financeiro e gerenciar seus investimentos. Conecte suas contas com segurança, acompanhe o desempenho do seu portfólio, veja análises detalhadas e tome decisões informadas sobre seus objetivos financeiros.",
+      "description2": "Novo por aqui? Crie uma conta para começar e assumir o controle do seu futuro financeiro hoje!"
+    }
+  },
+  "forms": {
+    "authentication": {
+      "login": "Entrar",
+      "register": "Registrar",
+      "forgotPassword": "Esqueci a senha"
+    },
+    "signIn": {
+      "email": "E-mail",
+      "emailPlaceholder": "Digite seu e-mail",
+      "password": "Senha",
+      "passwordPlaceholder": "Digite sua senha",
+      "signInButton": "Entrar",
+      "googleButton": "Google",
+      "githubButton": "GitHub",
+      "termsAndPrivacy": "Ao entrar, você concorda com nossos Termos e Política de Privacidade."
+    },
+    "signUp": {
+      "email": "E-mail",
+      "emailPlaceholder": "Digite seu e-mail",
+      "username": "Nome de usuário",
+      "usernamePlaceholder": "Escolha um nome de usuário",
+      "password": "Senha",
+      "passwordPlaceholder": "Crie uma senha",
+      "confirmPassword": "Confirmar senha",
+      "confirmPasswordPlaceholder": "Confirme sua senha",
+      "createAccountButton": "Criar conta"
+    },
+    "resetPass": {
+      "email": "E-mail",
+      "emailPlaceholder": "Digite seu e-mail",
+      "sendChangePasswordLink": "Enviar link para redefinir senha"
+    },
+    "forgotPassword": {
+      "email": "E-mail",
+      "submit": "Redefinir senha"
+    },
+    "resetPassword": {
+      "email": "E-mail",
+      "emailPlaceholder": "Digite seu e-mail",
+      "verificationCode": "Código de verificação",
+      "verificationCodePlaceholder": "Digite seu código de verificação",
+      "verifyCode": "Verificar código",
+      "resetPassword": "Redefinir senha",
+      "password": "Nova senha",
+      "confirmPassword": "Confirmar nova senha",
+      "submit": "Definir nova senha"
+    },
+    "verification": {
+      "code": "Código de verificação",
+      "submit": "Verificar conta"
+    }
+  }
+}

@@ -4,25 +4,29 @@ import { SignUpForm } from "./SignUp";
 import { ResetPassForm } from "./ResetPass";
 import FormData from "../FormData";
 
-const TabItems: TabListProps["items"] = [
-  {
-    label: "Login",
-    icon: "signIn",
-    content: <SignInForm />,
-  },
-  {
-    label: "Register",
-    icon: "userPlus",
-    content: <SignUpForm />,
-  },
-  {
-    label: "Forgot Password",
-    icon: "questionMark",
-    content: <ResetPassForm />,
-  },
-];
+interface AuthenticationFormProps {
+  t: (key: string) => string;
+}
 
-export const AuthenticationForm = () => {
+export const AuthenticationForm = ({ t }: AuthenticationFormProps) => {
+  const TabItems: TabListProps["items"] = [
+    {
+      label: t("forms.authentication.login"),
+      icon: "signIn",
+      content: <SignInForm />,
+    },
+    {
+      label: t("forms.authentication.register"),
+      icon: "userPlus",
+      content: <SignUpForm />,
+    },
+    {
+      label: t("forms.authentication.forgotPassword"),
+      icon: "questionMark",
+      content: <ResetPassForm />,
+    },
+  ];
+
   return (
     <FormData>
       <Card className="m-auto w-full min-h-160 lg:w-md">

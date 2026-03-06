@@ -59,6 +59,11 @@
   },
   "tables": {
     "transactions": {
+      "tab": {
+        "all": "Todas as Transações",
+        "new": "Nova Transação",
+        "edit": "Editar Transação"
+      },
       "columns": {
         "name": "Nome",
         "type": "Tipo",
@@ -66,12 +71,21 @@
         "value": "Valor"
       },
       "filters": {
-        "allTransactions": "Todas as Transações",
-        "revenue": "Receita",
-        "expenses": "Despesas",
-        "profit": "Lucro",
-        "new": "Nova Transação",
-        "edit": "Editar Transação"
+        "type": {
+          "title": "Tipo",
+          "allTransactions": "Todas as Transações",
+          "revenue": "Receita",
+          "expense": "Despesa",
+          "profit": "Lucro"
+        },
+        "date": {
+          "title": "Data",
+          "all": "Todas as Datas",
+          "last7Days": "Últimos 7 Dias",
+          "last30Days": "Últimos 30 Dias",
+          "thisMonth": "Este Mês",
+          "lastMonth": "Mês Passado"
+        }
       }
     }
   },
