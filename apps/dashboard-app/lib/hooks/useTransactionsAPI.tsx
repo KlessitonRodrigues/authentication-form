@@ -1,16 +1,76 @@
 import { useEffect, useState } from "react";
 
 const mockData = [
-  { id: "1", name: "test", date: "12/01/2025", type: "Revenue", value: 12344 },
-  { id: "2", name: "test", date: "12/01/2025", type: "Expense", value: 12344 },
-  { id: "3", name: "test", date: "12/01/2025", type: "Profit", value: 12344 },
-  { id: "4", name: "test", date: "12/01/2025", type: "Revenue", value: 12344 },
-  { id: "5", name: "test", date: "12/01/2025", type: "Expense", value: 12344 },
-  { id: "6", name: "test", date: "12/01/2025", type: "Profit", value: 12344 },
-  { id: "7", name: "test", date: "12/01/2025", type: "Revenue", value: 12344 },
-  { id: "8", name: "test", date: "12/01/2025", type: "Expense", value: 12344 },
-  { id: "9", name: "test", date: "12/01/2025", type: "Profit", value: 12344 },
-  { id: "10", name: "test", date: "12/01/2025", type: "Revenue", value: 12344 },
+  {
+    id: "1",
+    name: "Acme Corp",
+    date: "12/01/2025",
+    type: "Revenue",
+    value: 12344,
+  },
+  {
+    id: "2",
+    name: "Tech Solutions",
+    date: "12/01/2025",
+    type: "Expense",
+    value: 12344,
+  },
+  {
+    id: "3",
+    name: "Global Industries",
+    date: "12/01/2025",
+    type: "Profit",
+    value: 12344,
+  },
+  {
+    id: "4",
+    name: "Nexus Labs",
+    date: "12/01/2025",
+    type: "Revenue",
+    value: 12344,
+  },
+  {
+    id: "5",
+    name: "Vertex Capital",
+    date: "12/01/2025",
+    type: "Expense",
+    value: 12344,
+  },
+  {
+    id: "6",
+    name: "Prime Analytics",
+    date: "12/01/2025",
+    type: "Profit",
+    value: 12344,
+  },
+  {
+    id: "7",
+    name: "Summit Trading",
+    date: "12/01/2025",
+    type: "Revenue",
+    value: 12344,
+  },
+  {
+    id: "8",
+    name: "Quantum Ventures",
+    date: "12/01/2025",
+    type: "Expense",
+    value: 12344,
+  },
+  {
+    id: "9",
+    name: "Stellar Digital",
+    date: "12/01/2025",
+    type: "Profit",
+    value: 12344,
+  },
+  {
+    id: "10",
+    name: "Horizon Financial",
+    date: "12/01/2025",
+    type: "Revenue",
+    value: 12344,
+  },
 ];
 
 const useTransactionsAPI = () => {

@@ -1,12 +1,14 @@
 import { useClientTranslations } from "@/lib/hooks/useClientTranslation";
 import {
   Column,
+  Icons,
   Pagination,
   Row,
   Selector,
   Table,
+  TableProps,
 } from "@packages/daisy-ui-components";
-import { useMemo } from "react";
+import { JSX, useMemo } from "react";
 
 interface TransactionsTableProps {
   items: any[];
@@ -19,10 +21,24 @@ interface TransactionsTableProps {
   onSelect?: (item: any) => void;
 }
 
-const getTableColumns = (t: any) => [
+const typeIconMap: Record<string, JSX.Element> = {
+  Revenue: <Icons icon="upArrow" size="16" className="text-success" />,
+  Expense: <Icons icon="downArrow" size="16" className="text-error" />,
+  Profit: <Icons icon="currency" size="16" />,
+};
+
+const getTableColumns = (t: any): TableProps["columns"] => [
   { label: t("tables.transactions.columns.name"), key: "name" },
-  { label: t("tables.transactions.columns.type"), key: "type" },
-  { label: t("tables.transactions.columns.date"), key: "date" },
+  {
+    label: t("tables.transactions.columns.type"),
+    key: "type",
+    render: (item: any) => typeIconMap[item.type],
+  },
+  {
+    label: t("tables.transactions.columns.date"),
+    key: "date",
+    responsive: "sm",
+  },
   {
     label: t("tables.transactions.columns.value"),
     key: "value",

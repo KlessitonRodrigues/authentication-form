@@ -1,6 +1,6 @@
 "use client";
 import { Column, TabList } from "@packages/daisy-ui-components";
-import useTransactions from "@/lib/hooks/useTransactionsAPI";
+import useTransactionsAPI from "@/lib/hooks/useTransactionsAPI";
 import { useClientTranslations } from "@/lib/hooks/useClientTranslation";
 import TransactionsForm from "./TransactionForm";
 import TransactionsTable from "./TransactionTable";
@@ -8,7 +8,7 @@ import TransactionsTable from "./TransactionTable";
 const TransactionsView = () => {
   const { t } = useClientTranslations();
   const { transactions, editId, setType, setDate, setEditId } =
-    useTransactions();
+    useTransactionsAPI();
 
   const handleSelectTab = (index: number) => {
     if (index === 0) setEditId(0);
@@ -23,7 +23,7 @@ const TransactionsView = () => {
         items={[
           {
             label: t("tables.transactions.tab.all"),
-            icon: "chart",
+            icon: "list",
             content: (
               <TransactionsTable
                 items={transactions}

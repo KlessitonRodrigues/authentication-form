@@ -101,7 +101,8 @@
       "type": "Type",
       "date": "Date",
       "value": "Value",
-      "saveBtn": "Save"
+      "saveBtn": "Save",
+      "deleteBtn": "Delete"
     }
   }
 }

@@ -104,7 +104,8 @@
       "type": "Tipo",
       "date": "Data",
       "value": "Valor",
-      "saveBtn": "Salvar"
+      "saveBtn": "Salvar",
+      "deleteBtn": "Excluir"
     }
   }
 }
