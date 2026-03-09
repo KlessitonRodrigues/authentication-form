@@ -1,5 +1,5 @@
 "use client";
-import useAuthentication from "@/lib/hooks/useAuthentication";
+import useAuthentication from "@/lib/hooks/useAuthenticationAPI";
 import { useClientTranslations } from "@/lib/hooks/useClientTranslation";
 
 import useUserStore from "@/lib/store/user";
@@ -113,7 +113,7 @@ const NavBarView = () => {
           />
         }
       />
-      <Row>
+      <Row className="px-2 xl:px-0">
         <Breadcumbs items={pathItems} />
       </Row>
     </>

@@ -1,5 +1,9 @@
-import NavbarView from "@/lib/views/Navigation/NavbarView";
-import { LoadScreen, Page, Toastify } from "@packages/daisy-ui-components";
+import {
+  LoadScreen,
+  Page,
+  PageContent,
+  Toastify,
+} from "@packages/daisy-ui-components";
 import { Suspense } from "react";
 
 import {
@@ -7,6 +11,7 @@ import {
   setTranslationEnv,
 } from "@/lib/hooks/useServerTranslation";
 import { NEXTJS } from "@packages/common-types";
+import NavBarView from "@/lib/views/navigation/NavbarView";
 
 export { generateStaticParams };
 
@@ -14,12 +19,12 @@ export default async function PageLayout(props: NEXTJS.PageProps) {
   setTranslationEnv((await props.params)?.lang);
 
   return (
-    <Page>
-      <Suspense fallback={<LoadScreen />}>
-        <NavbarView />
-        {props.children}
-      </Suspense>
-      <Toastify />
-    </Page>
+    <Suspense fallback={<LoadScreen />}>
+      <Page>
+        <NavBarView />
+        <PageContent>{props.children}</PageContent>
+        <Toastify />
+      </Page>
+    </Suspense>
   );
 }

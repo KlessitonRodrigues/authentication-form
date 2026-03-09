@@ -1,9 +1,9 @@
 "use client";
 import { Column, TabList } from "@packages/daisy-ui-components";
-import TransactionsTable from "./TransactionTable";
-import useTransactions from "@/lib/hooks/useTransactions";
+import useTransactions from "@/lib/hooks/useTransactionsAPI";
 import { useClientTranslations } from "@/lib/hooks/useClientTranslation";
-import TransactionsForm from "@/lib/forms/transactions";
+import TransactionsForm from "./TransactionForm";
+import TransactionsTable from "./TransactionTable";
 
 const TransactionsView = () => {
   const { t } = useClientTranslations();

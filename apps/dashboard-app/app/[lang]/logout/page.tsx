@@ -1,9 +1,9 @@
-import SignOutView from "@/lib/views/Navigation/SignOutView";
 import { Column, Paper, Text } from "@packages/daisy-ui-components";
 
 import { useServerTranslations } from "@/lib/hooks/useServerTranslation";
 
 import { NEXTJS } from "@packages/common-types";
+import SignOutView from "@/lib/views/authentication/SignOutView";
 
 export default async function LogoutPage(props: NEXTJS.PageProps) {
   const { t } = await useServerTranslations(props);

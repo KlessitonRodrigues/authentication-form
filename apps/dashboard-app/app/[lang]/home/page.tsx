@@ -1,4 +1,3 @@
-import TransactionsView from "@/lib/views/Transactions/TransactionView";
 import {
   Column,
   CurrencyCard,
@@ -9,6 +8,7 @@ import {
 import { NEXTJS } from "@packages/common-types";
 
 import { useServerTranslations } from "@/lib/hooks/useServerTranslation";
+import TransactionsView from "@/lib/views/transactions/TransactionView";
 
 export default async function HomePage(props: NEXTJS.PageProps) {
   const { t } = await useServerTranslations(props);

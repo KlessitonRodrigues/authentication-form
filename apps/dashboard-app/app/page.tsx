@@ -1,5 +1,5 @@
 "use client";
-import useAuthentication from "@/lib/hooks/useAuthentication";
+import useAuthentication from "@/lib/hooks/useAuthenticationAPI";
 import { LoadScreen } from "@packages/daisy-ui-components";
 import { Suspense, useEffect } from "react";
 

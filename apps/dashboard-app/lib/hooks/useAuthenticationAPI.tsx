@@ -7,7 +7,7 @@ import { DefinedInitialDataOptions, useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
-const useAuthentication = () => {
+const useAuthenticationAPI = () => {
   const { setUser } = useUserStore();
   const params = useSearchParams();
   const router = useRouter();
@@ -65,4 +65,4 @@ const useAuthentication = () => {
   return { refreshTokenQuery, signOutQuery };
 };
 
-export default useAuthentication;
+export default useAuthenticationAPI;

@@ -10,7 +10,7 @@ import { createUserSchema } from "@packages/common-types";
 import UserFormSchema from "@/lib/hooks/useFormSchema";
 import { useClientTranslations } from "@/lib/hooks/useClientTranslation";
 
-export const UserProfileForm = () => {
+const UserAccountForm = () => {
   const { t } = useClientTranslations();
   const { errors, register, handleSubmit } = UserFormSchema(createUserSchema);
 
@@ -89,3 +89,5 @@ export const UserProfileForm = () => {
     </Form>
   );
 };
+
+export default UserAccountForm;

@@ -13,12 +13,12 @@
       "forgotPassword": "Forgot Password"
     },
     "resetPass": {
-      "email": "Email",
+      "email": "E-mail",
       "emailPlaceholder": "Enter your email",
       "sendChangePasswordLink": "Send password reset link"
     },
     "signIn": {
-      "email": "Email",
+      "email": "E-mail",
       "emailPlaceholder": "Enter your email",
       "password": "Password",
       "passwordPlaceholder": "Enter your password",
@@ -28,7 +28,7 @@
       "termsAndPrivacy": "By signing in, you agree to our Terms of Service and Privacy Policy."
     },
     "signUp": {
-      "email": "Email",
+      "email": "E-mail",
       "emailPlaceholder": "Enter your email",
       "username": "Username",
       "usernamePlaceholder": "Choose a username",
@@ -39,11 +39,11 @@
       "createAccountButton": "Sign Up"
     },
     "forgotPassword": {
-      "email": "Email",
+      "email": "E-mail",
       "submit": "Reset Password"
     },
     "resetPassword": {
-      "email": "Email",
+      "email": "E-mail",
       "emailPlaceholder": "Enter your email",
       "verificationCode": "Verification Code",
       "verificationCodePlaceholder": "Enter your verification code",

@@ -13,7 +13,7 @@ const mockData = [
   { id: "10", name: "test", date: "12/01/2025", type: "Revenue", value: 12344 },
 ];
 
-const useTransactions = () => {
+const useTransactionsAPI = () => {
   const [transactions, setTransactions] = useState(mockData);
   const [type, setType] = useState("All");
   const [date, setDate] = useState("All");
@@ -29,4 +29,4 @@ const useTransactions = () => {
   return { transactions, type, date, editId, setType, setDate, setEditId };
 };
 
-export default useTransactions;
+export default useTransactionsAPI;

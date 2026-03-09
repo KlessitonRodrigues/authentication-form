@@ -61,7 +61,7 @@ const TransactionsForm = () => {
       </Column>
       <Row>
         <IconButton type="submit" icon="save" color="primary">
-          Save
+          {t("forms.transactions.submitBtn")}
         </IconButton>
       </Row>
     </Form>
