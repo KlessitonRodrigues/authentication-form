@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
 import {
   Column,
-  getDefaultLanguage,
-  isDarkTheme,
   RadioInputField,
   Selector,
+  Switch,
+  getDefaultLanguage,
+  isDarkTheme,
   setDefaultLanguage,
   setTheme,
-  Switch,
-} from "@packages/daisy-ui-components";
+} from '@packages/daisy-ui-components';
 
 const SettingsView = () => {
   const isDarkMode = isDarkTheme();
@@ -19,16 +19,16 @@ const SettingsView = () => {
       <Selector
         label="Language"
         defaultValue={getDefaultLanguage()}
-        onChange={(value) => setDefaultLanguage(value)}
+        onChange={value => setDefaultLanguage(value)}
         options={[
-          { label: "English", value: "en" },
-          { label: "Portuguese", value: "pt" },
+          { label: 'English', value: 'en' },
+          { label: 'Portuguese', value: 'pt' },
         ]}
       />
       <Switch
         label="Dark Mode"
         checked={isDarkMode}
-        onChange={(setDark) => setTheme(setDark ? "dark" : "light")}
+        onChange={setDark => setTheme(setDark ? 'dark' : 'light')}
       />
     </Column>
   );

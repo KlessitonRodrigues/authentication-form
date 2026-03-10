@@ -1,10 +1,7 @@
-import {
-  generateStaticParams,
-  setTranslationEnv,
-} from "@/lib/hooks/useServerTranslation";
-import { NEXTJS } from "@packages/common-types";
-import { LoadScreen } from "@packages/daisy-ui-components";
-import { Suspense } from "react";
+import { generateStaticParams, setTranslationEnv } from '@/lib/hooks/useServerTranslation';
+import { NEXTJS } from '@packages/common-types';
+import { LoadScreen } from '@packages/daisy-ui-components';
+import { Suspense } from 'react';
 
 export { generateStaticParams };
 

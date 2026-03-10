@@ -1,8 +1,6 @@
-import { Column, Paper, TitleIcon } from "@packages/daisy-ui-components";
-
-import { useServerTranslations } from "@/lib/hooks/useServerTranslation";
-
-import { NEXTJS } from "@packages/common-types";
+import { useServerTranslations } from '@/lib/hooks/useServerTranslation';
+import { NEXTJS } from '@packages/common-types';
+import { Column, Paper, TitleIcon } from '@packages/daisy-ui-components';
 
 export default async function HelpPage(props: NEXTJS.PageProps) {
   const { t } = await useServerTranslations(props);
@@ -10,7 +8,7 @@ export default async function HelpPage(props: NEXTJS.PageProps) {
   return (
     <Column>
       <Paper>
-        <TitleIcon title={t("help.title")} icon="questionMark" />
+        <TitleIcon title={t('help.title')} icon="questionMark" />
       </Paper>
     </Column>
   );

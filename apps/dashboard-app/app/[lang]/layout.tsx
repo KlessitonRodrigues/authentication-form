@@ -1,17 +1,8 @@
-import {
-  LoadScreen,
-  Page,
-  PageContent,
-  Toastify,
-} from "@packages/daisy-ui-components";
-import { Suspense } from "react";
-
-import {
-  generateStaticParams,
-  setTranslationEnv,
-} from "@/lib/hooks/useServerTranslation";
-import { NEXTJS } from "@packages/common-types";
-import NavBarView from "@/lib/views/navigation/NavbarView";
+import { generateStaticParams, setTranslationEnv } from '@/lib/hooks/useServerTranslation';
+import NavBarView from '@/lib/views/navigation/NavbarView';
+import { NEXTJS } from '@packages/common-types';
+import { LoadScreen, Page, PageContent, Toastify } from '@packages/daisy-ui-components';
+import { Suspense } from 'react';
 
 export { generateStaticParams };
 

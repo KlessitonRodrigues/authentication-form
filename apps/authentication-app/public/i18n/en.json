@@ -1,7 +1,7 @@
 {
   "pages": {
     "signIn": {
-      "title": "Welcome Back!",
+      "title": "Welcome!",
       "description": "Sign in with Google or GitHub to access your financial dashboard and manage your investments. Securely connect your accounts, track your portfolio performance, view detailed analytics, and make informed decisions about your financial goals.",
       "description2": "New here? Create an account to get started and take control of your financial future today!"
     }

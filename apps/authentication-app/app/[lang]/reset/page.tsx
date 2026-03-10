@@ -1,13 +1,10 @@
-import { ResetPasswordForm } from "@/lib/forms/ResetPassword";
-import {
-  LoginCardSection,
-  PageFull,
-  materialColors,
-} from "@packages/daisy-ui-components";
-import { generateStaticParams } from "../page";
-import { NEXTJS } from "@packages/common-types";
-import { useServerTranslations } from "@/lib/hooks/useServerTranslation";
-import LoginBgImg from "@/public/images/bluehillssunset.jpg";
+import { AuthenticationForm } from '@/lib/forms/Authentication';
+import { useServerTranslations } from '@/lib/hooks/useServerTranslation';
+import minimalBgImg from '@/public/images/minimal_bg.jpg';
+import { NEXTJS } from '@packages/common-types';
+import { PageFull, SignInScreenV2, materialColors } from '@packages/daisy-ui-components';
+
+import { generateStaticParams } from '../page';
 
 export { generateStaticParams };
 
@@ -16,19 +13,18 @@ export default async function ResetPage(page: NEXTJS.PageProps) {
 
   return (
     <PageFull>
-      <LoginCardSection
+      <SignInScreenV2
         data={{
-          title: t("pages.signIn.title"),
-          description: t("pages.signIn.description"),
-          description2: t("pages.signIn.description2"),
-          bgImageUrl: LoginBgImg.src,
-          bgBrightness: 0.6,
+          title: t('pages.signIn.title'),
+          description: t('pages.signIn.description'),
+          bgImageUrl: minimalBgImg.src,
+          bgBrightness: 0.75,
         }}
-        bgGradient={{
-          from: materialColors.blue["200"],
-          to: materialColors.amber["100"],
+        bgColors={{
+          from: materialColors.deepPurple['100'],
+          to: materialColors.lightBlue['50'],
         }}
-        loginForm={<ResetPasswordForm />}
+        loginForm={<AuthenticationForm t={t} />}
       />
     </PageFull>
   );

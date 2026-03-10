@@ -1,9 +1,9 @@
-"use client";
-import { Button, Form, Icons, InputField } from "@packages/daisy-ui-components";
-import useAuthentication from "@/lib/hooks/useAuthentication";
-import { useFormSchema } from "@/lib/hooks/useFormSchema";
-import { createAuthSchemas } from "@packages/common-types";
-import { useClientTranslations } from "@/lib/hooks/useClientTranslation";
+'use client';
+import useAuthentication from '@/lib/hooks/useAuthentication';
+import { useClientTranslations } from '@/lib/hooks/useClientTranslation';
+import { useFormSchema } from '@/lib/hooks/useFormSchema';
+import { createAuthSchemas } from '@packages/common-types';
+import { Button, Form, Icons, InputField } from '@packages/daisy-ui-components';
 
 export const SignUpForm = () => {
   const { t, lang } = useClientTranslations();
@@ -18,42 +18,42 @@ export const SignUpForm = () => {
       <InputField
         size="lg"
         type="email"
-        label={t("forms.signUp.email")}
-        placeholder={t("forms.signUp.emailPlaceholder")}
+        label={t('forms.signUp.email')}
+        placeholder={t('forms.signUp.emailPlaceholder')}
         before={<Icons icon="email" />}
         error={errors.email?.message?.toString()}
-        inputProps={register("email")}
+        inputProps={register('email')}
       />
       <InputField
         size="lg"
         type="text"
-        label={t("forms.signUp.username")}
-        placeholder={t("forms.signUp.usernamePlaceholder")}
+        label={t('forms.signUp.username')}
+        placeholder={t('forms.signUp.usernamePlaceholder')}
         before={<Icons icon="user" />}
         error={errors.userName?.message?.toString()}
-        inputProps={register("userName")}
+        inputProps={register('userName')}
       />
       <InputField
         size="lg"
         type="password"
-        label={t("forms.signUp.password")}
-        placeholder={t("forms.signUp.passwordPlaceholder")}
+        label={t('forms.signUp.password')}
+        placeholder={t('forms.signUp.passwordPlaceholder')}
         before={<Icons icon="lock" />}
         error={errors.password?.message?.toString()}
-        inputProps={register("password")}
+        inputProps={register('password')}
       />
       <InputField
         size="lg"
         type="password"
-        label={t("forms.signUp.confirmPassword")}
-        placeholder={t("forms.signUp.confirmPasswordPlaceholder")}
+        label={t('forms.signUp.confirmPassword')}
+        placeholder={t('forms.signUp.confirmPasswordPlaceholder')}
         before={<Icons icon="lock" />}
         error={errors.confirmPassword?.message?.toString()}
-        inputProps={register("confirmPassword")}
+        inputProps={register('confirmPassword')}
       />
       <Button color="primary" loading={signupQuery.isPending}>
         <Icons icon="userPlus" />
-        {t("forms.signUp.createAccountButton")}
+        {t('forms.signUp.createAccountButton')}
       </Button>
     </Form>
   );

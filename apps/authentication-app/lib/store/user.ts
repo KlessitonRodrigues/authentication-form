@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
 interface User {
   id: string;
@@ -12,9 +12,9 @@ interface UserState {
   clearUser: () => void;
 }
 
-const useUserStore = create<UserState>((set) => ({
+const useUserStore = create<UserState>(set => ({
   user: null,
-  setUser: (user) => set({ user }),
+  setUser: user => set({ user }),
   clearUser: () => set({ user: null }),
 }));
 

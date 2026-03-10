@@ -1,6 +1,6 @@
-"use client";
-import useUserStore from "@/lib/store/user";
-import { Column, DataDisplay, Icons, Row } from "@packages/daisy-ui-components";
+'use client';
+import useUserStore from '@/lib/store/user';
+import { Column, DataDisplay, Icons, Row } from '@packages/daisy-ui-components';
 
 const UserAccountView = () => {
   const { user } = useUserStore();
@@ -11,9 +11,9 @@ const UserAccountView = () => {
         <Icons icon="user" size="34" />
       </Row>
       <Column>
-        <DataDisplay label="ID" value={user?.id || "User Account"} />
-        <DataDisplay label="Name" value={user?.name || "User Account"} />
-        <DataDisplay label="Email" value={user?.email || "User Account"} />
+        <DataDisplay label="ID" value={user?.id || 'User Account'} />
+        <DataDisplay label="Name" value={user?.name || 'User Account'} />
+        <DataDisplay label="Email" value={user?.email || 'User Account'} />
       </Column>
     </Row>
   );

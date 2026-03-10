@@ -1,28 +1,29 @@
-import { Card, TabList, TabListProps } from "@packages/daisy-ui-components";
-import { SignInForm } from "./SignIn";
-import { SignUpForm } from "./SignUp";
-import { ResetPassForm } from "./ResetPass";
-import FormData from "../FormData";
+import { Card, TabList, TabListProps } from '@packages/daisy-ui-components';
+
+import FormData from '../FormData';
+import { ResetPassForm } from './ResetPass';
+import { SignInForm } from './SignIn';
+import { SignUpForm } from './SignUp';
 
 interface AuthenticationFormProps {
   t: (key: string) => string;
 }
 
 export const AuthenticationForm = ({ t }: AuthenticationFormProps) => {
-  const TabItems: TabListProps["items"] = [
+  const TabItems: TabListProps['items'] = [
     {
-      label: t("forms.authentication.login"),
-      icon: "signIn",
+      label: t('forms.authentication.login'),
+      icon: 'signIn',
       content: <SignInForm />,
     },
     {
-      label: t("forms.authentication.register"),
-      icon: "userPlus",
+      label: t('forms.authentication.register'),
+      icon: 'userPlus',
       content: <SignUpForm />,
     },
     {
-      label: t("forms.authentication.forgotPassword"),
-      icon: "questionMark",
+      label: t('forms.authentication.forgotPassword'),
+      icon: 'questionMark',
       content: <ResetPassForm />,
     },
   ];

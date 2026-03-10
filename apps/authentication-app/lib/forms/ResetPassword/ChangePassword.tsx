@@ -1,29 +1,23 @@
-"use client";
-import {
-  Form,
-  IconButton,
-  Icons,
-  InputField,
-  Row,
-} from "@packages/daisy-ui-components";
-import { AuthForm, getAuthValidation } from "./validation";
-import { useForm } from "react-hook-form";
-import useAuthentication from "@/lib/hooks/useAuthentication";
-import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-import { useClientTranslations } from "@/lib/hooks/useClientTranslation";
+'use client';
+import useAuthentication from '@/lib/hooks/useAuthentication';
+import { useClientTranslations } from '@/lib/hooks/useClientTranslation';
+import { Form, IconButton, Icons, InputField, Row } from '@packages/daisy-ui-components';
+import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 
-const formValidation = getAuthValidation("changePassword");
+import { AuthForm, getAuthValidation } from './validation';
+
+const formValidation = getAuthValidation('changePassword');
 
 export const ChangePasswordForm = () => {
   const { t } = useClientTranslations();
   const { resetPasswordQuery } = useAuthentication();
   const params = useSearchParams();
-  const email = params.get("email");
-  const resetToken = params.get("resetToken") || "";
+  const email = params.get('email');
+  const resetToken = params.get('resetToken') || '';
 
-  const { formState, register, handleSubmit, ...form } =
-    useForm(formValidation);
+  const { formState, register, handleSubmit, ...form } = useForm(formValidation);
 
   const onSubmit = (data: AuthForm) => {
     resetPasswordQuery.mutate({
@@ -33,7 +27,7 @@ export const ChangePasswordForm = () => {
   };
 
   useEffect(() => {
-    if (email) form.setValue("email", email);
+    if (email) form.setValue('email', email);
   }, [email, form]);
 
   return (
@@ -41,36 +35,32 @@ export const ChangePasswordForm = () => {
       <InputField
         size="lg"
         type="email"
-        label={t("forms.resetPassword.email")}
-        placeholder={t("forms.resetPassword.emailPlaceholder")}
+        label={t('forms.resetPassword.email')}
+        placeholder={t('forms.resetPassword.emailPlaceholder')}
         before={<Icons icon="email" />}
         disabled
-        inputProps={register("email")}
+        inputProps={register('email')}
         error={formState.errors.email?.message}
       />
       <InputField
         size="lg"
-        label={t("forms.resetPassword.password")}
-        placeholder={t("forms.resetPassword.passwordPlaceholder")}
+        label={t('forms.resetPassword.password')}
+        placeholder={t('forms.resetPassword.passwordPlaceholder')}
         before={<Icons icon="lock" />}
-        inputProps={register("password")}
+        inputProps={register('password')}
         error={formState.errors.password?.message}
       />
       <InputField
         size="lg"
-        label={t("forms.resetPassword.confirmPassword")}
-        placeholder={t("forms.resetPassword.confirmPasswordPlaceholder")}
+        label={t('forms.resetPassword.confirmPassword')}
+        placeholder={t('forms.resetPassword.confirmPasswordPlaceholder')}
         before={<Icons icon="lock" />}
-        inputProps={register("confirmPassword")}
+        inputProps={register('confirmPassword')}
         error={formState.errors.confirmPassword?.message}
       />
       <Row flexX="center">
-        <IconButton
-          icon="checkMark"
-          color="error"
-          loading={resetPasswordQuery.isPending}
-        >
-          {t("forms.resetPassword.submit")}
+        <IconButton icon="checkMark" color="error" loading={resetPasswordQuery.isPending}>
+          {t('forms.resetPassword.submit')}
         </IconButton>
       </Row>
     </Form>
