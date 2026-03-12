@@ -8,7 +8,7 @@ const UserAccountView = () => {
   return (
     <Row flexX="start" responsive="md" gap={4}>
       <Row className="border p-16 w-fit">
-        <Icons icon="user" size="34" />
+        <Icons iconType="user" iconSize="1.8rem" />
       </Row>
       <Column>
         <DataDisplay label="ID" value={user?.id || 'User Account'} />

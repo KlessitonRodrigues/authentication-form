@@ -20,7 +20,7 @@ export default async function RootPage(page: NEXTJS.PageProps) {
         }}
         bgColors={{
           from: materialColors.deepPurple['100'],
-          to: materialColors.lightBlue['50'],
+          to: materialColors.cyan['50'],
         }}
         loginForm={<AuthenticationForm t={t} />}
       />

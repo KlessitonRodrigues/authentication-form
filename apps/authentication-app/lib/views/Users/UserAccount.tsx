@@ -8,10 +8,10 @@ const UserAccount = () => {
   return (
     <Card>
       <Row>
-        <Icons icon="user" />
+        <Icons iconType="user" />
         <Text>{user?.name || 'User Account'}</Text>
         <Button ghost color="accent" size="sm">
-          <Icons icon="signOut" />
+          <Icons iconType="signOut" />
         </Button>
       </Row>
     </Card>

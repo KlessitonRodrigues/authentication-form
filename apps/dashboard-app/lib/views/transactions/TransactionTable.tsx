@@ -22,9 +22,9 @@ interface TransactionsTableProps {
 }
 
 const typeIconMap: Record<string, JSX.Element> = {
-  Revenue: <Icons icon="upArrow" size="16" className="text-success" />,
-  Expense: <Icons icon="downArrow" size="16" className="text-error" />,
-  Profit: <Icons icon="currency" size="16" />,
+  Revenue: <Icons iconType="upArrow" iconSize="1rem" className="text-success" />,
+  Expense: <Icons iconType="downArrow" iconSize="1rem" className="text-error" />,
+  Profit: <Icons iconType="currency" iconSize="1rem" />,
 };
 
 const getTableColumns = (t: any): TableProps['columns'] => [

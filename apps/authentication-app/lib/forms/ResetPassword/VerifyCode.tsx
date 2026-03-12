@@ -35,7 +35,7 @@ export const VerifyCodeForm = () => {
         type="email"
         label={t('forms.resetPassword.email')}
         placeholder={t('forms.resetPassword.emailPlaceholder')}
-        before={<Icons icon="email" />}
+        before={<Icons iconType="email" />}
         disabled
         inputProps={register('email')}
         error={formState.errors.email?.message}
@@ -45,13 +45,13 @@ export const VerifyCodeForm = () => {
         type="text"
         label={t('forms.resetPassword.verificationCode')}
         placeholder={t('forms.resetPassword.verificationCodePlaceholder')}
-        before={<Icons icon="code" size="22" />}
+        before={<Icons iconType="code" />}
         inputProps={register('code')}
         error={formState.errors.code?.message}
       />
       <Row flexX="center">
         <Button color="primary" loading={verifyRecoveryCodeQuery.isPending}>
-          <Icons icon="checkMark" size="22" />
+          <Icons iconType="checkMark" />
           {t('forms.resetPassword.verifyCode')}
         </Button>
       </Row>

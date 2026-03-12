@@ -22,12 +22,12 @@ export const ResetPassForm = () => {
         type="email"
         label={t('forms.resetPass.email')}
         placeholder={t('forms.resetPass.emailPlaceholder')}
-        before={<Icons icon="email" />}
+        before={<Icons iconType="email" />}
         inputProps={register('email')}
         error={errors.email?.message?.toString()}
       />
       <Button color="primary" loading={sendRecoveryCodeQuery.isPending}>
-        <Icons icon="email" />
+        <Icons iconType="email" />
         {t('forms.resetPass.sendChangePasswordLink')}
       </Button>
     </Form>

@@ -9,12 +9,12 @@
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "24.10.1",
-    "aws-cdk": "2.1033.0",
+    "aws-cdk": "^2.1110.0",
     "ts-node": "^10.9.2",
     "typescript": "~5.9.3"
   },
   "dependencies": {
-    "aws-cdk-lib": "^2.137.0",
+    "aws-cdk-lib": "2.137.0",
     "constructs": "^10.3.0"
   },
   "peerDependencies": {

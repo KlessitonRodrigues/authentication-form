@@ -9,7 +9,7 @@ export const errorMsg = {
 
 export const dictionaries = {
   en: {
-    REQUIRED: "Required",
+    REQUIRED: "Required field",
     INVALID_EMAIL: "Invalid email address",
     PASSWORD_MIN: "Password must be at least 6 characters",
     USERNAME_MIN: "Username must be at least 3 characters",
@@ -17,7 +17,7 @@ export const dictionaries = {
     MUST_BE_POSITIVE: "Value must be a positive number",
   },
   pt: {
-    REQUIRED: "Obrigatório",
+    REQUIRED: "Campo obrigatório",
     INVALID_EMAIL: "Endereço de email inválido",
     PASSWORD_MIN: "A senha deve ter pelo menos 6 caracteres",
     USERNAME_MIN: "O nome de usuário deve ter pelo menos 3 caracteres",

@@ -37,7 +37,7 @@ export const ChangePasswordForm = () => {
         type="email"
         label={t('forms.resetPassword.email')}
         placeholder={t('forms.resetPassword.emailPlaceholder')}
-        before={<Icons icon="email" />}
+        before={<Icons iconType="email" />}
         disabled
         inputProps={register('email')}
         error={formState.errors.email?.message}
@@ -46,7 +46,7 @@ export const ChangePasswordForm = () => {
         size="lg"
         label={t('forms.resetPassword.password')}
         placeholder={t('forms.resetPassword.passwordPlaceholder')}
-        before={<Icons icon="lock" />}
+        before={<Icons iconType="lock" />}
         inputProps={register('password')}
         error={formState.errors.password?.message}
       />
@@ -54,12 +54,12 @@ export const ChangePasswordForm = () => {
         size="lg"
         label={t('forms.resetPassword.confirmPassword')}
         placeholder={t('forms.resetPassword.confirmPasswordPlaceholder')}
-        before={<Icons icon="lock" />}
+        before={<Icons iconType="lock" />}
         inputProps={register('confirmPassword')}
         error={formState.errors.confirmPassword?.message}
       />
       <Row flexX="center">
-        <IconButton icon="checkMark" color="error" loading={resetPasswordQuery.isPending}>
+        <IconButton iconType="checkMark" color="error" loading={resetPasswordQuery.isPending}>
           {t('forms.resetPassword.submit')}
         </IconButton>
       </Row>

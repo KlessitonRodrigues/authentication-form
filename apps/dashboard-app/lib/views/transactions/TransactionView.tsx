@@ -36,7 +36,6 @@ const TransactionsView = () => {
           {
             label: editId ? t('tables.transactions.tab.edit') : t('tables.transactions.tab.new'),
             icon: 'plus',
-            color: 'main',
             content: <TransactionsForm />,
           },
         ]}

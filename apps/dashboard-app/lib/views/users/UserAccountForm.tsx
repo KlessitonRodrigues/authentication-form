@@ -20,7 +20,7 @@ const UserAccountForm = () => {
           type="text"
           label={t('forms.users.phone')}
           placeholder="(xx) xxxxx-xxxx"
-          before={<Icons icon="phone" />}
+          before={<Icons iconType="phone" />}
           inputProps={register('phone')}
           error={errors.phone?.message?.toString()}
         />
@@ -29,7 +29,7 @@ const UserAccountForm = () => {
           type="text"
           label={t('forms.users.phone2')}
           placeholder="(xx) xxxxx-xxxx"
-          before={<Icons icon="phone" />}
+          before={<Icons iconType="phone" />}
           inputProps={register('phone2')}
           error={errors.phone2?.message?.toString()}
         />
@@ -40,7 +40,7 @@ const UserAccountForm = () => {
           type="text"
           label={t('forms.users.city')}
           placeholder="San Francisco"
-          before={<Icons icon="address" />}
+          before={<Icons iconType="address" />}
           inputProps={register('addressCity')}
           error={errors.addressCity?.message?.toString()}
         />
@@ -49,7 +49,7 @@ const UserAccountForm = () => {
           type="text"
           label={t('forms.users.street')}
           placeholder="Saint Artunes, 123"
-          before={<Icons icon="address" />}
+          before={<Icons iconType="address" />}
           inputProps={register('addressStreet')}
           error={errors.addressStreet?.message?.toString()}
         />
@@ -60,7 +60,7 @@ const UserAccountForm = () => {
           type="text"
           label={t('forms.users.state')}
           placeholder="California"
-          before={<Icons icon="address" />}
+          before={<Icons iconType="address" />}
           inputProps={register('addressState')}
           error={errors.addressState?.message?.toString()}
         />
@@ -69,14 +69,14 @@ const UserAccountForm = () => {
           type="text"
           label={t('forms.users.zipCode')}
           placeholder="94103"
-          before={<Icons icon="address" />}
+          before={<Icons iconType="address" />}
           inputProps={register('addressZip')}
           error={errors.addressZip?.message?.toString()}
         />
       </Row>
 
       <Row>
-        <IconButton type="submit" icon="save" color="primary">
+        <IconButton type="submit" iconType="save" color="primary">
           {t('forms.users.saveBtn')}
         </IconButton>
       </Row>

@@ -7,7 +7,7 @@ const SignOutView = () => {
 
   return (
     <Column flexX="start">
-      <IconButton icon="signOut" onClick={() => signOutQuery.refetch()}>
+      <IconButton iconType="signOut" onClick={() => signOutQuery.refetch()}>
         Logout
       </IconButton>
     </Column>

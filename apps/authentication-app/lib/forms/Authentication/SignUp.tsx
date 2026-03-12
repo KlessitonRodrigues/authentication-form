@@ -20,7 +20,7 @@ export const SignUpForm = () => {
         type="email"
         label={t('forms.signUp.email')}
         placeholder={t('forms.signUp.emailPlaceholder')}
-        before={<Icons icon="email" />}
+        before={<Icons iconType="email" />}
         error={errors.email?.message?.toString()}
         inputProps={register('email')}
       />
@@ -29,7 +29,7 @@ export const SignUpForm = () => {
         type="text"
         label={t('forms.signUp.username')}
         placeholder={t('forms.signUp.usernamePlaceholder')}
-        before={<Icons icon="user" />}
+        before={<Icons iconType="user" />}
         error={errors.userName?.message?.toString()}
         inputProps={register('userName')}
       />
@@ -38,7 +38,7 @@ export const SignUpForm = () => {
         type="password"
         label={t('forms.signUp.password')}
         placeholder={t('forms.signUp.passwordPlaceholder')}
-        before={<Icons icon="lock" />}
+        before={<Icons iconType="lock" />}
         error={errors.password?.message?.toString()}
         inputProps={register('password')}
       />
@@ -47,12 +47,12 @@ export const SignUpForm = () => {
         type="password"
         label={t('forms.signUp.confirmPassword')}
         placeholder={t('forms.signUp.confirmPasswordPlaceholder')}
-        before={<Icons icon="lock" />}
+        before={<Icons iconType="lock" />}
         error={errors.confirmPassword?.message?.toString()}
         inputProps={register('confirmPassword')}
       />
       <Button color="primary" loading={signupQuery.isPending}>
-        <Icons icon="userPlus" />
+        <Icons iconType="userPlus" />
         {t('forms.signUp.createAccountButton')}
       </Button>
     </Form>

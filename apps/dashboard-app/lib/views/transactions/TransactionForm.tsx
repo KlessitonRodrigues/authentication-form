@@ -31,7 +31,7 @@ const TransactionsForm = () => {
             type="text"
             label={t('forms.transactions.name')}
             placeholder="John Doe"
-            before={<Icons icon="user" />}
+            before={<Icons iconType="user" />}
             inputProps={register('name')}
             error={errors.name?.message?.toString()}
           />
@@ -39,7 +39,7 @@ const TransactionsForm = () => {
             type="date"
             placeholder="dd/mm/yyyy"
             label={t('forms.transactions.date')}
-            before={<Icons icon="calendar" />}
+            before={<Icons iconType="calendar" />}
             inputProps={register('date')}
             error={errors.date?.message?.toString()}
           />
@@ -59,14 +59,14 @@ const TransactionsForm = () => {
             type="number"
             placeholder="0.00"
             label={t('forms.transactions.value')}
-            before={<Icons icon="dollar" />}
+            before={<Icons iconType="dollar" />}
             inputProps={register('value')}
             error={errors.value?.message?.toString()}
           />
         </Row>
       </Column>
       <Row>
-        <IconButton type="submit" icon="save" color="primary">
+        <IconButton type="submit" iconType="save" color="primary">
           {t('forms.transactions.saveBtn')}
         </IconButton>
         <ConfirmModal
@@ -74,7 +74,7 @@ const TransactionsForm = () => {
           message="Are you sure? to delete this"
           onConfirm={() => console.log('Deleted')}
         >
-          <IconButton type="button" icon="close" color="error">
+          <IconButton type="button" iconType="close" color="error">
             {t('forms.transactions.deleteBtn')}
           </IconButton>
         </ConfirmModal>

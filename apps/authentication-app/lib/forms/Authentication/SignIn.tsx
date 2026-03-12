@@ -23,7 +23,7 @@ export const SignInForm = () => {
         label={t('forms.signIn.email')}
         placeholder={t('forms.signIn.emailPlaceholder')}
         inputProps={register('email')}
-        before={<Icons icon="email" />}
+        before={<Icons iconType="email" />}
         error={errors.email?.message?.toString()}
       />
       <InputField
@@ -32,17 +32,17 @@ export const SignInForm = () => {
         label={t('forms.signIn.password')}
         placeholder={t('forms.signIn.passwordPlaceholder')}
         inputProps={register('password')}
-        before={<Icons icon="lock" />}
+        before={<Icons iconType="lock" />}
         error={errors.password?.message?.toString()}
       />
 
-      <IconButton icon="signIn" color="primary" loading={loginQuery.isPending} type="submit">
+      <IconButton iconType="signIn" color="primary" loading={loginQuery.isPending} type="submit">
         {t('forms.signIn.signInButton')}
       </IconButton>
 
       <Row flexX="center" gap={4}>
         <IconButton
-          icon="google"
+          iconType="google"
           color="neutral"
           type="button"
           onClick={googleLoginHandle}
@@ -51,7 +51,7 @@ export const SignInForm = () => {
           {t('forms.signIn.googleButton')}
         </IconButton>
         <IconButton
-          icon="github"
+          iconType="github"
           color="neutral"
           type="button"
           onClick={() => {
@@ -62,7 +62,7 @@ export const SignInForm = () => {
           {t('forms.signIn.githubButton')}
         </IconButton>
       </Row>
-      <Text fs="sm" className="text-center">
+      <Text size="sm" className="text-center">
         {t('forms.signIn.termsAndPrivacy')}
       </Text>
     </Form>
