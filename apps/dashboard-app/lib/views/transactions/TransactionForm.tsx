@@ -74,7 +74,7 @@ const TransactionsForm = () => {
           message="Are you sure? to delete this"
           onConfirm={() => console.log('Deleted')}
         >
-          <IconButton type="button" iconType="close" color="error">
+          <IconButton type="button" iconType="trash" color="error">
             {t('forms.transactions.deleteBtn')}
           </IconButton>
         </ConfirmModal>
