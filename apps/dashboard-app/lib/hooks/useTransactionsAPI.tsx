@@ -79,8 +79,6 @@ const useTransactionsAPI = () => {
   const [date, setDate] = useState('All');
   const [editId, setEditId] = useState(0);
 
-  console.log(type);
-
   useEffect(() => {
     if (!type || type === 'All') setTransactions(mockData);
     else setTransactions(mockData.filter(item => item.type === type));

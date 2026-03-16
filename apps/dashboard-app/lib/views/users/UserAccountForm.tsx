@@ -13,10 +13,9 @@ const UserAccountForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)} className="max-w-4xl">
       <Row responsive="md" flexY="start">
         <InputField
-          size="lg"
           type="text"
           label={t('forms.users.phone')}
           placeholder="(xx) xxxxx-xxxx"
@@ -25,7 +24,6 @@ const UserAccountForm = () => {
           error={errors.phone?.message?.toString()}
         />
         <InputField
-          size="lg"
           type="text"
           label={t('forms.users.phone2')}
           placeholder="(xx) xxxxx-xxxx"
@@ -36,7 +34,6 @@ const UserAccountForm = () => {
       </Row>
       <Row responsive="md" flexY="start">
         <InputField
-          size="lg"
           type="text"
           label={t('forms.users.city')}
           placeholder="San Francisco"
@@ -56,7 +53,6 @@ const UserAccountForm = () => {
       </Row>
       <Row responsive="md" flexY="start">
         <InputField
-          size="lg"
           type="text"
           label={t('forms.users.state')}
           placeholder="California"
@@ -65,7 +61,6 @@ const UserAccountForm = () => {
           error={errors.addressState?.message?.toString()}
         />
         <InputField
-          size="lg"
           type="text"
           label={t('forms.users.zipCode')}
           placeholder="94103"
