@@ -7,6 +7,7 @@ import * as express from 'express';
 import { handler as signIn } from '../lib/lambdas/signIn/handler';
 import { handler as signUp } from '../lib/lambdas/signUp/handler';
 import { handler as googleAuth } from '../lib/lambdas/googleSignIn/handler';
+import { handler as githubAuth } from '../lib/lambdas/githubSignIn/handler';
 import { handler as refreshToken } from '../lib/lambdas/refreshToken/handler';
 import { handler as sendRecoveryCode } from '../lib/lambdas/sendRecoveryCode/handler';
 import { handler as verifyRecoveryCode } from '../lib/lambdas/verifyRecoveryCode/handler';
@@ -19,6 +20,7 @@ const localRoutes = () => {
   router.post('/auth/signin', createLambdaEvent(signIn));
   router.post('/auth/signup', createLambdaEvent(signUp));
   router.post('/auth/google', createLambdaEvent(googleAuth));
+  router.post('/auth/github', createLambdaEvent(githubAuth));
   router.post('/auth/refresh-token', createLambdaEvent(refreshToken));
   router.post('/auth/send-recovery-code', createLambdaEvent(sendRecoveryCode));
   router.post('/auth/verify-recovery-code', createLambdaEvent(verifyRecoveryCode));

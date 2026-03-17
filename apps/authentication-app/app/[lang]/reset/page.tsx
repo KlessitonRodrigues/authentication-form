@@ -1,5 +1,5 @@
-import { AuthenticationForm } from '@/lib/forms/Authentication';
 import { useServerTranslations } from '@/lib/hooks/useServerTranslation';
+import ResetPasswordView from '@/lib/views/authentication/ResetPasswordView';
 import minimalBgImg from '@/public/images/minimal_bg.jpg';
 import { NEXTJS } from '@packages/common-types';
 import { PageFull, SignInScreenV2, materialColors } from '@packages/daisy-ui-components';
@@ -24,7 +24,7 @@ export default async function ResetPage(page: NEXTJS.PageProps) {
           from: materialColors.deepPurple['100'],
           to: materialColors.blue['50'],
         }}
-        loginForm={<AuthenticationForm t={t} />}
+        loginForm={<ResetPasswordView />}
       />
     </PageFull>
   );

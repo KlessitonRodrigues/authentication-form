@@ -1,38 +1,30 @@
 'use client';
-import dotenv from '@/lib/constants/dotenv';
 import useAuthentication from '@/lib/hooks/useAuthentication';
 import { useClientTranslations } from '@/lib/hooks/useClientTranslation';
 import { useFormSchema } from '@/lib/hooks/useFormSchema';
 import { createAuthSchemas } from '@packages/common-types';
 import { Form, IconButton, Icons, InputField, Row, Text } from '@packages/daisy-ui-components';
-
-const getGithubAuthUrl = () => {
-  const githubAuthUrl = 'https://github.com/login/oauth/authorize';
-  const redirect_uri = 'http://localhost:3000/pt/';
-  const client_id = dotenv.GITHUB_CLIENT_ID;
-  const params = new URLSearchParams({
-    client_id,
-    redirect_uri,
-    scope: 'read:user user:email',
-    state: 'RANDOM_STRING',
-  });
-
-  return `${githubAuthUrl}?${params.toString()}`;
-};
-
-const githubAuthLink = getGithubAuthUrl();
-
-console.log(githubAuthLink);
+import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 
 export const SignInForm = () => {
   const { t, lang } = useClientTranslations();
-  const { loginQuery, googleLoginQuery, googleLoginHandle } = useAuthentication();
+  const params = useSearchParams();
+  const code = params.get('code');
+
+  const { loginQuery, googleLoginQuery, githubLoginQuery, googleLoginHandle, getGithubAuthUrl } =
+    useAuthentication();
   const { signInSchema } = createAuthSchemas({ lang });
   const { errors, register, handleSubmit } = useFormSchema(signInSchema);
 
   const onSubmit = (data: any) => {
     loginQuery.mutate({ email: data.email, password: data.password });
   };
+
+  useEffect(() => {
+    console.log(code);
+    if (code) githubLoginQuery.mutate(code);
+  }, [code]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -69,7 +61,7 @@ export const SignInForm = () => {
         >
           {t('forms.signIn.googleButton')}
         </IconButton>
-        <a href={githubAuthLink} target="_blank">
+        <a href={getGithubAuthUrl()} target="_blank">
           <IconButton iconType="github" color="neutral" type="button">
             {t('forms.signIn.githubButton')}
           </IconButton>

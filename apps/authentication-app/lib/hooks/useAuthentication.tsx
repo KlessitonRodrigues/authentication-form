@@ -20,6 +20,16 @@ const useAuthentication = () => {
     onError: () => errorToast('Google Login Failed'),
   };
 
+  const githubLoginReq = {
+    enabled: false,
+    mutationKey: ['github-login'],
+    mutationFn: async (code: string) => {
+      const res = await axiosClient.post('auth/github', { code });
+      location.href = `${dotenv.REDIRECT_URL}?token=${res.data?.token}`;
+    },
+    onError: () => errorToast('GitHub Login Failed'),
+  };
+
   const emailLoginReq = {
     enabled: false,
     mutationKey: ['email-login'],
@@ -73,9 +83,24 @@ const useAuthentication = () => {
     onError: () => errorToast('Password reset failed'),
   };
 
+  const getGithubAuthUrl = () => {
+    const githubAuthUrl = 'https://github.com/login/oauth/authorize';
+    const redirect_uri = dotenv.GITHUB_REDIRECT;
+    const client_id = dotenv.GITHUB_CLIENT_ID;
+    const params = new URLSearchParams({
+      client_id,
+      redirect_uri,
+      scope: 'read:user user:email',
+      //state: 'RANDOM_STRING',
+    });
+
+    return `${githubAuthUrl}?${params.toString()}`;
+  };
+
   const loginQuery = useMutation(emailLoginReq, client);
   const signupQuery = useMutation(emailSignupReq, client);
   const googleLoginQuery = useMutation(googleLoginReq, client);
+  const githubLoginQuery = useMutation(githubLoginReq, client);
   const sendRecoveryCodeQuery = useMutation(sendRecoveryCodeReq, client);
   const verifyRecoveryCodeQuery = useMutation(verifyRecoveryCodeReq, client);
   const resetPasswordQuery = useMutation(resetPasswordReq, client);
@@ -91,12 +116,14 @@ const useAuthentication = () => {
 
   return {
     googleLoginHandle,
+    getGithubAuthUrl,
     googleLoginQuery,
     loginQuery,
     signupQuery,
     sendRecoveryCodeQuery,
     verifyRecoveryCodeQuery,
     resetPasswordQuery,
+    githubLoginQuery,
   };
 };
 

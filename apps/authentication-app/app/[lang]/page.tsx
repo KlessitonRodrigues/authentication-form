@@ -1,5 +1,5 @@
-import { AuthenticationForm } from '@/lib/forms/Authentication';
 import { generateStaticParams, useServerTranslations } from '@/lib/hooks/useServerTranslation';
+import AuthenticationView from '@/lib/views/authentication/AuthenticationView';
 import minimalBgImg from '@/public/images/minimal_bg.jpg';
 import { NEXTJS } from '@packages/common-types';
 import { PageFull, SignInScreenV2, materialColors } from '@packages/daisy-ui-components';
@@ -22,7 +22,7 @@ export default async function RootPage(page: NEXTJS.PageProps) {
           from: materialColors.deepPurple['100'],
           to: materialColors.blue['50'],
         }}
-        loginForm={<AuthenticationForm t={t} />}
+        loginForm={<AuthenticationView t={t} />}
       />
     </PageFull>
   );

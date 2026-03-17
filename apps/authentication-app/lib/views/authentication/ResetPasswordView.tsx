@@ -1,0 +1,43 @@
+'use client';
+import { useClientTranslations } from '@/lib/hooks/useClientTranslation';
+import { Card, TabList, TabListProps } from '@packages/daisy-ui-components';
+import { useSearchParams } from 'next/navigation';
+import { useMemo } from 'react';
+
+import ViewData from '../ViewData';
+import { ChangePasswordForm } from './ChangePasswordForm';
+import { VerifyCodeForm } from './VerifyCodeForm';
+
+const ResetPasswordView = () => {
+  const { t } = useClientTranslations();
+  const params = useSearchParams();
+  const resetToken = params.get('resetToken') || '';
+
+  const tabItems: TabListProps['items'] = useMemo(
+    () => [
+      {
+        label: t('forms.resetPassword.verifyCode'),
+        icon: 'code',
+        content: <VerifyCodeForm />,
+        disabled: !!resetToken,
+      },
+      {
+        label: t('forms.resetPassword.resetPassword'),
+        icon: 'lock',
+        content: <ChangePasswordForm />,
+        disabled: !resetToken,
+      },
+    ],
+    [resetToken],
+  );
+
+  return (
+    <ViewData>
+      <Card className="m-auto w-md min-h-160">
+        <TabList defaultItem={resetToken ? 1 : 0} items={tabItems} />
+      </Card>
+    </ViewData>
+  );
+};
+
+export default ResetPasswordView;

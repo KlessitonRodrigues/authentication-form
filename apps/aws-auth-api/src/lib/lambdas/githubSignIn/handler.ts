@@ -7,7 +7,7 @@ import { createResponse } from '../../../utils/api/createResponse';
 import { createAuthUser, getAuthUserByEmail } from '../../dynamoDb/authTable/operations';
 
 const signUpWithGithubSchema = z.object({
-  token: z.string().min(1),
+  code: z.string().min(1),
 });
 
 const githubUserUrl = 'https://api.github.com/user';
@@ -24,14 +24,14 @@ export const handler: AWS.APIGatewayHandler = async event => {
       return createResponse(400, { error: 'Invalid request body', details });
     }
 
-    const { token } = result.data;
+    const { code } = result.data;
 
     /**
      * 1️⃣ Fetch basic user info
      */
     const userResponse = await fetch(githubUserUrl, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${code}`,
         Accept: 'application/json',
       },
     });
@@ -47,7 +47,7 @@ export const handler: AWS.APIGatewayHandler = async event => {
      */
     const emailResponse = await fetch(githubEmailsUrl, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${code}`,
         Accept: 'application/json',
       },
     });
