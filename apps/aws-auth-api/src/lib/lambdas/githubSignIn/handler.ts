@@ -10,7 +10,7 @@ const signUpWithGithubSchema = z.object({
   code: z.string().min(1),
 });
 
-const githubUserUrl = 'https://api.github.com/user';
+const githubTokenUrl = 'https://github.com/login/oauth/access_token';
 const githubEmailsUrl = 'https://api.github.com/user/emails';
 
 export const handler: AWS.APIGatewayHandler = async event => {
@@ -26,54 +26,67 @@ export const handler: AWS.APIGatewayHandler = async event => {
 
     const { code } = result.data;
 
-    /**
-     * 1️⃣ Fetch basic user info
-     */
-    const userResponse = await fetch(githubUserUrl, {
+    const tokenRes = await fetch(githubTokenUrl, {
+      method: 'POST',
       headers: {
-        Authorization: `Bearer ${code}`,
         Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        client_id: dotenv.GITHUB_CLIENT_ID,
+        client_secret: dotenv.GITHUB_CLIENT_SECRET,
+        code,
+      }),
+    });
+
+    if (tokenRes.status !== 200) {
+      throw new Error('Failed to fetch access token from GitHub');
+    }
+
+    const tokenData = await tokenRes.json();
+
+    if (!tokenData.access_token) {
+      return createResponse(400, { error: 'No access_token', tokenData });
+    }
+
+    const accessToken = tokenData.access_token;
+
+    const userResp = await fetch('https://api.github.com/user', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        Accept: 'application/vnd.github+json',
+        'User-Agent': 'your-app-name',
       },
     });
 
-    if (userResponse.status !== 200) {
-      throw new Error('Failed to fetch user info from GitHub');
-    }
+    const user = await userResp.json();
 
-    const githubUser = await userResponse.json();
-
-    /**
-     * 2️⃣ Fetch user emails
-     */
-    const emailResponse = await fetch(githubEmailsUrl, {
+    let emails = [];
+    const emailResp = await fetch(githubEmailsUrl, {
       headers: {
-        Authorization: `Bearer ${code}`,
-        Accept: 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+        Accept: 'application/vnd.github+json',
+        'User-Agent': 'your-app-name',
       },
     });
 
-    if (emailResponse.status !== 200) {
-      throw new Error('Failed to fetch user emails from GitHub');
+    if (emailResp.status === 200) {
+      emails = await emailResp.json();
     }
 
-    const emails = await emailResponse.json();
+    const primaryEmail = emails.find((e: any) => e.primary && e.verified);
 
-    const primaryEmail = emails.find((email: any) => email.primary && email.verified);
-
-    if (!primaryEmail?.email) {
-      return createResponse(401, { error: 'No verified primary email found' });
+    if (!primaryEmail) {
+      return createResponse(400, { error: 'No verified primary email found in GitHub account' });
     }
 
-    /**
-     * 3️⃣ Check or create user in DynamoDB
-     */
     let dbUser: any = await getAuthUserByEmail(primaryEmail.email);
 
     if (!dbUser) {
       dbUser = await createAuthUser({
         email: primaryEmail.email,
         password: crypto.randomUUID(), // GitHub handles auth
-        userName: githubUser.name || githubUser.login,
+        userName: user.name || user.login,
       });
     }
 
@@ -81,9 +94,6 @@ export const handler: AWS.APIGatewayHandler = async event => {
       return createResponse(500, { error: 'Failed to create or retrieve user' });
     }
 
-    /**
-     * 4️⃣ Create JWT
-     */
     const jwtData = {
       userId: dbUser.userId,
       email: dbUser.email,

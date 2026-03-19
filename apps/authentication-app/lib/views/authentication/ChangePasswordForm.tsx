@@ -1,25 +1,23 @@
 'use client';
 import useAuthentication from '@/lib/hooks/useAuthentication';
 import { useClientTranslations } from '@/lib/hooks/useClientTranslation';
+import { useFormSchema } from '@/lib/hooks/useFormSchema';
+import { createAuthSchemas } from '@packages/common-types';
 import { Form, IconButton, Icons, InputField, Row } from '@packages/daisy-ui-components';
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-
-import { AuthForm, getAuthValidation } from './validation';
-
-const formValidation = getAuthValidation('changePassword');
 
 export const ChangePasswordForm = () => {
-  const { t } = useClientTranslations();
+  const { t, lang } = useClientTranslations();
   const { resetPasswordQuery } = useAuthentication();
+  const { sendRecoveryCodeSchema } = createAuthSchemas({ lang });
   const params = useSearchParams();
   const email = params.get('email');
   const resetToken = params.get('resetToken') || '';
 
-  const { formState, register, handleSubmit, ...form } = useForm(formValidation);
+  const { errors, setValue, register, handleSubmit } = useFormSchema(sendRecoveryCodeSchema);
 
-  const onSubmit = (data: AuthForm) => {
+  const onSubmit = (data: any) => {
     resetPasswordQuery.mutate({
       newPassword: data.password!,
       token: resetToken,
@@ -27,8 +25,8 @@ export const ChangePasswordForm = () => {
   };
 
   useEffect(() => {
-    if (email) form.setValue('email', email);
-  }, [email, form]);
+    if (email) setValue('email', email);
+  }, [email, setValue]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -40,7 +38,7 @@ export const ChangePasswordForm = () => {
         before={<Icons iconType="email" />}
         disabled
         inputProps={register('email')}
-        error={formState.errors.email?.message}
+        error={errors.email?.message?.toString()}
       />
       <InputField
         size="lg"
@@ -48,7 +46,7 @@ export const ChangePasswordForm = () => {
         placeholder={t('forms.resetPassword.passwordPlaceholder')}
         before={<Icons iconType="lock" />}
         inputProps={register('password')}
-        error={formState.errors.password?.message}
+        error={errors.password?.message?.toString()}
       />
       <InputField
         size="lg"
@@ -56,7 +54,7 @@ export const ChangePasswordForm = () => {
         placeholder={t('forms.resetPassword.confirmPasswordPlaceholder')}
         before={<Icons iconType="lock" />}
         inputProps={register('confirmPassword')}
-        error={formState.errors.confirmPassword?.message}
+        error={errors.confirmPassword?.message?.toString()}
       />
       <Row flexX="center">
         <IconButton iconType="checkMark" color="error" loading={resetPasswordQuery.isPending}>

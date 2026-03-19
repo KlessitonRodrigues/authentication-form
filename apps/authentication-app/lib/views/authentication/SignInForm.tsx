@@ -22,7 +22,6 @@ export const SignInForm = () => {
   };
 
   useEffect(() => {
-    console.log(code);
     if (code) githubLoginQuery.mutate(code);
   }, [code]);
 
@@ -61,8 +60,13 @@ export const SignInForm = () => {
         >
           {t('forms.signIn.googleButton')}
         </IconButton>
-        <a href={getGithubAuthUrl()} target="_blank">
-          <IconButton iconType="github" color="neutral" type="button">
+        <a href={getGithubAuthUrl()}>
+          <IconButton
+            loading={githubLoginQuery.isPending}
+            iconType="github"
+            color="neutral"
+            type="button"
+          >
             {t('forms.signIn.githubButton')}
           </IconButton>
         </a>
