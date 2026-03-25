@@ -46,6 +46,10 @@ export const SignInForm = () => {
         error={errors.password?.message?.toString()}
       />
 
+      <Text size="sm" opacity="50" className="text-center">
+        test4@email.com - test12345
+      </Text>
+
       <IconButton iconType="signIn" color="primary" loading={loginQuery.isPending} type="submit">
         {t('forms.signIn.signInButton')}
       </IconButton>
