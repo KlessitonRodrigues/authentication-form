@@ -1,27 +1,32 @@
-import { AWS, zodErrorStringify } from '@packages/common-types';
+import {
+  AWS,
+  COMMON,
+  createAuthSchemas,
+  dictionaries,
+  zodErrorStringify,
+} from '@packages/common-types';
 import * as jwt from 'jsonwebtoken';
-import { z } from 'zod';
 
 import dotenv from '../../../contants/dotenv';
 import { createResponse } from '../../../utils/api/createResponse';
 import { createAuthUser, getAuthUserByEmail } from '../../dynamoDb/authTable/operations';
 
-const signUpWithGithubSchema = z.object({
-  code: z.string().min(1),
-});
-
 const githubTokenUrl = 'https://github.com/login/oauth/access_token';
 const githubEmailsUrl = 'https://api.github.com/user/emails';
 
 export const handler: AWS.APIGatewayHandler = async event => {
+  const lang = (event.headers?.lang || 'en') as COMMON.Language;
+  const dictionary = dictionaries[lang];
+
   try {
     const jsonBody = JSON.parse(event.body || '{}');
 
+    const { signUpWithGithubSchema } = createAuthSchemas({ lang });
     const result = signUpWithGithubSchema.safeParse(jsonBody);
 
     if (!result.success) {
       const details = zodErrorStringify(result);
-      return createResponse(400, { error: 'Invalid request body', details });
+      return createResponse(400, { error: dictionary.INVALID_REQUEST_BODY, details });
     }
 
     const { code } = result.data;
@@ -29,8 +34,8 @@ export const handler: AWS.APIGatewayHandler = async event => {
     const tokenRes = await fetch(githubTokenUrl, {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        //Accept: 'application/json',
+        //'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         client_id: dotenv.GITHUB_CLIENT_ID,
@@ -40,13 +45,13 @@ export const handler: AWS.APIGatewayHandler = async event => {
     });
 
     if (tokenRes.status !== 200) {
-      throw new Error('Failed to fetch access token from GitHub');
+      throw new Error(dictionary.FAILED_TO_FETCH_ACCESS_TOKEN);
     }
 
     const tokenData = await tokenRes.json();
 
     if (!tokenData.access_token) {
-      return createResponse(400, { error: 'No access_token', tokenData });
+      return createResponse(400, { error: dictionary.NO_ACCESS_TOKEN, tokenData });
     }
 
     const accessToken = tokenData.access_token;
@@ -55,7 +60,6 @@ export const handler: AWS.APIGatewayHandler = async event => {
       headers: {
         Authorization: `Bearer ${accessToken}`,
         Accept: 'application/vnd.github+json',
-        'User-Agent': 'your-app-name',
       },
     });
 
@@ -77,7 +81,7 @@ export const handler: AWS.APIGatewayHandler = async event => {
     const primaryEmail = emails.find((e: any) => e.primary && e.verified);
 
     if (!primaryEmail) {
-      return createResponse(400, { error: 'No verified primary email found in GitHub account' });
+      return createResponse(400, { error: dictionary.NO_VERIFIED_EMAIL });
     }
 
     let dbUser: any = await getAuthUserByEmail(primaryEmail.email);
@@ -91,7 +95,7 @@ export const handler: AWS.APIGatewayHandler = async event => {
     }
 
     if (!dbUser) {
-      return createResponse(500, { error: 'Failed to create or retrieve user' });
+      return createResponse(500, { error: dictionary.USER_NOT_FOUND });
     }
 
     const jwtData = {
@@ -111,7 +115,7 @@ export const handler: AWS.APIGatewayHandler = async event => {
   } catch (err: any) {
     console.error(err);
     return createResponse(500, {
-      error: 'Internal server error',
+      error: dictionary.INTERNAL_SERVER_ERROR,
       details: err?.message || err,
     });
   }

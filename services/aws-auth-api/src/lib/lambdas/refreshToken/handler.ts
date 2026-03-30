@@ -1,21 +1,23 @@
-import { AWS } from '@packages/common-types';
+import { AWS, COMMON, dictionaries } from '@packages/common-types';
 import * as jwt from 'jsonwebtoken';
 
 import dotenv from '../../../contants/dotenv';
 import { cookieToObject, createTokenCookie } from '../../../utils/api/cookies';
-import { createResponse, createResponseWithOrigin } from '../../../utils/api/createResponse';
+import { createResponseWithOrigin } from '../../../utils/api/createResponse';
 
 export const handler: AWS.APIGatewayHandler = async event => {
-  try {
-    const origin = event.headers.origin || '';
+  const lang = (event.headers?.lang || 'en') as COMMON.Language;
+  const origin = event.headers.origin || '';
+  const dictionary = dictionaries[lang];
 
+  try {
     const jsonBody = JSON.parse(event.body || '{}');
     const bodytoken = jsonBody?.token;
     const cookie = String(event.headers.Cookie || event.headers.cookie);
     const token = bodytoken || cookieToObject(cookie)?.token;
 
     if (!token) {
-      return createResponseWithOrigin(origin, 400, { error: 'Missing token' });
+      return createResponseWithOrigin(origin, 400, { error: dictionary.MISSING_TOKEN });
     }
 
     let decodedToken: any;
@@ -36,6 +38,9 @@ export const handler: AWS.APIGatewayHandler = async event => {
     return createResponseWithOrigin(origin, 200, { user: jwtData }, { 'Set-Cookie': newCookie });
   } catch (err: any) {
     console.error(err);
-    return createResponse(500, { error: 'Internal server error', details: err?.message || err });
+    return createResponseWithOrigin(origin, 500, {
+      error: dictionary.INTERNAL_SERVER_ERROR,
+      details: err?.message || err,
+    });
   }
 };
