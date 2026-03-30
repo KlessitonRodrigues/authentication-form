@@ -1,5 +1,5 @@
 {
-  "name": "@apps/aws-app-deployment",
+  "name": "@services/aws-app-deployment",
   "version": "0.1.0",
   "private": true,
   "scripts": {

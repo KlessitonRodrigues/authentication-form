@@ -1,5 +1,5 @@
 {
-  "name": "@apps/aws-auth-api",
+  "name": "@services/aws-auth-api",
   "version": "0.1.0",
   "scripts": {
     "dev": "nodemon src/config/localApi.ts",
