@@ -5,7 +5,7 @@ import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as s3Deploy from 'aws-cdk-lib/aws-s3-deployment';
 
 const appName = 'DashboardApp';
-const appPath = '../dashboard-app/out';
+const appPath = '../../applications/dashboard/out';
 
 export class DashboardApp extends cdk.Stack {
   constructor(scope: cdk.App, props?: cdk.StackProps) {
@@ -62,7 +62,7 @@ export class DashboardApp extends cdk.Stack {
     // Create CloudFront Distribution
     const distribution = new cloudfront.Distribution(this, `${appName}Distribution`, {
       defaultBehavior: {
-        origin: origins.S3BucketOrigin.withOriginAccessIdentity(websiteBucket, {
+        origin: new origins.S3Origin(websiteBucket, {
           originAccessIdentity: originAccessIdentity,
         }),
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
