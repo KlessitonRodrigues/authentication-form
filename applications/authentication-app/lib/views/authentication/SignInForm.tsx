@@ -46,7 +46,7 @@ export const SignInForm = () => {
         error={errors.password?.message?.toString()}
       />
 
-      <Text size="sm" opacity="50" className="text-center">
+      <Text size="sm" opacity="70" className="text-center">
         test4@email.com - test12345
       </Text>
 
