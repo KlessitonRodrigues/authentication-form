@@ -1,129 +1,86 @@
-import { axiosClient } from '@/lib/config/axiosClient';
 import client from '@/lib/config/queryClient';
 import dotenv from '@/lib/constants/dotenv';
 import { Auth } from '@packages/common-types';
 import { errorToast, successToast } from '@packages/daisy-ui-components';
-import { TokenResponse, useGoogleLogin } from '@react-oauth/google';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+
+import {
+  emailSignInReq,
+  emailSignUpReq,
+  resetPasswordReq,
+  sendRecoveryCodeReq,
+  verifyRecoveryCodeReq,
+} from '../services/api/authentication';
 
 const useAuthentication = () => {
   const router = useRouter();
 
-  const googleLoginReq = {
-    enabled: false,
-    mutationKey: ['google-login'],
-    mutationFn: async (token: string) => {
-      const res = await axiosClient.post('auth/google', { token });
-      location.href = `${dotenv.REDIRECT_URL}?token=${res.data?.token}`;
-    },
-    onError: () => errorToast('Google Login Failed'),
-  };
-
-  const githubLoginReq = {
-    enabled: false,
-    mutationKey: ['github-login'],
-    mutationFn: async (code: string) => {
-      const res = await axiosClient.post('auth/github', { code });
-      location.href = `${dotenv.REDIRECT_URL}?token=${res.data?.token}`;
-    },
-    onError: () => errorToast('GitHub Login Failed'),
-  };
-
-  const emailLoginReq = {
+  const handleEmailSignIn = {
     enabled: false,
     mutationKey: ['email-login'],
+    onError: (msg: string) => errorToast(msg),
     mutationFn: async (data: Auth.SignInRequest) => {
-      const res = await axiosClient.post('auth/signin', data);
-      location.href = `${dotenv.REDIRECT_URL}?token=${res.data?.token}`;
+      const resData = await emailSignInReq(data);
+      location.href = `${dotenv.REDIRECT_URL}?token=${resData?.token}`;
     },
-    onError: () => errorToast('Invalid Login Credentials'),
   };
 
-  const emailSignupReq = {
+  const handleEmailSignUp = {
     enabled: false,
     mutationKey: ['email-signup'],
+    onError: (msg: string) => errorToast(msg),
     mutationFn: async (data: Auth.SignUpRequest) => {
-      const res = await axiosClient.post('auth/signup', data);
-      location.href = `${dotenv.REDIRECT_URL}?token=${res.data?.token}`;
+      const resData = await emailSignUpReq(data);
+      location.href = `${dotenv.REDIRECT_URL}?token=${resData?.token}`;
     },
-    onError: () => errorToast('Signup Failed'),
   };
 
-  const sendRecoveryCodeReq = {
+  const handleSendRecoveryCode = {
     enabled: false,
     mutationKey: ['send-recovery-code'],
+    onError: (msg: string) => errorToast(msg),
     mutationFn: async (data: Auth.SendRecoveryCodeRequest) => {
-      const res = await axiosClient.post('auth/send-recovery-code', data);
+      const resData = await sendRecoveryCodeReq(data);
       router.push('/reset?email=' + data.email);
-      alert(res.data?.recoveryCode);
+      alert(resData?.recoveryCode);
     },
-    onError: () => errorToast('Failed to send recovery code'),
   };
 
-  const verifyRecoveryCodeReq = {
+  const handleVerifyRecoveryCode = {
     enabled: false,
     mutationKey: ['verify-recovery-code'],
+    onError: (msg: string) => errorToast(msg),
     mutationFn: async (data: Auth.VerifyRecoveryCodeRequest) => {
-      const res = await axiosClient.post('auth/verify-recovery-code', data);
-      router.push(`/reset?email=${data.email}&resetToken=${res.data?.token}`);
-      return res.data;
+      const resData = await verifyRecoveryCodeReq(data);
+      router.push(`/reset?email=${data.email}&resetToken=${resData?.token}`);
+      return resData;
     },
-    onError: () => errorToast('Invalid recovery code'),
   };
 
-  const resetPasswordReq = {
+  const handleResetPassword = {
     enabled: false,
     mutationKey: ['reset-password'],
+    onError: (msg: string) => errorToast(msg),
     mutationFn: async (data: Auth.ResetPasswordRequest) => {
-      await axiosClient.post('auth/reset-password', data);
+      await resetPasswordReq(data);
       successToast('Password reset successful');
       router.push('/');
     },
-    onError: () => errorToast('Password reset failed'),
   };
 
-  const getGithubAuthUrl = () => {
-    const githubAuthUrl = 'https://github.com/login/oauth/authorize';
-    const redirect_uri = dotenv.GITHUB_REDIRECT;
-    const client_id = dotenv.GITHUB_CLIENT_ID;
-    const params = new URLSearchParams({
-      client_id,
-      redirect_uri,
-      scope: 'read:user user:email',
-      //state: 'RANDOM_STRING',
-    });
-
-    return `${githubAuthUrl}?${params.toString()}`;
-  };
-
-  const loginQuery = useMutation(emailLoginReq, client);
-  const signupQuery = useMutation(emailSignupReq, client);
-  const googleLoginQuery = useMutation(googleLoginReq, client);
-  const githubLoginQuery = useMutation(githubLoginReq, client);
-  const sendRecoveryCodeQuery = useMutation(sendRecoveryCodeReq, client);
-  const verifyRecoveryCodeQuery = useMutation(verifyRecoveryCodeReq, client);
-  const resetPasswordQuery = useMutation(resetPasswordReq, client);
-
-  const googleLoginHandler = {
-    onSuccess: (tokenResponse: TokenResponse) => {
-      googleLoginQuery.mutate(tokenResponse.access_token);
-    },
-    onError: () => errorToast('Google Login Failed'),
-  };
-
-  const googleLoginHandle = useGoogleLogin(googleLoginHandler);
+  const loginQuery = useMutation(handleEmailSignIn, client);
+  const signupQuery = useMutation(handleEmailSignUp, client);
+  const sendRecoveryCodeQuery = useMutation(handleSendRecoveryCode, client);
+  const verifyRecoveryCodeQuery = useMutation(handleVerifyRecoveryCode, client);
+  const resetPasswordQuery = useMutation(handleResetPassword, client);
 
   return {
-    googleLoginHandle,
-    getGithubAuthUrl,
-    googleLoginQuery,
     loginQuery,
     signupQuery,
     sendRecoveryCodeQuery,
     verifyRecoveryCodeQuery,
     resetPasswordQuery,
-    githubLoginQuery,
   };
 };
 

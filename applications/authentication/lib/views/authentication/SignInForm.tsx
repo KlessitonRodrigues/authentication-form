@@ -2,6 +2,8 @@
 import useAuthentication from '@/lib/hooks/useAuthentication';
 import { useClientTranslations } from '@/lib/hooks/useClientTranslation';
 import { useFormSchema } from '@/lib/hooks/useFormSchema';
+import useGithubAuthentication from '@/lib/hooks/useGitubAuthentication';
+import useGoogleAuthentication from '@/lib/hooks/useGoogleAuthentication';
 import { createAuthSchemas } from '@packages/common-types';
 import { Form, IconButton, Icons, InputField, Row, Text } from '@packages/daisy-ui-components';
 import { useSearchParams } from 'next/navigation';
@@ -11,9 +13,10 @@ export const SignInForm = () => {
   const { t, lang } = useClientTranslations();
   const params = useSearchParams();
   const code = params.get('code');
+  const { loginQuery } = useAuthentication();
+  const { googleLoginHandle, googleLoginQuery } = useGoogleAuthentication();
+  const { githubLoginQuery, getGithubAuthUrl } = useGithubAuthentication();
 
-  const { loginQuery, googleLoginQuery, githubLoginQuery, googleLoginHandle, getGithubAuthUrl } =
-    useAuthentication();
   const { signInSchema } = createAuthSchemas({ lang });
   const { errors, register, handleSubmit } = useFormSchema(signInSchema);
 

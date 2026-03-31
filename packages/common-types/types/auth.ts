@@ -15,6 +15,14 @@ export namespace Auth {
     password?: string;
   }
 
+  export interface GoogleSignInRequest {
+    token?: string;
+  }
+
+  export interface GithubSignInRequest {
+    code?: string;
+  }
+
   export interface SignUpRequest {
     email?: string;
     userName?: string;
