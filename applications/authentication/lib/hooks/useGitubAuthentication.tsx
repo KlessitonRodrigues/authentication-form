@@ -1,4 +1,3 @@
-import client from '@/lib/config/queryClient';
 import dotenv from '@/lib/constants/dotenv';
 import { errorToast } from '@packages/daisy-ui-components';
 import { useMutation } from '@tanstack/react-query';
@@ -30,7 +29,7 @@ const useGithubAuthentication = () => {
     return `${githubAuthUrl}?${params.toString()}`;
   };
 
-  const githubLoginQuery = useMutation(handleGithubLogin, client);
+  const githubLoginQuery = useMutation(handleGithubLogin);
 
   return {
     getGithubAuthUrl,

@@ -1,4 +1,3 @@
-import client from '@/lib/config/queryClient';
 import dotenv from '@/lib/constants/dotenv';
 import { Auth } from '@packages/common-types';
 import { errorToast, successToast } from '@packages/daisy-ui-components';
@@ -69,11 +68,11 @@ const useAuthentication = () => {
     },
   };
 
-  const loginQuery = useMutation(handleEmailSignIn, client);
-  const signupQuery = useMutation(handleEmailSignUp, client);
-  const sendRecoveryCodeQuery = useMutation(handleSendRecoveryCode, client);
-  const verifyRecoveryCodeQuery = useMutation(handleVerifyRecoveryCode, client);
-  const resetPasswordQuery = useMutation(handleResetPassword, client);
+  const loginQuery = useMutation(handleEmailSignIn);
+  const signupQuery = useMutation(handleEmailSignUp);
+  const sendRecoveryCodeQuery = useMutation(handleSendRecoveryCode);
+  const verifyRecoveryCodeQuery = useMutation(handleVerifyRecoveryCode);
+  const resetPasswordQuery = useMutation(handleResetPassword);
 
   return {
     loginQuery,

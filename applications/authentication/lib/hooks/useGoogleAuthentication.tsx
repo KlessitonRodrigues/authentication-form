@@ -1,4 +1,3 @@
-import client from '@/lib/config/queryClient';
 import dotenv from '@/lib/constants/dotenv';
 import { errorToast } from '@packages/daisy-ui-components';
 import { TokenResponse, useGoogleLogin } from '@react-oauth/google';
@@ -17,8 +16,6 @@ const useGoogleAuthentication = () => {
     },
   };
 
-  const googleLoginQuery = useMutation(handleGoogleLogin, client);
-
   const googleLoginHandler = {
     onSuccess: (tokenResponse: TokenResponse) => {
       googleLoginQuery.mutate(tokenResponse.access_token);
@@ -27,6 +24,7 @@ const useGoogleAuthentication = () => {
   };
 
   const googleLoginHandle = useGoogleLogin(googleLoginHandler);
+  const googleLoginQuery = useMutation(handleGoogleLogin);
 
   return {
     googleLoginHandle,
