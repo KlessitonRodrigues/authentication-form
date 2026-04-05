@@ -13,8 +13,6 @@ export class AuthenticationApp extends cdk.Stack {
 
     // Create S3 bucket for Next.js static export
     const websiteBucket = new s3.Bucket(this, `${appName}WebsiteBucket`, {
-      websiteIndexDocument: 'index.html',
-      websiteErrorDocument: '404.html',
       publicReadAccess: false,
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       removalPolicy: cdk.RemovalPolicy.DESTROY,

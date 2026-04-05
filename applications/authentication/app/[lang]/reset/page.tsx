@@ -6,7 +6,7 @@ import beachBg3 from '@/public/images/beach_bg_03.jpg';
 import beachBg4 from '@/public/images/beach_bg_04.jpg';
 import beachBg5 from '@/public/images/beach_bg_05.jpg';
 import { NEXTJS } from '@packages/common-types';
-import { PageFull, SignInCarouselScreen, materialColors } from '@packages/daisy-ui-components';
+import { PageFull, SignInCarouselScreen, tailwindColors } from '@packages/daisy-ui-components';
 
 import { generateStaticParams } from '../page';
 
@@ -46,8 +46,8 @@ export default async function ResetPage(page: NEXTJS.PageProps) {
           },
         ]}
         bgColors={{
-          from: materialColors.grey['100'],
-          to: materialColors.lightBlue['100'],
+          from: tailwindColors.blue['500'],
+          to: tailwindColors.gray['50'],
         }}
         loginForm={<ResetPasswordView />}
       />

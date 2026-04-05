@@ -11,7 +11,7 @@ import {
   PageFull,
   RedirectPage,
   SignInCarouselScreen,
-  materialColors,
+  tailwindColors,
 } from '@packages/daisy-ui-components';
 import { Suspense } from 'react';
 
@@ -50,8 +50,8 @@ export default async function RootPage(page: NEXTJS.PageProps) {
             },
           ]}
           bgColors={{
-            from: materialColors.grey['100'],
-            to: materialColors.lightBlue['100'],
+            from: tailwindColors.blue['500'],
+            to: tailwindColors.gray['50'],
           }}
           loginForm={<AuthenticationView t={t} />}
         />
