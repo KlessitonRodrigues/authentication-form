@@ -5,7 +5,7 @@ import { useFormSchema } from '@/lib/hooks/useFormSchema';
 import useGithubAuthentication from '@/lib/hooks/useGitubAuthentication';
 import useGoogleAuthentication from '@/lib/hooks/useGoogleAuthentication';
 import { createAuthSchemas } from '@packages/common-types';
-import { Form, IconButton, Icons, InputField, Row, Text } from '@packages/daisy-ui-components';
+import { Form, IconButton, Icons, InputField, Row } from '@packages/daisy-ui-components';
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
